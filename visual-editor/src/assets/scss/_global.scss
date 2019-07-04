@@ -1,0 +1,303 @@
+// Global variables, mixins, and styles.
+
+$font-heading-bold: BebasNeueBold, Impact, sans-serif;
+$font-heading-regular: BebasNeueRegular, Arial, sans-serif;
+$font-alternate: DIN_Alternate_Bold, Arial, sans-serif;
+$font-normal-bold: BioSans_Bold, Arial, sans-serif;
+$font-normal-semibold: BioSans_SemiBold, Arial, sans-serif;
+$font-normal: BioSans_Regular, Arial, sans-serif;
+
+// -----
+// Fonts
+// -----
+
+@font-face {
+  font-family: "BebasNeueBold";
+  font-style: normal;
+  font-weight: bold;
+  src: url(../fonts/BebasNeueBold.woff) format("woff");
+}
+
+@font-face {
+  font-family: "BebasNeueRegular";
+  font-style: normal;
+  font-weight: normal;
+  src: url(../fonts/BebasNeueRegular.woff) format("woff");
+}
+
+@font-face {
+  font-family: "BioSans_Bold";
+  font-style: normal;
+  font-weight: bold;
+  src: url(../fonts/BioSans_Bold.woff) format("woff");
+}
+
+@font-face {
+  font-family: "BioSans_Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url(../fonts/BioSans_Regular.woff) format("woff");
+}
+
+@font-face {
+  font-family: "BioSans_SemiBold";
+  font-style: normal;
+  font-weight: normal;
+  src: url(../fonts/BioSans_SemiBold.woff) format("woff");
+}
+
+@font-face {
+  font-family: "DIN_Alternate_Bold";
+  font-style: normal;
+  font-weight: bold;
+  src: url(../fonts/DIN_Alternate_Bold.woff) format("woff");
+}
+
+// ------
+// Mixins
+// ------
+
+@mixin button() {
+  @extend .btn;
+
+  font-size: 16px;
+  line-height: 16px;
+}
+
+@mixin hex-background($color, $stroke: none, $stroke-width: 0) {
+  $rgb-color: "rgb(#{red($color)}, #{green($color)}, #{blue($color)})";
+  $rgb-stroke: none;
+
+  $width: 36;
+  $height: $width / 0.86602540378; // hexagon width/height equals sin(60deg)
+  $half-stroke: $stroke-width / 2;
+  $x1: 0 + $half-stroke;
+  $x2: $width / 2;
+  $x3: $width - $half-stroke;
+  $y1: 0 + $half-stroke;
+  $y2: ($height / 4) - ($half-stroke / 2);
+  $y3: (3 * $height / 4) - ($half-stroke / 2);
+  $y4: $height - $half-stroke;
+
+  @if $stroke != none {
+    $rgb-stroke: "rgb(#{red($stroke)}, #{green($stroke)}, #{blue($stroke)})";
+  }
+
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 #{$width} #{$height}' xmlns='http://www.w3.org/2000/svg' version='1.1'><polygon fill='#{$rgb-color}' points='#{$x2},#{$y1} #{$x3},#{$y2} #{$x3},#{$y3} #{$x2},#{$y4} #{$x1},#{$y3} #{$x1},#{$y2}' stroke='#{$rgb-stroke}' stroke-width='#{$stroke-width}'/></svg>");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@mixin hex-outline-background($color) {
+  $rgb-color: "rgb(#{red($color)}, #{green($color)}, #{blue($color)})";
+
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 36 42' xmlns='http://www.w3.org/2000/svg' version='1.1'><polygon fill='none' stroke='#{$rgb-color}' stroke-width='2' points='18,1 35,10 35,32 18,41 1,32 1,10'/></svg>");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+// ---------------
+// Utility classes
+// ---------------
+
+/**
+  Allow specifying borders via shorthands like bxw-5 for 5px width border
+  along the x-axis (left and right), or blw-5 for a left border of 5px.
+ */
+@for $width from 1 through 5 {
+  .bw-#{$width} {
+    border-width: $width px !important;
+  }
+
+  .bxw-#{$width} {
+    border-left-width: $width px !important;
+    border-right-width: $width px !important;
+  }
+
+  .byw-#{$width} {
+    border-top-width: $width px !important;
+    border-bottom-width: $width px !important;
+  }
+
+  @each $full, $abbrev in (top: t, bottom: b, left: l, right: r) {
+    .b#{$abbrev}w-#{$width} {
+      border-#{$full}-style: solid !important;
+      border-#{$full}-width: #{$width}px !important;
+    }
+  }
+}
+
+.hide-on-desktop {
+  @extend .d-flex;
+  @extend .d-lg-none;
+}
+
+.hide-on-tablet-and-above {
+  @extend .d-flex;
+  @extend .d-md-none;
+}
+
+.hide-on-tablet-and-below {
+  @extend .d-none;
+  @extend .d-md-flex;
+}
+
+.hide-on-mobile {
+  @extend .d-none;
+  @extend .d-lg-flex;
+}
+
+.text-header {
+  color: $content-bg;
+
+  &:hover,
+  &:active {
+    color: $content-bg;
+    text-decoration: underline;
+    text-decoration-color: $secondary-2;
+  }
+
+  &:visited {
+    color: $content-bg;
+  }
+}
+
+.white-box {
+  @extend .rounded, .p-3;
+
+  background-color: white;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+.primary-button {
+  @include button();
+  @include button-variant($yellow-1, $yellow-1);
+
+  padding: 16px 32px;
+  color: $charcoal-1;
+
+  svg {
+    margin-right: 8px;
+  }
+}
+
+.nudging-button {
+  @include button();
+
+  @extend .btn-block;
+
+  padding: 0;
+
+  @include media-breakpoint-up(lg) {
+    height: 36px;
+    line-height: 36px;
+  }
+
+  @include media-breakpoint-down(md) {
+    height: 44px;
+    line-height: 44px;
+  }
+}
+
+.nudging-button-primary {
+  @extend .nudging-button, .btn-block;
+
+  @include button-variant($burgundy, $burgundy);
+}
+
+.nudging-button-secondary {
+  @extend .nudging-button, .btn-outline-primary;
+}
+
+.disabled-link {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+// ---------------
+// Default styling
+// ---------------
+
+html {
+  // Without these text looks too heavy on macOS.
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-family: $font-heading-bold;
+  font-size: 42px;
+  letter-spacing: 2px;
+  color: $charcoal-1;
+}
+
+h2 {
+  font-family: $font-heading-bold;
+  font-size: 32px;
+  letter-spacing: 1px;
+  color: $charcoal-1;
+}
+
+h3 {
+  font-family: $font-heading-regular;
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: $charcoal-1;
+}
+
+h4 {
+  font-family: $font-alternate;
+  font-size: 20px;
+  color: $charcoal-1;
+}
+
+h5 {
+  font-family: $font-normal-bold;
+  font-size: 18px;
+  color: $charcoal-1;
+}
+
+h6 {
+  font-family: $font-normal-semibold;
+  font-size: 15px;
+  color: $charcoal-1;
+}
+
+body {
+  font-family: $font-normal;
+  font-size: 16px;
+  color: $charcoal-1;
+}
+
+small {
+  font-family: $font-normal;
+  font-size: 14px;
+  color: $charcoal-2;
+  display: inline-block; // If it's inline (default) it has annoying line-height interactions with the parent.
+}
+
+.layout-wrapper {
+  // The DIV that holds the header, main content, and footer
+  min-height: 100vh; // When the page content is small, push the footer to the bottom of the screen
+}
+
+.main-content {
+  @extend .pt-3, .pb-5;
+
+  flex: 1 0 auto; // When the page content is small, expand the main-content div to push the footer to the bottom of the screen
+}
+
+// TODO We need to extract some of the code from Paragon modal to make our own
+// But that is quite a bit of work (we need to convert from JSX -> TSX, and add some types in for
+// specific interfaces on window, for example - or remove the support for IE 11... not straightforward
+:global(.paragon__modal-content) {
+  max-width: 480px;
+  width: 480px;
+}
+
+:global(.paragon__modal .paragon__modal-dialog) {
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
