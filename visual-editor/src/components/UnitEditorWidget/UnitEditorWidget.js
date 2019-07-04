@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import styles from '../../global/styles';
+import '../../assets/scss/app.scss';
 import {ShortAdvancedSettings} from './ShortAdvancedSettings';
 import {SingleAdvancedSettings} from './SingleAdvancedSettings';
 import {MultiAdvancedSettings} from './MultiAdvancedSettings';
@@ -14,7 +14,7 @@ export class UnitEditorWidget extends React.PureComponent {
     render() {
         return (
             <div>
-                <div className={styles.unitEditorWrapper}>
+                <div className="unit-editor-wrapper">
                     <SingleSelectAnswers
                         answersList={[
                             {id: '1', title: 'Cholesterol molecule'},
@@ -25,7 +25,7 @@ export class UnitEditorWidget extends React.PureComponent {
                     />
                     <SingleAdvancedSettings/>
                 </div>
-                <div className={styles.unitEditorWrapper}>
+                <div className="unit-editor-wrapper">
                     <MultiSelectAnswers
                         answersList={[
                             {id: '1', title: 'Cholesterol molecule'},
@@ -36,7 +36,7 @@ export class UnitEditorWidget extends React.PureComponent {
                     />
                     <MultiAdvancedSettings/>
                 </div>
-                <div className={styles.unitEditorWrapper}>
+                <div className="unit-editor-wrapper">
                     <ShortAnswers
                         answersList={[
                             {id: '1', title: 'Cholesterol molecule'},

@@ -1,16 +1,19 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
-import styles from './global/styles';
+import './assets/scss/app.scss';
+// import './assets/scss/_global.scss';
+// import './assets/scss/_theme.scss';
+// import './assets/scss/styles.scss';
 import {UnitEditorWidget} from './components/UnitEditorWidget/UnitEditorWidget';
 
 function App() {
+
   return (
-    <div className={styles.unitWrapper}>
-        <div className={styles.unitContentBar}>
+    <div className="unit-wrapper">
+        <div className="unit-content-bar">
             <UnitEditorWidget />
         </div>
-        <div className={styles.unitSideBar} />
+        <div />
     </div>
     // <div className="App">
     //   <header className="App-header">
