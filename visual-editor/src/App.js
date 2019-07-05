@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './assets/scss/app.scss';
 // import './assets/scss/_global.scss';
 // import './assets/scss/_theme.scss';

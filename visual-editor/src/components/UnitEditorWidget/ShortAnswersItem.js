@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import styles from '../../global/styles';
+import '../../assets/scss/app.scss';
 
 export class ShortAnswersItem extends React.PureComponent {
 
@@ -10,25 +10,25 @@ export class ShortAnswersItem extends React.PureComponent {
 
         return (
             <div>
-                <div className={styles.answersFormTitle}>Acceptable answers</div>
-                <div className={styles.answersOption}>
-                    <div className={styles.answersFieldWrapper}>
-                        <div className={styles.answersItemWrapper}>
-                            <label className={styles.sr} htmlFor={`answer-short1`}>Enter the answer</label>
-                            <input type="text" className={styles.answersItem} id={`answer-short1`}
+                <div className="answers-form-title">Acceptable answers</div>
+                <div className="answers-option">
+                    <div className="answers-field-wrapper">
+                        <div className="answers-item-wrapper">
+                            <label className="sr" htmlFor={`answer-short1`}>Enter the answer</label>
+                            <input type="text" className="answers-item" id={`answer-short1`}
                                    placeholder='Enter the answer'/>
                         </div>
-                        <button className={styles.answersRemoveBtn} type='button' aria-label='Remove answer item'/>
+                        <button className="answers-remove-btn" type='button' aria-label='Remove answer item'/>
                     </div>
                 </div>
-                <div className={styles.answersOption}>
-                    <div className={styles.answersFieldWrapper}>
-                        <div className={styles.answersItemWrapper}>
-                            <label className={styles.sr} htmlFor={`answer-short2`}>{anotherPlaceholderText}</label>
-                            <input type="text" className={styles.answersItem} id={`answer-short2`}
+                <div className="answers-option">
+                    <div className="answers-field-wrapper">
+                        <div className="answers-item-wrapper">
+                            <label className="sr" htmlFor={`answer-short2`}>{anotherPlaceholderText}</label>
+                            <input type="text" className="answers-item" id={`answer-short2`}
                                    placeholder={anotherPlaceholderText}/>
                         </div>
-                        <button className={styles.answersRemoveBtn} type='button' aria-label='Remove answer item'/>
+                        <button className="answers-remove-btn" type='button' aria-label='Remove answer item'/>
                     </div>
                 </div>
             </div>
