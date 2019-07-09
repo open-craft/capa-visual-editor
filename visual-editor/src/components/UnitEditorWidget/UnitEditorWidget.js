@@ -38,31 +38,8 @@ export class UnitEditorWidget extends React.PureComponent {
                         apiKey='283hsctoygj8rdat1mccsgurzgph73mg3pdgu0lc7j9wq6vr'
                         initialValue="<p>This is the initial content of the editor</p>"
                         onChange={this.handleEditorChange}
-                        // init={{
-                        //     selector: "textarea",
-                        //     plugins: "textpattern"
-                        // }}
                     />
                 </div>
-                {/* <div>
-                    <CodeMirror
-                        value={this.state.content}
-                        onBeforeChange={(editor, data, value) => {
-                            this.setState({value});
-                        }}
-                        onChange={(editor, data, value) => {
-                            console.log(editor);
-                            console.log(data);
-                            console.log(value);
-
-                        }}
-                        options={{
-                            mode: 'xml',
-                            theme: 'material',
-                            lineNumbers: true
-                          }}
-                    />
-                </div> */}
                 <div className="unit-editor-wrapper">
                     <SingleSelectAnswers
                         answersList={[

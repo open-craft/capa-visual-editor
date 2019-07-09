@@ -36,8 +36,6 @@ export class SingleSelectItem extends React.PureComponent {
     render() {
         const additionallyСlass = this.state.openFeedback ? 'answers-feedback_open' : '';
         const placeholderText = Number(this.props.id) === 2 ? 'Enter the correct answer' : 'Enter an incorrect answer';
-        const checkboxValue = Number(this.props.id) === 2 ? true : false;
-
 
         return (
             <div key={this.props.id} className="answers-option">
