@@ -3,15 +3,30 @@ import Select from 'react-select';
 import '../../assets/scss/app.scss';
 
 export class SingleAdvancedSettings extends React.PureComponent {
-    state = {
-        selectedTypeOption: null,
-        selectedTemptOption: null,
-        selectedPointOption: null,
-    };
 
-    handleTypeChange = selectedTypeOption => this.setState({ selectedTypeOption });
-    handleTemptsChange = selectedTemptOption => this.setState({ selectedTemptOption });
-    handleOptionsChange = selectedPointOption => this.setState({ selectedPointOption });
+    constructor(props) {
+        super(props);
+        this.handleTypeChange = this.handleTypeChange.bind(this);
+        this.handleTemptsChange = this.handleTemptsChange.bind(this);
+        this.handleOptionsChange = this.handleOptionsChange.bind(this);
+
+        this.state = {
+            selectedTypeOption: null,
+            selectedTemptOption: null,
+            selectedPointOption: null,
+        };
+    }
+
+    handleTypeChange (selectedTypeOption) {
+        this.setState({ selectedTypeOption });
+    }
+    handleTemptsChange (selectedTemptOption) {
+        this.setState({ selectedTemptOption });
+    }
+        
+    handleOptionsChange (selectedPointOption) {
+        this.setState({ selectedPointOption });
+    }
 
     render() {
 

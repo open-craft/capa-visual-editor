@@ -3,13 +3,23 @@ import Select from 'react-select';
 import '../../assets/scss/app.scss';
 
 export class ShortAdvancedSettings extends React.PureComponent {
-    state = {
-        selectedTemptOption: null,
-        selectedPointOption: null,
-    };
 
-    handleTemptsChange = selectedTemptOption => this.setState({ selectedTemptOption });
-    handleOptionsChange = selectedPointOption => this.setState({ selectedPointOption });
+    constructor(props) {
+        super(props);
+        this.handleTemptsChange = this.handleTemptsChange.bind(this);
+        this.handleOptionsChange = this.handleOptionsChange.bind(this);
+        this.state = {
+            selectedTemptOption: null,
+            selectedPointOption: null,
+        };
+    }
+
+    handleTemptsChange (selectedTemptOption) {
+        this.setState({ selectedTemptOption });
+    }
+    handleOptionsChange (selectedPointOption) {
+        this.setState({ selectedPointOption });
+    }
 
     render() {
         const { selectedTemptOption } = this.state;
