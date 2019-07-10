@@ -8,7 +8,6 @@ import '../../assets/scss/app.scss';
 export class SingleSelectAnswers extends React.Component {
 
     render() {
-        console.log(this.props, 'SingleSelectAnswers');
         return (
             <fieldset className="answers-wrapper">
                 <legend className="answers-title">Answers*</legend>
@@ -37,7 +36,6 @@ export class SingleSelectAnswers extends React.Component {
 }
 
 const mapStateToProps = (store) => {
-    console.log(store, 'SingleSelectAnswers store');
     return {
         answersList: store.singleSelectAnswers.singleSelectAnswersList
     }
@@ -46,11 +44,9 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = function(dispatch, ownProps) {
     return {
         addAnswer: (event) => {
-            console.log('addAnswer', event.target);
             return dispatch({type: actionTypes.SINGLE_SELECT_ANSWERS_ADD_NEW});
         },
         removeAnswer: (id) => {
-            console.log('removeAnswer');
             return dispatch({type: actionTypes.SINGLE_SELECT_ANSWERS_REMOVE, id: id});
         },
         answerChanged: (event) => {

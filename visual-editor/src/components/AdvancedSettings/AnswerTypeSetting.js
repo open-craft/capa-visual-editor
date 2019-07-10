@@ -1,24 +1,21 @@
 import React from 'react';
 import Select from 'react-select';
+import * as actionTypes from '../../store/actions/action-types';
+import { connect } from 'react-redux';
 
 import '../../assets/scss/app.scss';
 
-export default class AnswerTypeSerting extends React.PureComponent {
+export class AnswerTypeSerting extends React.PureComponent {
 
     constructor(props) {
         super(props);
         this.handleTypeChange = this.handleTypeChange.bind(this);
-        this.state = {
-            options: [
-                { value: 'radio', label: 'Radio button' },
-                { value: 'select', label: 'Select list' },
-            ]
-        }
+        this.state = {};
 
     }
 
     componentDidMount() {
-        this.setState({...this.props})
+        this.setState({...this.props});
     }
 
     handleTypeChange(value) {
@@ -40,9 +37,9 @@ export default class AnswerTypeSerting extends React.PureComponent {
                         className="advanced-settings-select"
                         isSearchable={false}
                         placeholder="- Select -"
-                        value={this.state.selectedTypeOption}
-                        onChange={this.handleTypeChange}
-                        options={this.state.options}
+                        value={this.props.selectedTypeOption}
+                        onChange={this.props.typeChanged}
+                        options={this.props.options}
                     />
                     <div className="advanced-settings-note">Note: Use dropdowns when you have more than 10 items, to make it easier for user to choose</div>
                 </div>
@@ -50,3 +47,20 @@ export default class AnswerTypeSerting extends React.PureComponent {
         )
     }
 }
+
+const mapStateToProps = function(store) {
+    return {
+        selectedTypeOption: store.answerTypeSettings.selectedType,
+        options: store.answerTypeSettings.accessibleTypes
+    }
+};
+
+const mapDispatchToProps = function(dispatch) {
+    return {
+        typeChanged: (value) => {
+            return dispatch({type: actionTypes.ANSWER_TYPE_SETTING_CHANGED, selectedType: value})
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AnswerTypeSerting);

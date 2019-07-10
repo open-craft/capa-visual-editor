@@ -40,8 +40,8 @@ export class SingleSelectItem extends React.PureComponent {
         this.setState({openFeedback: !this.state.openFeedback});
     }
 
-    checkBoxChange() {
-        this.setState({correct: !this.state.correct}, () => {
+    checkBoxChange(event) {
+        this.setState({correct: event.target.checked}, () => {
             this.answerChanged();
         });
     }

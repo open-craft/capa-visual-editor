@@ -6,7 +6,7 @@ import {SingleAdvancedSettings} from './SingleAdvancedSettings';
 import MultiAdvancedSettings from './MultiAdvancedSettings';
 import {ShortAnswers} from './ShortAnswers';
 import SingleSelectAnswers from './SingleSelectAnswers';
-import {MultiSelectAnswers} from './MultiSelectAnswers';
+import MultiSelectAnswers from './MultiSelectAnswers';
 import { Editor } from '@tinymce/tinymce-react';
 import { connect } from 'react-redux';
 
@@ -45,14 +45,7 @@ export class UnitEditorWidget extends React.Component {
                     <SingleAdvancedSettings/>
                 </div>
                 <div className="unit-editor-wrapper">
-                    <MultiSelectAnswers
-                        answersList={[
-                            {id: 1, title: 'Cholesterol molecule'},
-                            {id: 2, title: 'Protein channel'},
-                            {id: 3, title: 'Glycoprotein molecule'},
-                            {id: 4, title: 'Phospholipid molecule'},
-                        ]}
-                    />
+                    <MultiSelectAnswers/>
                     <MultiAdvancedSettings/>
                 </div>
                 <div className="unit-editor-wrapper">

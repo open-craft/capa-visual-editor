@@ -24,7 +24,6 @@ const singleSelectAnswersReducer = function(state=initialState, action) {
                 singleSelectAnswersList: state.singleSelectAnswersList.filter(single => single.id !== action.id)
             }
         case ActionTypes.SINGLE_SELECT_ANSWERS_CHANGED:
-            console.log('ACTION - SINGLE_SELECT_ANSWERS_CHANGED - action', action);
             return {
                 singleSelectAnswersList: state.singleSelectAnswersList.map((single) => {
                     if (single.id === action.id) {
@@ -33,9 +32,11 @@ const singleSelectAnswersReducer = function(state=initialState, action) {
                             title: action.title,
                             correct: action.correct,
                             feedback: action.feedback
-                        }
+                        };
                     } else {
-                        return single;
+                        return {
+                            ...single, correct: false
+                        };
                     }
                 })
             }
