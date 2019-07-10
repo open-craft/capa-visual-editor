@@ -5,9 +5,12 @@ import GeneralFeedbackSetting from '../AdvancedSettings/GeneralFeedbackSetting';
 import HintSetting from '../AdvancedSettings/HintSetting';
 import ScorringSetting from '../AdvancedSettings/ScoringSetting';
 import GroupFeedback from '../AdvancedSettings/GroupFeedback';
+import multyAdvancedSettingAction from '../../store/actions/actions';
+import store from '../../store/store';
 
 
-export class MultiAdvancedSettings extends React.PureComponent {
+
+export default class MultiAdvancedSettings extends React.Component {
     constructor(props) {
         super(props);
         this.handleTemptsChange = this.handleTemptsChange.bind(this);
@@ -42,7 +45,7 @@ export class MultiAdvancedSettings extends React.PureComponent {
                 <div className={`advanced-settings ${this.state.advancedSettingsOpenned ? 'advanced-settings_open' : ''}`}>
                     <div className="advanced-settings-title">Advanced settings</div>
 
-                    <GeneralFeedbackSetting selectedTypeOption={this.state.selectedTypeOption}/>
+                    <GeneralFeedbackSetting/>
                     <GroupFeedback/>
                     <HintSetting/>
                     <ScorringSetting/>

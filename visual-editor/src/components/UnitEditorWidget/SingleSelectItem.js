@@ -6,31 +6,56 @@ export class SingleSelectItem extends React.PureComponent {
 
     constructor(props) {
         super(props);
-        this.removeAnswer = this.removeAnswer.bind(this);
+        this.answerChanged = this.answerChanged.bind(this);
         this.openFeedbackButtonClick = this.openFeedbackButtonClick.bind(this);
-        this.singleSelectRadioChangeHandler = this.singleSelectRadioChangeHandler.bind(this);
+        this.removeAnswer = this.removeAnswer.bind(this);
+        this.checkBoxChange = this.checkBoxChange.bind(this);
+        this.feedbackChange = this.feedbackChange.bind(this);
+        this.titleChange = this.titleChange.bind(this);
+
         this.state = {
-            openFeedback: false,
-            correctAnswer: false
+            openFeedback: false
         }
     }
 
     componentDidMount() {
-        this.setState({ ...this.props});
+        this.setState({...this.props});
     }
 
-    removeAnswer(event) {
-        this.props.removeAnswer(this.props.id);
-    }
-
-    openFeedbackButtonClick(event) {
-        this.setState({
-            openFeedback: !this.state.openFeedback
+    answerChanged() {
+        let { id, title, correct, feedback } = this.state;
+        this.props.answerChanged({
+            id: id,
+            title: title,
+            correct: correct,
+            feedback: feedback
         });
     }
 
-    singleSelectRadioChangeHandler(event) {
-        this.props.singleSelectRadioChangeHandler(this.props.id, this.state.correctAnswer);
+    removeAnswer() {
+        this.props.removeAnswer(this.props.id);
+    }
+
+    openFeedbackButtonClick() {
+        this.setState({openFeedback: !this.state.openFeedback});
+    }
+
+    checkBoxChange() {
+        this.setState({correct: !this.state.correct}, () => {
+            this.answerChanged();
+        });
+    }
+
+    feedbackChange(event) {
+        this.setState({feedback: event.target.value}, () => {
+            this.answerChanged();
+        });
+    }
+
+    titleChange(event) {
+        this.setState({title: event.target.value}, () => {
+            this.answerChanged();
+        });
     }
 
     render() {
@@ -40,10 +65,10 @@ export class SingleSelectItem extends React.PureComponent {
         return (
             <div key={this.props.id} className="answers-option">
                 <div className="answers-radio">
-                    <input name='answer' type='radio' id={`answer-radio${this.props.id}`} value={this.state.correctAnswer}
-                           defaultChecked={this.state.correctAnswer} onChange={this.singleSelectRadioChangeHandler}/>
+                    <input name='correct' type='radio' id={`answer-radio${this.props.id}`} value={this.state.correct}
+                           defaultChecked={this.state.correct} onChange={this.checkBoxChange}/>
                     <label htmlFor={`answer-radio${this.props.id}`} className="answers-radio-label">
-                        {this.props.title}
+                        {this.state.title}
                     </label>
                 </div>
                 <div className="answers-field-wrapper">
@@ -52,12 +77,12 @@ export class SingleSelectItem extends React.PureComponent {
                             Specific feedback
                         </label>
                         <textarea rows={1} className="answers-feedback-field" id={`feedback-field${this.props.id}`}
-                                  placeholder='Enter feedback for when the choice is selected'/>
+                                  placeholder='Enter feedback for when the choice is selected' value={this.state.feedback} onChange={this.feedbackChange}/>
                     </div>
                     <div className="answers-item-wrapper">
                         <label className="sr" htmlFor={`answer-single${this.props.id}`}>{placeholderText}</label>
-                        <textarea rows={1} className="answer-item" id={`answer-single${this.props.id}`}
-                                  placeholder={placeholderText}/>
+                        <textarea rows={1} className="answer-item" id={`answer-single${this.props.id}`} value={this.state.title}
+                                  placeholder={placeholderText} onChange={this.titleChange}/>
                         <button className="answers-feedback-btn" type='button' aria-label='Show feedback block' onClick={this.openFeedbackButtonClick}/>
                     </div>
                     <button className="answers-remove-btn" type='button' aria-label='Remove answer item' onClick={this.removeAnswer}/>

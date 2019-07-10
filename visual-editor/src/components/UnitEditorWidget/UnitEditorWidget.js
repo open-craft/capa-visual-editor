@@ -3,14 +3,15 @@ import * as React from 'react';
 import '../../assets/scss/app.scss';
 import {ShortAdvancedSettings} from './ShortAdvancedSettings';
 import {SingleAdvancedSettings} from './SingleAdvancedSettings';
-import {MultiAdvancedSettings} from './MultiAdvancedSettings';
+import MultiAdvancedSettings from './MultiAdvancedSettings';
 import {ShortAnswers} from './ShortAnswers';
-import {SingleSelectAnswers} from './SingleSelectAnswers';
+import SingleSelectAnswers from './SingleSelectAnswers';
 import {MultiSelectAnswers} from './MultiSelectAnswers';
 import { Editor } from '@tinymce/tinymce-react';
+import { connect } from 'react-redux';
 
 
-export class UnitEditorWidget extends React.PureComponent {
+export class UnitEditorWidget extends React.Component {
 
     constructor(props) {
         super(props);
@@ -40,14 +41,7 @@ export class UnitEditorWidget extends React.PureComponent {
                     />
                 </div>
                 <div className="unit-editor-wrapper">
-                    <SingleSelectAnswers
-                        answersList={[
-                            {id: 1, title: 'Cholesterol molecule'},
-                            {id: 2, title: 'Protein channel'},
-                            {id: 3, title: 'Glycoprotein molecule'},
-                            {id: 4, title: 'Phospholipid molecule'},
-                        ]}
-                    />
+                    <SingleSelectAnswers/>
                     <SingleAdvancedSettings/>
                 </div>
                 <div className="unit-editor-wrapper">
