@@ -8,7 +8,6 @@ import {ShortAnswers} from './ShortAnswers';
 import {SingleSelectAnswers} from './SingleSelectAnswers';
 import {MultiSelectAnswers} from './MultiSelectAnswers';
 import { Editor } from '@tinymce/tinymce-react';
-import {Controlled as CodeMirror} from 'react-codemirror2';
 
 
 export class UnitEditorWidget extends React.PureComponent {
