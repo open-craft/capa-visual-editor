@@ -18,11 +18,11 @@ const singleSelectAnswersReducer = function(state=initialState, action) {
             };
             return {
                 singleSelectAnswersList: state.singleSelectAnswersList.concat([emptyAnswer])
-            }
+            };
         case ActionTypes.SINGLE_SELECT_ANSWERS_REMOVE:
             return {
                 singleSelectAnswersList: state.singleSelectAnswersList.filter(single => single.id !== action.id)
-            }
+            };
         case ActionTypes.SINGLE_SELECT_ANSWERS_CHANGED:
             return {
                 singleSelectAnswersList: state.singleSelectAnswersList.map((single) => {
@@ -39,9 +39,10 @@ const singleSelectAnswersReducer = function(state=initialState, action) {
                         };
                     }
                 })
-            }
+            };
+        default:
+            return state;
     }
-    return state;
 }
 
 export default singleSelectAnswersReducer;

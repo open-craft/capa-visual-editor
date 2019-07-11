@@ -4,6 +4,8 @@ import singleSelectAnswersReducer from './singleSelectAnswersReducer';
 import multiSelectAnswersReducer from './multiSelectAnswersReducer';
 import answerTypeSettingReducer from './answerTypeSettingReducer';
 import generalFeedbackSettingReducer from './generalFeedbackSettingReducer';
+import HintSettingReducer from './HintSettingReducer';
+import ScorringSettingReducer from './ScorringSettingReducer';
 
 
 var reducers = combineReducers({
@@ -11,7 +13,9 @@ var reducers = combineReducers({
     singleSelectAnswers: singleSelectAnswersReducer,
     multiSelectAnswers: multiSelectAnswersReducer,
     answerTypeSettings: answerTypeSettingReducer,
-    generalFeedbackSettings: generalFeedbackSettingReducer
+    generalFeedbackSettings: generalFeedbackSettingReducer,
+    hintSettings: HintSettingReducer,
+    scorringSettings: ScorringSettingReducer
 });
 
 export default reducers;

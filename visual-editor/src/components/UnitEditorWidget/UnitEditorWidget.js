@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import '../../assets/scss/app.scss';
-import {ShortAdvancedSettings} from './ShortAdvancedSettings';
-import {SingleAdvancedSettings} from './SingleAdvancedSettings';
-import MultiAdvancedSettings from './MultiAdvancedSettings';
+import {ShortAdvancedSettings} from '../AdvancedSettings/ShortAdvancedSettings';
+import {SingleAdvancedSettings} from '../AdvancedSettings/SingleAdvancedSettings';
+import MultiAdvancedSettings from '../AdvancedSettings/MultiAdvancedSettings';
 import {ShortAnswers} from './ShortAnswers';
 import SingleSelectAnswers from './SingleSelectAnswers';
 import MultiSelectAnswers from './MultiSelectAnswers';
@@ -32,22 +32,22 @@ export class UnitEditorWidget extends React.Component {
     render() {
         return (
             <div>
-                <div>
+                {/* <div>
                     <Editor
                         className="advanced-settings-block"
                         apiKey='283hsctoygj8rdat1mccsgurzgph73mg3pdgu0lc7j9wq6vr'
                         initialValue="<p>This is the initial content of the editor</p>"
                         onChange={this.handleEditorChange}
                     />
-                </div>
-                <div className="unit-editor-wrapper">
+                </div> */}
+                {/* <div className="unit-editor-wrapper">
                     <SingleSelectAnswers/>
                     <SingleAdvancedSettings/>
-                </div>
-                <div className="unit-editor-wrapper">
+                </div> */}
+                {/* <div className="unit-editor-wrapper">
                     <MultiSelectAnswers/>
                     <MultiAdvancedSettings/>
-                </div>
+                </div> */}
                 <div className="unit-editor-wrapper">
                     <ShortAnswers
                         answersList={[

@@ -12,8 +12,9 @@ const answerTypeSettingReducer = function(state=initialState, action) {
     switch(action.type) {
         case actionTypes.ANSWER_TYPE_SETTING_CHANGED:
             return Object.assign({}, state, {selectedType: action.selectedType});
+        default:
+            return state;
     }
-    return state;
 };
 
 export default answerTypeSettingReducer;

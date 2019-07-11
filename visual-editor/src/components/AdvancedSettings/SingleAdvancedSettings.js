@@ -1,30 +1,20 @@
 import * as React from 'react';
-import Select from 'react-select';
-import '../../assets/scss/app.scss';
-import GeneralFeedbackSetting from '../AdvancedSettings/GeneralFeedbackSetting';
-import HintSetting from '../AdvancedSettings/HintSetting';
-import ScorringSetting from '../AdvancedSettings/ScoringSetting';
 
-export class ShortAdvancedSettings extends React.PureComponent {
+import AnswerTypeSetting from './AnswerTypeSetting';
+import GeneralFeedbackSetting from './GeneralFeedbackSetting';
+
+import '../../assets/scss/app.scss';
+import HintSetting from './HintSetting';
+import ScorringSetting from './ScoringSetting';
+
+export default class SingleAdvancedSettings extends React.PureComponent {
 
     constructor(props) {
         super(props);
-        this.handleTemptsChange = this.handleTemptsChange.bind(this);
-        this.handleOptionsChange = this.handleOptionsChange.bind(this);
-        this.switchAdvancedSettings = this.switchAdvancedSettings.bind(this);
+
         this.state = {
-            selectedTemptOption: null,
-            selectedPointOption: null,
             advancedSettingsOpenned: false
         };
-    }
-
-    handleTemptsChange (selectedTemptOption) {
-        this.setState({ selectedTemptOption });
-    }
-
-    handleOptionsChange (selectedPointOption) {
-        this.setState({ selectedPointOption });
     }
 
     switchAdvancedSettings() {
@@ -34,19 +24,18 @@ export class ShortAdvancedSettings extends React.PureComponent {
     }
 
     render() {
-        const { selectedTemptOption } = this.state;
-        const { selectedPointOption } = this.state;
 
         return (
             <div className="advanced-settings-wrapper">
                 <div className={`advanced-settings ${this.state.advancedSettingsOpenned ? 'advanced-settings_open' : ''}`}>
                     <div className="advanced-settings-title">Advanced settings</div>
 
+                    <AnswerTypeSetting/>
                     <GeneralFeedbackSetting/>
                     <HintSetting/>
                     <ScorringSetting/>
                 </div>
-                <button type='button' className="show-advanced-settings" onClick={this.switchAdvancedSettings}>
+                <button type='button' className="show-advanced-settings" onClick={this.switchAdvancedSettings.bind(this)}>
                     {this.state.advancedSettingsOpenned ? 'Less options' : 'Show advanced options'}
                     <span className="show-advanced-settings-icon"></span>
                 </button>

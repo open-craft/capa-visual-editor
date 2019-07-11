@@ -8,8 +8,9 @@ const generalFeedbackSettingReducer = function(state=initialState, action) {
     switch(action.type) {
         case actionTypes.GENERAL_FEEDBACK_CHANGED:
             return Object.assign({}, state, {feedbackContent: action.feedbackContent});
+        default:
+            return state;
     }
-    return state;
 };
 
 export default generalFeedbackSettingReducer;

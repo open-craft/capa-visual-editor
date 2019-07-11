@@ -1,16 +1,12 @@
 import * as React from 'react';
 import Select from 'react-select';
 import '../../assets/scss/app.scss';
-import GeneralFeedbackSetting from '../AdvancedSettings/GeneralFeedbackSetting';
-import HintSetting from '../AdvancedSettings/HintSetting';
-import ScorringSetting from '../AdvancedSettings/ScoringSetting';
-import GroupFeedback from '../AdvancedSettings/GroupFeedback';
-import multyAdvancedSettingAction from '../../store/actions/actions';
-import store from '../../store/store';
+import GeneralFeedbackSetting from './GeneralFeedbackSetting';
+import HintSetting from './HintSetting';
+import ScorringSetting from './ScoringSetting';
 
+export class ShortAdvancedSettings extends React.PureComponent {
 
-
-export default class MultiAdvancedSettings extends React.Component {
     constructor(props) {
         super(props);
         this.handleTemptsChange = this.handleTemptsChange.bind(this);
@@ -19,15 +15,14 @@ export default class MultiAdvancedSettings extends React.Component {
         this.state = {
             selectedTemptOption: null,
             selectedPointOption: null,
-            advancedSettingsOpenned: false,
-            selectedTypeOption: null
+            advancedSettingsOpenned: false
         };
     }
 
     handleTemptsChange (selectedTemptOption) {
         this.setState({ selectedTemptOption });
     }
-        
+
     handleOptionsChange (selectedPointOption) {
         this.setState({ selectedPointOption });
     }
@@ -39,6 +34,8 @@ export default class MultiAdvancedSettings extends React.Component {
     }
 
     render() {
+        const { selectedTemptOption } = this.state;
+        const { selectedPointOption } = this.state;
 
         return (
             <div className="advanced-settings-wrapper">
@@ -46,7 +43,6 @@ export default class MultiAdvancedSettings extends React.Component {
                     <div className="advanced-settings-title">Advanced settings</div>
 
                     <GeneralFeedbackSetting/>
-                    <GroupFeedback/>
                     <HintSetting/>
                     <ScorringSetting/>
                 </div>

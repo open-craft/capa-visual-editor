@@ -13,16 +13,16 @@ const mutliSelectAnswersReducer = function(state=initialState, action) {
     switch(action.type) {
         case ActionTypes.MULTI_SELECT_ANSWERS_ADD_NEW:
             const lastId = state.multiSelectAnswersList[state.multiSelectAnswersList.length-1].id;
-            let emptyAnswer = {
+            const emptyAnswer = {
                 id: lastId + 1, title: '', correct: false, selectedFeedback: "", unselectedFeedback: "", answer: ""
             };
             return {
                 multiSelectAnswersList: state.multiSelectAnswersList.concat([emptyAnswer])
-            }
+            };
         case ActionTypes.MULTI_SELECT_ANSWERS_REMOVE:
             return {
                 multiSelectAnswersList: state.multiSelectAnswersList.filter(multi => multi.id !== action.id)
-            }
+            };
         case ActionTypes.MULTI_SELECT_ANSWERS_CHANGED:
             return {
                 multiSelectAnswersList: state.multiSelectAnswersList.map((multi) => {
@@ -39,9 +39,10 @@ const mutliSelectAnswersReducer = function(state=initialState, action) {
                         return multi;
                     }
                 })
-            }
+            };
+        default:
+            return state;
     }
-    return state;
 }
 
 export default mutliSelectAnswersReducer;

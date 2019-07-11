@@ -1,8 +1,10 @@
 import React from 'react';
 import Select from 'react-select';
+import { connect } from 'react-redux';
+import { SCORRING_POINTS_CHANGED, SCORRING_TEMPTS_CHANGED } from '../../store/actions/action-types';
 
 
-export default class ScorringSetting extends React.PureComponent {
+export class ScorringSetting extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -55,9 +57,9 @@ export default class ScorringSetting extends React.PureComponent {
                                 className="advanced-settings-select"
                                 isSearchable={false}
                                 placeholder="- Select -"
-                                value={this.state.selectedTemptOption}
-                                onChange={this.handleTemptsChange}
-                                options={this.state.temptsOptions}
+                                value={this.props.selectedTemptOption}
+                                onChange={this.props.temptsChange}
+                                options={this.props.temptsOptions}
                             />
                         </div>
                         <div className="advanced-settings-col-half">
@@ -67,9 +69,9 @@ export default class ScorringSetting extends React.PureComponent {
                                 className="advanced-settings-select"
                                 isSearchable={false}
                                 placeholder="- Select -"
-                                value={this.state.selectedPointOption}
-                                onChange={this.handleOptionsChange}
-                                options={this.state.pointsOptions}
+                                value={this.props.selectedPointOption}
+                                onChange={this.props.pointsChange}
+                                options={this.props.pointsOptions}
                             />
                         </div>
                     </div>
@@ -79,3 +81,25 @@ export default class ScorringSetting extends React.PureComponent {
         )
     }
 }
+
+const mapStateToProps = function(store) {
+    return {
+        selectedPointOption: store.scorringSettings.selectedPointOption,
+        selectedTemptOption: store.scorringSettings.selectedTemptOption,
+        temptsOptions: store.scorringSettings.temptsOptions,
+        pointsOptions: store.scorringSettings.pointsOptions
+    }
+}
+
+const mapDispatchToProps = function(dispatch) {
+    return {
+        temptsChange: (value) => {
+            return dispatch({type: SCORRING_TEMPTS_CHANGED, ...value})
+        },
+        pointsChange: (value) => {
+            return dispatch({type: SCORRING_POINTS_CHANGED, ...value})
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ScorringSetting);

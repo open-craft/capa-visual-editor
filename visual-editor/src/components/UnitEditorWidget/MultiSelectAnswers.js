@@ -34,7 +34,6 @@ export class MultiSelectAnswers extends React.PureComponent {
 }
 
 const mapStateToProps = (store) => {
-    console.log(store);
     return {
         answersList: store.multiSelectAnswers.multiSelectAnswersList
     }

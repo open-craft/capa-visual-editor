@@ -1,36 +1,59 @@
 import React from 'react';
 import './assets/scss/app.scss';
-// import './assets/scss/_global.scss';
-// import './assets/scss/_theme.scss';
-// import './assets/scss/styles.scss';
-import {UnitEditorWidget} from './components/UnitEditorWidget/UnitEditorWidget';
+import Select from 'react-select';
+import SingleSelectContainer from './containers/SingleSelectContainer';
+import MultiSelectContainer from './containers/MultiSelectContainer';
 
-function App() {
+export default class  App extends React.Component {
 
-  return (
-    <div className="unit-wrapper">
+  constructor(props) {
+    super(props);
+
+    this.typeMapping = {
+      common: "",
+      single: SingleSelectContainer,
+      multi: MultiSelectContainer,
+      short: ""
+    }
+
+    this.state = {
+      selected: { value: 'single', label: 'Single select' }
+    }
+  }
+
+  change(value) {
+    this.setState({
+      selected: value
+    });
+  }
+
+  render() {
+    
+    const Container = this.typeMapping[this.state.selected.value];
+
+    return (
+      <div className="unit-wrapper">
+        <div>
+          <Select
+              id='s'
+              className="advanced-settings-select"
+              isSearchable={false}
+              placeholder="- Select -"
+              onChange={this.change.bind(this)}
+              value={this.state.selected}
+              options={[
+                { value: 'common', label: 'Common' },
+                { value: 'single', label: 'Single select' },
+                { value: 'multi', label: 'Multi select' },
+                { value: 'short', label: 'Short answer' },
+              ]}
+          />
+        </div>
         <div className="unit-content-bar">
-            <UnitEditorWidget />
+            <Container/>
         </div>
         <div />
     </div>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-  );
+    )
+  }
 }
-
-export default App;
