@@ -1,45 +1,15 @@
 import * as React from 'react';
 import {ShortAnswersItem} from './ShortAnswersItem';
 
+import {SHORT_ANSWERS_CHANGED, SHORT_ANSWERS_REMOVE, SHORT_ANSWERS_ADD_NEW} from '../../store/actions/action-types';
+
 import '../../assets/scss/app.scss';
+import { connect } from 'react-redux';
 
 export class ShortAnswers extends React.PureComponent {
 
-    constructor(props) {
-        super(props);
-
-        this.removeShortAnswer = this.removeShortAnswer.bind(this);
-        this.addAnswer = this.addAnswer.bind(this);
-
-        this.state = {
-            shortAnswersList: [
-                {id: 1, value: 'Value 1'},
-                {id: 2, value: 'Value 2'},
-                {id: 3, value: 'Value 3'},
-            ]
-        }
-    }
-
-    removeShortAnswer(id) {
-        let newShortAnswers = this.state.shortAnswersList.filter(s => s.id !== id);
-        this.setState({
-            shortAnswersList: newShortAnswers
-        });
-    }
-
-    addAnswer() {
-        const answers = this.state.shortAnswersList;
-        let lastId = answers[answers.length-1].id;
-        const newAnswers = answers.concat([{
-            id: ++lastId,
-            value: ''
-        }]);
-        this.setState({
-            shortAnswersList: newAnswers
-        });
-    }
-
     render() {
+        console.log(this.props);
         return (
             <fieldset className="answers-wrapper">
                 <legend className="answers-title">Answers*</legend>
@@ -49,13 +19,13 @@ export class ShortAnswers extends React.PureComponent {
                 <div className="answers-list answers-list_short">
                     <div className="answers-form-title">Acceptable answers</div>
                     {
-                        this.state.shortAnswersList.map(shortAnswer => {
-                            return <ShortAnswersItem removeShortAnswer={this.removeShortAnswer} key={shortAnswer.id} {...shortAnswer} />
+                        this.props.shortAnswersList.map(shortAnswer => {
+                            return <ShortAnswersItem remove={this.props.removeAnswer} change={this.props.changeAnswer} key={shortAnswer.id} {...shortAnswer} />
                         })
                     }
 
                     <div className="answers-another-option">
-                        <button className="answers-another-option-btn" type='button' onClick={this.addAnswer}>
+                        <button className="answers-another-option-btn" type='button' onClick={this.props.addAnswer}>
                             + Add <span className="hide-mobile">another</span> answer
                         </button>
                     </div>
@@ -63,4 +33,28 @@ export class ShortAnswers extends React.PureComponent {
             </fieldset>
         );
     }
-}
+};
+
+
+const mapStateToProps = (store) => {
+    console.log(store);
+    return {
+        shortAnswersList: store.shortAnswersData.shortAnswersList
+    }
+};
+
+const mapDispatchToProps = function(dispatch, ownProps) {
+    return {
+        addAnswer: (event) => {
+            return dispatch({type: SHORT_ANSWERS_ADD_NEW});
+        },
+        removeAnswer: (id) => {
+            return dispatch({type: SHORT_ANSWERS_REMOVE, id: id});
+        },
+        changeAnswer: (data) => {
+            return dispatch({type: SHORT_ANSWERS_CHANGED, ...data});
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShortAnswers);

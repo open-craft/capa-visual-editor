@@ -3,6 +3,7 @@ import './assets/scss/app.scss';
 import Select from 'react-select';
 import SingleSelectContainer from './containers/SingleSelectContainer';
 import MultiSelectContainer from './containers/MultiSelectContainer';
+import ShortAnswerContainer from './containers/ShortAnswerContainer';
 
 export default class  App extends React.Component {
 
@@ -13,7 +14,7 @@ export default class  App extends React.Component {
       common: "",
       single: SingleSelectContainer,
       multi: MultiSelectContainer,
-      short: ""
+      short: ShortAnswerContainer
     }
 
     this.state = {
@@ -33,23 +34,23 @@ export default class  App extends React.Component {
 
     return (
       <div className="unit-wrapper">
-        <div>
-          <Select
-              id='s'
-              className="advanced-settings-select"
-              isSearchable={false}
-              placeholder="- Select -"
-              onChange={this.change.bind(this)}
-              value={this.state.selected}
-              options={[
-                { value: 'common', label: 'Common' },
-                { value: 'single', label: 'Single select' },
-                { value: 'multi', label: 'Multi select' },
-                { value: 'short', label: 'Short answer' },
-              ]}
-          />
-        </div>
         <div className="unit-content-bar">
+        <div style={{margin: "20px 0"}}>
+          <Select
+                id='s'
+                className="advanced-settings-select"
+                isSearchable={false}
+                placeholder="- Select -"
+                onChange={this.change.bind(this)}
+                value={this.state.selected}
+                options={[
+                  { value: 'common', label: 'Common' },
+                  { value: 'single', label: 'Single select' },
+                  { value: 'multi', label: 'Multi select' },
+                  { value: 'short', label: 'Short answer' },
+                ]}
+            />
+        </div>
             <Container/>
         </div>
         <div />
