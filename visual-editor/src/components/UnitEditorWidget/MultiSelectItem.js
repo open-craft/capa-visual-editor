@@ -7,13 +7,6 @@ export class MultiSelectItem extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this.showHideFeedback = this.showHideFeedback.bind(this);
-        this.checkboxChange = this.checkboxChange.bind(this);
-        this.selectedFeedbackChanged = this.selectedFeedbackChanged.bind(this);
-        this.unselectedFeedbackChanged = this.unselectedFeedbackChanged.bind(this);
-        this.answerChanged = this.answerChanged.bind(this);
-        this.propsChanged = this.propsChanged.bind(this);
-
         this.state = {
             feedbackOpenned: false
         };
@@ -57,6 +50,10 @@ export class MultiSelectItem extends React.PureComponent {
         this.props.answerChanged(this.state);
     }
 
+    removeAnswer() {
+        this.props.removeAnswer(this.props.id);
+    }
+
     render() {
         const placeholderText = Number(this.props.id) === 2 || Number(this.props.id) === 3 ? 'Enter the correct answer' : 'Enter an incorrect answer';
 
@@ -64,7 +61,7 @@ export class MultiSelectItem extends React.PureComponent {
             <div key={this.props.id} className="answers-option">
                 <div className="answers-radio">
                     <input name='answer' type='checkbox' id={`answer-checkbox${this.props.id}`} value={this.state.correct}
-                           defaultChecked={this.state.correct} onChange={this.checkboxChange}/>
+                           defaultChecked={this.state.correct} onChange={this.checkboxChange.bind(this)}/>
                     <label htmlFor={`answer-checkbox${this.props.id}`} className="answers-radio-label">
                         {this.state.title}
                     </label>
@@ -76,23 +73,23 @@ export class MultiSelectItem extends React.PureComponent {
                         </label>
                         <textarea rows={1} className="answers-feedback-field"
                                   id={`feedback-selected${this.props.id}`} value={this.state.selectedFeedback}
-                                  placeholder='Enter feedback for when the choice is selected' onChange={this.selectedFeedbackChanged}/>
+                                  placeholder='Enter feedback for when the choice is selected' onChange={this.selectedFeedbackChanged.bind(this)}/>
 
                         <label className="answers-feedback-title" htmlFor={`feedback-unselected${this.props.id}`}>
                             Unselected feedback (specific)
                         </label>
                         <textarea rows={1} className="answers-feedback-field"
                                   id={`feedback-unselected${this.props.id}`} value={this.unselectedFeedback}
-                                  placeholder='Enter feedback for when the choice is selected' onChange={this.unselectedFeedbackChanged}/>
+                                  placeholder='Enter feedback for when the choice is selected' onChange={this.unselectedFeedbackChanged.bind(this)}/>
                     </div>
                     <div className="answers-item-wrapper">
                         <label className="sr" htmlFor={`answer-multi${this.props.id}`}>{placeholderText}</label>
                         <textarea rows={1} className="answers-item" id={`answer-multi${this.props.id}`}
                                   placeholder={placeholderText} value={this.state.answer}
-                                  title='Enter the correct answer' onChange={this.answerChanged}/>
-                        <button className="answers-feedback-btn" type='button' aria-label='Show feedback block' onClick={this.showHideFeedback}/>
+                                  title='Enter the correct answer' onChange={this.answerChanged.bind(this)}/>
+                        <button className="answers-feedback-btn" type='button' aria-label='Show feedback block' onClick={this.showHideFeedback.bind(this)}/>
                     </div>
-                    <button className="answers-remove-btn" type='button' aria-label='Remove answer item'/>
+                    <button className="answers-remove-btn" type='button' aria-label='Remove answer item' onClick={this.removeAnswer.bind(this)}/>
                 </div>
             </div>
         );

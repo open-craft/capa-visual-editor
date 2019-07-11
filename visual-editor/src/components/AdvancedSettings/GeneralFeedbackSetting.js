@@ -15,8 +15,14 @@ export class GeneralFeedbackSetting extends React.PureComponent {
                 <div className="advanced-settings-block-description">Feedback will appear when a student submits a wrong answer</div>
 
                 <div className="advanced-settings-form">
-                    <label className="advanced-settings-label" htmlFor='sas2'>Genereal feedback</label>
-                    <input id='sas2' type='text' className="advanced-settings-field" defaultValue={this.props.feedbackContent} placeholder='Enter general feedback' onChange={this.props.generalFeedbackChanged}/>
+                    <label className="advanced-settings-label" htmlFor='sas22323'>Genereal feedback</label>
+                    <input 
+                        id='sas22323' 
+                        type='text' 
+                        className="advanced-settings-field" 
+                        defaultValue={this.props.feedbackContent} 
+                        placeholder='Enter general feedback' 
+                        onChange={this.props.generalFeedbackChanged}/>
                     <div className="advanced-settings-note">Note: This will be overridden if you have added option specific feedback.</div>
                 </div>
             </div>
