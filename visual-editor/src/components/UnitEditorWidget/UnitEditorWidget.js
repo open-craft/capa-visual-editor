@@ -23,7 +23,6 @@ export class UnitEditorWidget extends React.Component {
 
 
     handleEditorChange(e) {
-        console.log(e.target.getContent());
         this.setState({
             content: e.target.getContent()
         });

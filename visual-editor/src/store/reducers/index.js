@@ -8,6 +8,7 @@ import HintSettingReducer from './HintSettingReducer';
 import ScorringSettingReducer from './ScorringSettingReducer';
 import GroupFeedbackSettingReducer from './GroupFeedbackSettingReducer';
 import ShortAnswerReducer from './ShortAnswerReducer';
+import editorContent from './editorContent';
 
 
 var reducers = combineReducers({
@@ -19,7 +20,8 @@ var reducers = combineReducers({
     hintSettings: HintSettingReducer,
     scorringSettings: ScorringSettingReducer,
     groupFeedbackSettings: GroupFeedbackSettingReducer,
-    shortAnswersData: ShortAnswerReducer
+    shortAnswersData: ShortAnswerReducer,
+    editorContent: editorContent
 });
 
 export default reducers;

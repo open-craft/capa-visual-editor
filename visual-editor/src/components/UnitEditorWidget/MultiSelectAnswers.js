@@ -19,13 +19,12 @@ export default class MultiSelectAnswers extends React.PureComponent {
                         this.props.answersList.map((answer) => {
                             return <MultiSelectItem 
                                         key={answer.id} {...answer}
-                                        answerChanged={this.props.answerChange}
-                                        removeAnswer={this.props.removeAnswer}
+                                        {...this.props}
                                     />
                         })
                     }
                     <div className="answers-another-option">
-                        <button className="answers-another-option-btn" type='button' onClick={this.props.addAnswer}>
+                        <button className="answers-another-option-btn" type='button' onClick={this.props.multiSelectAddAnswer}>
                             + Add <span className="hide-mobile">another</span> answer
                         </button>
                     </div>

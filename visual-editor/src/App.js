@@ -11,11 +11,10 @@ export default class  App extends React.Component {
     super(props);
 
     this.typeMapping = {
-      common: "",
       single: SingleSelectContainer,
       multi: MultiSelectContainer,
       short: ShortAnswerContainer
-    }
+  }
 
     this.state = {
       selected: { value: 'single', label: 'Single select' }
@@ -44,7 +43,6 @@ export default class  App extends React.Component {
                 onChange={this.change.bind(this)}
                 value={this.state.selected}
                 options={[
-                  { value: 'common', label: 'Common' },
                   { value: 'single', label: 'Single select' },
                   { value: 'multi', label: 'Multi select' },
                   { value: 'short', label: 'Short answer' },

@@ -17,13 +17,13 @@ export default class SingleSelectAnswers extends React.Component {
                         this.props.answersList.map(answer => {
                             return <SingleSelectItem 
                                         key={answer.id} {...answer} 
-                                        singleSelectAnswerChange={this.props.singleSelectAnswerChange} 
+                                        singleSelectChangeAnswer={this.props.singleSelectChangeAnswer} 
                                         singleSelectRemoveAnswer={this.props.singleSelectRemoveAnswer}
                                         />
                         })
                     }
                     <div className="answers-another-option">
-                        <button className="answers-another-option-btn" type='button' onClick={this.props.addAnswer}>
+                        <button className="answers-another-option-btn" type='button' onClick={this.props.singleSelectAddAnswer}>
                             + Add <span className="hide-mobile">another</span> answer
                         </button>
                     </div>

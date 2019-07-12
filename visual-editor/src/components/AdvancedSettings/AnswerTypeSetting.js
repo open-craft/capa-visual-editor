@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import '../../assets/scss/app.scss';
 
-export class AnswerTypeSerting extends React.PureComponent {
+export default class AnswerTypeSerting extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -37,30 +37,13 @@ export class AnswerTypeSerting extends React.PureComponent {
                         className="advanced-settings-select"
                         isSearchable={false}
                         placeholder="- Select -"
-                        value={this.props.selectedTypeOption}
-                        onChange={this.props.typeChanged}
-                        options={this.props.options}
+                        value={this.props.answerTypeSelectedOption}
+                        onChange={this.props.answerTypeChange}
+                        options={this.props.answerTypeOptions}
                     />
                     <div className="advanced-settings-note">Note: Use dropdowns when you have more than 10 items, to make it easier for user to choose</div>
                 </div>
             </div>
         )
     }
-}
-
-const mapStateToProps = function(store) {
-    return {
-        selectedTypeOption: store.answerTypeSettings.selectedType,
-        options: store.answerTypeSettings.accessibleTypes
-    }
 };
-
-const mapDispatchToProps = function(dispatch) {
-    return {
-        typeChanged: (value) => {
-            return dispatch({type: actionTypes.ANSWER_TYPE_SETTING_CHANGED, selectedType: value})
-        }
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AnswerTypeSerting);

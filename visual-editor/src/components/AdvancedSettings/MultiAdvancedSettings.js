@@ -25,7 +25,6 @@ export default class MultiAdvancedSettings extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className="advanced-settings-wrapper">
                 <div className={`advanced-settings ${this.state.advancedSettingsOpenned ? 'advanced-settings_open' : ''}`}>

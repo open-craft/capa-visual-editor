@@ -47,11 +47,11 @@ export class MultiSelectItem extends React.PureComponent {
     }
 
     propsChanged() {
-        this.props.answerChanged(this.state);
+        this.props.multiSelectChangeAnswer(this.state);
     }
 
     removeAnswer() {
-        this.props.removeAnswer(this.props.id);
+        this.props.multiSelectRemoveAnswer(this.props.id);
     }
 
     render() {

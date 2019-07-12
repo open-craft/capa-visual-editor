@@ -24,7 +24,7 @@ export class SingleSelectItem extends React.PureComponent {
 
     answerChanged() {
         let { id, title, correct, feedback } = this.state;
-        this.props.singleSelectAnswerChange({
+        this.props.singleSelectChangeAnswer({
             id: id,
             title: title,
             correct: correct,
@@ -59,7 +59,6 @@ export class SingleSelectItem extends React.PureComponent {
     }
 
     render() {
-        console.log(this.props);
         const additionallyСlass = this.state.openFeedback ? 'answers-feedback_open' : '';
         const placeholderText = Number(this.props.id) === 2 ? 'Enter the correct answer' : 'Enter an incorrect answer';
 

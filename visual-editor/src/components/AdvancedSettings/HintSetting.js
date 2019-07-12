@@ -4,7 +4,6 @@ import HintSettingItem from './HintSettingItem';
 export default class HintSetting extends React.PureComponent {
 
     render() {
-        console.log(this.props);
         return (
             <div className="advanced-settings-block">
                 <div className="advanced-settings-block-title">Hint</div>
