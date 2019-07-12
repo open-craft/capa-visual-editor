@@ -17,11 +17,11 @@ export default class HintSettingItem extends React.Component {
     change(event) {
         this.setState({
             value: event.target.value
-        }, () => this.props.changeHint(this.state));
+        }, () => this.props.hintChange(this.state));
     }
 
     remove(event) {
-        this.props.removeHint(this.props.id);
+        this.props.hintRemove(this.props.id);
     }
 
     render() {

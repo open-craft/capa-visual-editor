@@ -1,11 +1,10 @@
 import React from 'react';
 import HintSettingItem from './HintSettingItem';
-import { connect } from 'react-redux';
-import * as actionTypes from '../../store/actions/action-types';
 
-export class HintSetting extends React.PureComponent {
+export default class HintSetting extends React.PureComponent {
 
     render() {
+        console.log(this.props);
         return (
             <div className="advanced-settings-block">
                 <div className="advanced-settings-block-title">Hint</div>
@@ -14,36 +13,14 @@ export class HintSetting extends React.PureComponent {
                     {
                         this.props.hints.map(hint => {
                             return (
-                                <HintSettingItem key={hint.id} {...hint} changeHint={this.props.change} removeHint={this.props.remove}/>
+                                <HintSettingItem key={hint.id} {...hint} hintChange={this.props.hintChange} hintRemove={this.props.hintRemove}/>
                             )
                         })
                     }
-                    <button className="advanced-settings-another-field-btn" type='button' onClick={this.props.add}>+ add another hint</button>
+                    <button className="advanced-settings-another-field-btn" type='button' onClick={this.props.hintAdd}>+ add another hint</button>
                     <div className="advanced-settings-note">Note: Hints can be turned off in an assignment.</div>
                 </div>
             </div>
         )
     }
 };
-
-const mapStateToProps = function(store) {
-    return {
-        hints: store.hintSettings.hints
-    }
-};
-
-const mapDispatchToProps = function(dispatch) {
-    return {
-        add: (event) => {
-            return dispatch({type: actionTypes.ADVANCED_SETTING_HINT_ADD});
-        },
-        remove: (id) => {
-            return dispatch({type: actionTypes.ADVANCED_SETTING_HINT_REMOVE, id: id});
-        },
-        change: (data) => {
-            return dispatch({type: actionTypes.ADVANCED_SETTING_HINT_CHANGED, ...data});
-        }
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(HintSetting);

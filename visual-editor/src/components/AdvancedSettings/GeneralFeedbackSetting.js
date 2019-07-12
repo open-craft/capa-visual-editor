@@ -2,11 +2,8 @@ import React from 'react';
 
 import '../../assets/scss/app.scss';
 
-import * as actions from '../../store/actions/action-types';
-import { connect } from 'react-redux';
 
-
-export class GeneralFeedbackSetting extends React.PureComponent {
+export default class GeneralFeedbackSetting extends React.PureComponent {
 
     render() {
         return (
@@ -22,26 +19,10 @@ export class GeneralFeedbackSetting extends React.PureComponent {
                         className="advanced-settings-field" 
                         defaultValue={this.props.feedbackContent} 
                         placeholder='Enter general feedback' 
-                        onChange={this.props.generalFeedbackChanged}/>
+                        onChange={this.props.generalFeedbackChange}/>
                     <div className="advanced-settings-note">Note: This will be overridden if you have added option specific feedback.</div>
                 </div>
             </div>
         )
     }
-}
-
-const mapStateToProps = (store) => {
-    return {
-        feedbackContent: store.generalFeedbackSettings.feedbackContent
-    }
-}
-
-const mapDispatchToProps = function(dispatch, ownProps) {
-    return {
-        generalFeedbackChanged: (event) => {
-            return dispatch({type: actions.GENERAL_FEEDBACK_CHANGED, feedbackContent: event.target.value});
-      }
-    }
-  };
-
-export default connect(mapStateToProps, mapDispatchToProps)(GeneralFeedbackSetting);
+};

@@ -30,10 +30,10 @@ export default class SingleAdvancedSettings extends React.PureComponent {
                 <div className={`advanced-settings ${this.state.advancedSettingsOpenned ? 'advanced-settings_open' : ''}`}>
                     <div className="advanced-settings-title">Advanced settings</div>
 
-                    <AnswerTypeSetting/>
-                    <GeneralFeedbackSetting/>
-                    <HintSetting/>
-                    <ScorringSetting/>
+                    <AnswerTypeSetting {...this.props}/>
+                    <GeneralFeedbackSetting {...this.props}/>
+                    <HintSetting {...this.props}/>
+                    <ScorringSetting {...this.props}/>
                 </div>
                 <button type='button' className="show-advanced-settings" onClick={this.switchAdvancedSettings.bind(this)}>
                     {this.state.advancedSettingsOpenned ? 'Less options' : 'Show advanced options'}

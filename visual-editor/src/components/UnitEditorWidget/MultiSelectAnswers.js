@@ -1,12 +1,10 @@
 import * as React from 'react';
 import {MultiSelectItem} from './MultiSelectItem';
-import { connect } from 'react-redux';
-import * as actionTypes from '../../store/actions/action-types';
 
 import '../../assets/scss/app.scss';
 
 
-export class MultiSelectAnswers extends React.PureComponent {
+export default class MultiSelectAnswers extends React.PureComponent {
 
     render() {
         return (
@@ -19,7 +17,11 @@ export class MultiSelectAnswers extends React.PureComponent {
                 <div className="answers-list answers-list_multi">
                     {
                         this.props.answersList.map((answer) => {
-                            return <MultiSelectItem key={answer.id} {...answer} answerChanged={this.props.answerChanged} removeAnswer={this.props.removeAnswer}/>
+                            return <MultiSelectItem 
+                                        key={answer.id} {...answer}
+                                        answerChanged={this.props.answerChange}
+                                        removeAnswer={this.props.removeAnswer}
+                                    />
                         })
                     }
                     <div className="answers-another-option">
@@ -32,25 +34,3 @@ export class MultiSelectAnswers extends React.PureComponent {
         );
     }
 }
-
-const mapStateToProps = (store) => {
-    return {
-        answersList: store.multiSelectAnswers.multiSelectAnswersList
-    }
-}
-
-const mapDispatchToProps = function(dispatch, ownProps) {
-    return {
-        addAnswer: (event) => {
-            return dispatch({type: actionTypes.MULTI_SELECT_ANSWERS_ADD_NEW});
-        },
-        removeAnswer: (id) => {
-            return dispatch({type: actionTypes.MULTI_SELECT_ANSWERS_REMOVE, id: id});
-        },
-        answerChanged: (event) => {
-            return dispatch({type: actionTypes.MULTI_SELECT_ANSWERS_CHANGED, ...event});
-        }
-    }
-  };
-
-export default connect(mapStateToProps, mapDispatchToProps)(MultiSelectAnswers);
