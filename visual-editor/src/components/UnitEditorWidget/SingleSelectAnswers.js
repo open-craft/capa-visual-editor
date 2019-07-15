@@ -7,12 +7,12 @@ export default class SingleSelectAnswers extends React.Component {
 
     render() {
         return (
-            <fieldset className="answers-wrapper">
-                <legend className="answers-title">Answers*</legend>
-                <div className="answers-description">
+            <fieldset className="lxc-answers-wrapper">
+                <legend className="lxc-answers-title">Answers*</legend>
+                <div className="lxc-answers-description">
                     Enter the answers below and select whether an answer is correct or incorrect.
                 </div>
-                <div className="answers-list">
+                <div className="lxc-answers-list">
                     {
                         this.props.answersList.map(answer => {
                             return <SingleSelectItem 
@@ -22,9 +22,9 @@ export default class SingleSelectAnswers extends React.Component {
                                         />
                         })
                     }
-                    <div className="answers-another-option">
-                        <button className="answers-another-option-btn" type='button' onClick={this.props.singleSelectAddAnswer}>
-                            + Add <span className="hide-mobile">another</span> answer
+                    <div className="lxc-answers-another-option">
+                        <button className="lxc-answers-another-option-btn" type='button' onClick={this.props.singleSelectAddAnswer}>
+                            + Add <span className="lxc-hide-mobile">another</span> answer
                         </button>
                     </div>
                 </div>

@@ -32,12 +32,12 @@ export default class  App extends React.Component {
     const Container = this.typeMapping[this.state.selected.value];
 
     return (
-      <div className="unit-wrapper">
-        <div className="unit-content-bar">
+      <div className="lxc-unit-wrapper">
+        <div className="lxc-unit-content-bar">
         <div style={{margin: "20px 0"}}>
           <Select
                 id='s'
-                className="advanced-settings-select"
+                className="lxc-advanced-settings-select"
                 isSearchable={false}
                 placeholder="- Select -"
                 onChange={this.change.bind(this)}

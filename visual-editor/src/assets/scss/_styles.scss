@@ -1,228 +1,20 @@
-$brand-color-dark: #003e6b;
-$brand-color: #336589;
-$brand-color-light: #99b2c4;
-$brand-border-color: #668ba6;
-$brand-light-background: #f5f7f9;
-$brand-lightest-background: #e5ecf0;
-
-$screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
-
-// common class for titles
-.unit-title {
-    text-transform: uppercase;
-    font-size: 24px;
-    line-height: 22.5px;
-    letter-spacing: 1px;
-    font-family: $font-heading-regular;
-    margin-bottom: 0;
-}
-
-// common class for descriptions
-.unit-description {
-    color: #666;
-    font-size: 16px;
-    line-height: 20px;
-}
-
-// common class for dashed button to add field
-.unit-another-btn {
-    font-size: 16px;
-    text-align: center;
-    line-height: 20px;
-    color: $brand-color-dark;
-    border: 1px dashed $brand-color;
-    border-radius: 5px;
-    background: transparent;
-    width: 100%;
-    padding: 7px 10px;
-    transition: all .15s linear;
-
-    &:hover {
-        cursor: pointer;
-        color: lighten($brand-color-dark, 10%);
-        border-color: lighten($brand-color, 10%);
-    }
-}
-
-// common class for field (input, textarea)
-.unit-form-field {
-    display: block;
-    width: 100%;
-    background: #fff;
-    padding: 7px 8px;
-    font-size: 16px;
-    line-height: 20px;
-    border: 1px solid $brand-color-light;
-    border-radius: 5px;
-    resize: none;
-    color: $brand-color-dark;
-
-    &::placeholder {
-        color: $brand-border-color;
-    }
-}
-
-// common class for select
-.unit-form-select {
-    display: block;
-    width: 100%;
-
-    .css-yk16xz-control {
-        background: #fff;
-        border: 1px solid #99b2c4;
-        color: #003e6b;
-        border-radius: 5px;
-        font-size: 16px;
-        line-height: 20px;
-        min-height: 36px;
-        padding: 3px 26px 3px 8px;
-
-        &:hover {
-            cursor: pointer;
-            background: #e5ecf0;
-        }
-
-        &:focus {
-            background: #003e6b;
-            color: #fff;
-        }
-    }
-
-    .css-1pahdxg-control {
-        min-height: 36px;
-        padding: 3px 26px 3px 8px !important;
-        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
-        border: 1px solid #003e6b;
-        background: #003e6b;
-
-        &:hover {
-            cursor: pointer;
-            border: 1px solid #003e6b;
-            box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
-        }
-        
-        .css-1wa3eu0-placeholder,
-        .css-1uccc91-singleValue {
-            color: #fff;
-        }
-    }
-
-    .css-tlfecz-indicatorContainer,
-    .css-1gtu0rj-indicatorContainer {
-        padding: 0;
-        position: absolute;
-        right: 4px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .css-1okebmr-indicatorSeparator,
-    .css-tj5bde-Svg {
-        display: none;
-    }
-
-    .css-1uccc91-singleValue,
-    .css-1wa3eu0-placeholder {
-        color: #003e6b;
-        margin: 0;
-    }
-
-    .css-1hwfws3 {
-        padding: 0;
-    }
-
-    .css-tlfecz-indicatorContainer,
-    .css-1gtu0rj-indicatorContainer {
-        width: 20px;
-        height: 20px;
-        background: url('../../components/UnitEditorWidget/images/select-arrow.svg') no-repeat center center;
-    }
-
-    .css-1gtu0rj-indicatorContainer {
-        transform: scale(1, -1) translateY(50%);
-        background: url('../../components/UnitEditorWidget/images/select-arrow-focus.svg') no-repeat center center;
-    }
-
-    .css-26l3qy-menu {
-        margin: 0;
-        border-radius: 5px;
-        overflow: hidden;
-    }
-
-    .css-1ml51p6-MenuList {
-        padding: 0;
-        background: #f5f7f9;
-        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
-
-        [class$='-option'] {
-
-        }
-        
-        .css-yt9ioa-option,
-        .css-1n7v3ny-option,
-        .css-9gakcf-option {
-            font-size: 16px;
-            color: #003e6b;
-            border-bottom: 1px solid #ccd8e1;
-            padding: 8px;
-            line-height: 20px;
-            
-            &:hover {
-                cursor: pointer;
-            }
-
-            &:last-child {
-                border-bottom: none;
-            }
-        }
-
-        .css-1n7v3ny-option {
-            background: #ccd8e1;
-            color: #003e6b;
-        }
-
-        .css-9gakcf-option {
-            background: #336589;
-            color: #fff;
-        }
-    }
-}
-
-.sr {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-}
-
-.hide-mobile {
-    @media (max-width: map-get($screen, "mobile")){
-        display: none !important;
-    }
-}
-
-.unit-wrapper {
+.lxc-unit-wrapper {
     padding: 0 15px;
 }
 
-.unit-editor-wrapper {
+.lxc-unit-editor-wrapper {
     background: #fff;
     padding: 32px 0 0;
     border: 1px solid #668ba6;
     border-radius: 5px;
     margin: 0;
 
-    .unit-editor-wrapper + & {
+    .lxc-unit-editor-wrapper + & {
         margin-top: 30px;
     }
 }
 
-
-.unit-content-bar {
+.lxc-unit-content-bar {
     width: 100%;
     max-width: calc(100% - 248px - 32px);
 
@@ -232,21 +24,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     }
 }
 
-// ToDo: test styles for side bar
-.unit-side-bar {
-    width: 248px;
-    margin-left: 32px;
-
-    @media (max-width: map-get($screen, "desktop")){
-        width: 100%;
-    }
-}
-
-
-
-// answers block
-
-.answers-wrapper {
+.lxc-answers-wrapper {
     width: 100%;
     padding: 0 32px;
 
@@ -255,15 +33,15 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     }
 }
 
-.answers-title {
-    @extend .unit-title;
+.lxc-answers-title {
+    @extend .lxc-unit-title;
 }
 
-.answers-description {
-    @extend .unit-description;
+.lxc-answers-description {
+    @extend .lxc-unit-description;
 }
 
-.answers-list {
+.lxc-answers-list {
     border: 1px solid $brand-border-color;
     background-color: $brand-light-background;
     border-radius: 5px;
@@ -276,8 +54,8 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     }
 }
 
-.answers-option,
-.answers-another-option {
+.lxc-answers-option,
+.lxc-answers-another-option {
     padding-left: 24px;
     position: relative;
     box-sizing: border-box;
@@ -303,7 +81,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
         }
     }
 
-    .answers-list_short & {
+    .lxc-answers-list_short & {
         padding-left: 0;
 
         &:before{
@@ -312,13 +90,13 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     }
 }
 
-.answers-option {
+.lxc-answers-option {
     display: flex;
     align-items: flex-start;
     margin-bottom: 13px;
 }
 
-.answers-another-option {
+.lxc-answers-another-option {
     &:before {
         color: $brand-color-light;
 
@@ -328,11 +106,9 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     }
 }
 
-.answers-radio {
+.lxc-answers-radio {
     margin: 0 8px 0 0;
-}
 
-.answers-radio {
     input {
         position: absolute;
         width: 1px;
@@ -341,7 +117,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     }
 }
 
-.answers-radio-label {
+.lxc-answers-radio-label {
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -354,7 +130,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
         cursor: pointer;
     }
 
-    .answers-list_multi & {
+    .lxc-answers-list_multi & {
         border-radius: 5px;
         background: url('../../components/UnitEditorWidget/images/checkbox-incorrect.svg');
     }
@@ -372,27 +148,27 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     input:checked + & {
         background: url('../../components/UnitEditorWidget/images/radio-correct.svg');
 
-        .answers-list_multi & {
+        .lxc-answers-list_multi & {
             background: url('../../components/UnitEditorWidget/images/checkbox-correct.svg');
         }
     }
 }
 
-.answers-field-wrapper {
+.lxc-answers-field-wrapper {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
 }
 
-.answers-item-wrapper {
+.lxc-answers-item-wrapper {
     display: flex;
     width: calc(100% - 30px);
     order: 1;
 }
 
-.answers-item {
-    @extend .unit-form-field;
+.lxc-answers-item {
+    @extend .lxc-unit-form-field;
     width: calc(100% - 30px);
     border-radius: 5px 0 0 5px;
     border-right: none;
@@ -402,7 +178,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
         height: 88px;
     }
 
-    .answers-list_short &  {
+    .lxc-answers-list_short &  {
         width: 100%;
         border-radius: 5px;
         border-right: 1px solid $brand-color-light;
@@ -413,7 +189,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     }
 }
 
-.answers-feedback {
+.lxc-answers-feedback {
     display: none;
 
     &_open {
@@ -430,19 +206,19 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
             padding: 8px;
         }
 
-        & + .answers-item-wrapper {
-            .answers-item {
+        & + .lxc-answers-item-wrapper {
+            .lxc-answers-item {
                 border-radius: 5px 0 0 0;
             }
 
-            .answers-feedback-btn {
+            .lxc-answers-feedback-btn {
                 border-radius: 0 5px 0 0;
             }
         }
     }
 }
 
-.answers-feedback-btn {
+.lxc-answers-feedback-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -465,18 +241,18 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     }
 }
 
-.answers-feedback-title {
+.lxc-answers-feedback-title {
     margin-bottom: 5px;
     font-size: 14px;
     line-height: 16px;
 
-    .answers-feedback-field + & {
+    .lxc-answers-feedback-field + & {
         margin-top: 16px;
     }
 }
 
-.answers-feedback-field {
-    @extend .unit-form-field;
+.lxc-answers-feedback-field {
+    @extend .lxc-unit-form-field;
 
     @media (max-width: map-get($screen, "mobile")){
       height: 103px;
@@ -484,7 +260,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     }
 }
 
-.answers-remove-btn {
+.lxc-answers-remove-btn {
     height: 36px;
     width: 30px;
     background: url('../../components/UnitEditorWidget/images/trash-icon.svg') no-repeat center center;
@@ -504,31 +280,28 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
         margin-top: 26px;
     }
 
-    .answers-list_short & {
+    .lxc-answers-list_short & {
         @media (max-width: map-get($screen, "mobile")){
             margin-top: 0;
         }
     }
 }
 
-.answers-another-option-btn {
-    @extend .unit-another-btn;
-
+.lxc-answers-another-option-btn {
+    @extend .lxc-unit-another-btn;
     width: calc(100% - 30px);
 }
 
 
-
-
 // Advanced settings
 
-.advanced-settings-wrapper {
+.lxc-advanced-settings-wrapper {
     width: 100%;
     margin-top: 32px;
     border-top: 1px solid $brand-color-light;
 }
 
-.advanced-settings {
+.lxc-advanced-settings {
     display: none;
 
     &_open {
@@ -541,7 +314,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     }
 }
 
-.show-advanced-settings {
+.lxc-show-advanced-settings {
     display: block;
     text-align: center;
     padding: 17px;
@@ -559,16 +332,16 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
         background-color: darken($brand-lightest-background, 5%);
     }
 
-    .advanced-settings_open + & {
+    .lxc-advanced-settings_open + & {
         border-top: 1px solid $brand-border-color;
 
-        .show-advanced-settings-icon {
+        .lxc-show-advanced-settings-icon {
             transform: rotate(180deg);
         }
     }
 }
 
-.show-advanced-settings-icon {
+.lxc-show-advanced-settings-icon {
     background: url('../../components/UnitEditorWidget/images/arrow-icon.svg') no-repeat 0 0;
     background-size: auto 100%;
     display: inline-block;
@@ -577,7 +350,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     height: 7.4px;
 }
 
-.advanced-settings-title {
+.lxc-advanced-settings-title {
     font-size: 32px;
     line-height: 30px;
     letter-spacing: 1px;
@@ -587,19 +360,20 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     margin-bottom: 30px;
 }
 
-.tox-tinymce, .advanced-settings-block {
+.tox-tinymce,
+.lxc-advanced-settings-block {
     margin-bottom: 32px;
 }
 
-.advanced-settings-block-title {
-    @extend .unit-title;
+.lxc-advanced-settings-block-title {
+    @extend .lxc-unit-title;
 }
 
-.advanced-settings-block-Description {
-    @extend .unit-description;
+.lxc-advanced-settings-block-Description {
+    @extend .lxc-unit-description;
 }
 
-.advanced-settings-form {
+.lxc-advanced-settings-form {
     padding: 10px;
     background: $brand-light-background;
     border: 1px solid $brand-border-color;
@@ -607,27 +381,27 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     margin-top: 8px;
 }
 
-.advanced-settings-label {
+.lxc-advanced-settings-label {
     display: block;
     font-size: 13px;
     margin: 0 0 5px;
 }
 
-.advanced-settings-note {
+.lxc-advanced-settings-note {
     font-size: 14px;
     margin-top: 16px;
 }
 
-.advanced-settings-field {
-    @extend .unit-form-field;
+.lxc-advanced-settings-field {
+    @extend .lxc-unit-form-field;
 }
 
-.advanced-settings-another-field-btn {
-    @extend .unit-another-btn;
+.lxc-advanced-settings-another-field-btn {
+    @extend .lxc-unit-another-btn;
     margin-top: 16px;
 }
 
-.advanced-settings-container {
+.lxc-advanced-settings-container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -637,7 +411,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     }
 }
 
-.advanced-settings-col-half {
+.lxc-advanced-settings-col-half {
     width: calc(50% - 4px);
 
     @media (max-width: map-get($screen, "mobile")){
@@ -650,12 +424,12 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     }
 }
 
-.advanced-settings-select {
-    @extend .unit-form-select;
+.lxc-advanced-settings-select {
+    @extend .lxc-unit-form-select;
 }
 
 // ToDo: replase on redactor
-.test-redactor {
+.lxc-test-redactor {
     width: 100%;
     height: 216px;
     border: 1px solid $brand-border-color;
@@ -663,7 +437,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     margin-top: 8px;
 }
 
-.answers-form-title {
+.lxc-answers-form-title {
     font-size: 16px;
     margin-bottom: 16px;
 }

@@ -27,14 +27,14 @@ export default class HintSettingItem extends React.Component {
     render() {
         return (
             <div>
-                <label className="advanced-settings-label" htmlFor={`sas-${this.props.id}`}>Hint</label>
+                <label className="lxc-advanced-settings-label" htmlFor={`sas-${this.props.id}`}>Hint</label>
                 <input id={`sas-${this.props.id}`} 
                        type='text' 
-                       className="advanced-settings-field" 
+                       className="lxc-advanced-settings-field"
                        placeholder='Enter a hint' 
                        value={this.props.value}
                        onChange={this.change.bind(this)}/>
-            <button className="answers-remove-btn" type='button' aria-label='Remove hint item' onClick={this.remove.bind(this)}/>
+            <button className="lxc-answers-remove-btn" type='button' aria-label='Remove hint item' onClick={this.remove.bind(this)}/>
             </div>
         )
     }

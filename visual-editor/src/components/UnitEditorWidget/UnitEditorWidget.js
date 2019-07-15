@@ -33,21 +33,21 @@ export class UnitEditorWidget extends React.Component {
             <div>
                 {/* <div>
                     <Editor
-                        className="advanced-settings-block"
+                        className="lxc-advanced-settings-block"
                         apiKey='283hsctoygj8rdat1mccsgurzgph73mg3pdgu0lc7j9wq6vr'
                         initialValue="<p>This is the initial content of the editor</p>"
                         onChange={this.handleEditorChange}
                     />
                 </div> */}
-                {/* <div className="unit-editor-wrapper">
+                {/* <div className="lxc-unit-editor-wrapper">
                     <SingleSelectAnswers/>
                     <SingleAdvancedSettings/>
                 </div> */}
-                {/* <div className="unit-editor-wrapper">
+                {/* <div className="lxc-unit-editor-wrapper">
                     <MultiSelectAnswers/>
                     <MultiAdvancedSettings/>
                 </div> */}
-                <div className="unit-editor-wrapper">
+                <div className="lxc-unit-editor-wrapper">
                     <ShortAnswers
                         answersList={[
                             {id: 1, title: 'Cholesterol molecule'},

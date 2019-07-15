@@ -16,9 +16,9 @@ export class MultiSelectContainer extends React.Component {
 
     render() {
         return (
-            <div className="unit-editor-wrapper">
+            <div className="lxc-unit-editor-wrapper">
                 <Editor
-                    className="advanced-settings-block"
+                    className="lxc-advanced-settings-block"
                     apiKey='283hsctoygj8rdat1mccsgurzgph73mg3pdgu0lc7j9wq6vr'
                     onChange={this.handleEditorChange.bind(this)}
                     initialValue={this.props.editorContent}
