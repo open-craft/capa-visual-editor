@@ -26,7 +26,7 @@ export default class HintSettingItem extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="lxc-advanced-hint-wrapper">
                 <label className="lxc-advanced-settings-label" htmlFor={`sas-${this.props.id}`}>Hint</label>
                 <input id={`sas-${this.props.id}`} 
                        type='text' 

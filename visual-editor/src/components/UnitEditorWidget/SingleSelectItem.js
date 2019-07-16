@@ -81,7 +81,7 @@ export class SingleSelectItem extends React.PureComponent {
                     </div>
                     <div className="lxc-answers-item-wrapper">
                         <label className="lxc-sr" htmlFor={`answer-single${this.props.id}`}>{placeholderText}</label>
-                        <textarea rows={1} className="answer-item" id={`answer-single${this.props.id}`} value={this.state.title}
+                        <textarea rows={1} className="lxc-answers-item" id={`answer-single${this.props.id}`} value={this.state.title}
                                   placeholder={placeholderText} onChange={this.titleChange}/>
                         <button className="lxc-answers-feedback-btn" type='button' aria-label='Show feedback block' onClick={this.openFeedbackButtonClick}/>
                     </div>

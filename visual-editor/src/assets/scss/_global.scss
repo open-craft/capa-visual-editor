@@ -99,9 +99,19 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     border-radius: 5px;
     resize: none;
     color: $brand-color-dark;
+    transition: background-color .05s linear;
 
     &::placeholder {
         color: $brand-border-color;
+    }
+    
+    &:hover {
+        background: #e5ecf0;
+    }
+    
+    &:focus {
+        outline: none;
+        border-color: $brand-color-dark;
     }
 }
 
@@ -113,7 +123,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
     .css-yk16xz-control {
         background: #fff;
         border: 1px solid #99b2c4;
-        color: #003e6b;
+        color: $brand-color-dark;
         border-radius: 5px;
         font-size: 16px;
         line-height: 20px;
@@ -126,7 +136,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
         }
 
         &:focus {
-            background: #003e6b;
+            background: $brand-color-dark;
             color: #fff;
         }
     }
@@ -135,12 +145,12 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
         min-height: 36px;
         padding: 3px 26px 3px 8px !important;
         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
-        border: 1px solid #003e6b;
-        background: #003e6b;
+        border: 1px solid $brand-color-dark;
+        background: $brand-color-dark;
 
         &:hover {
             cursor: pointer;
-            border: 1px solid #003e6b;
+            border: 1px solid $brand-color-dark;
             box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
         }
 
@@ -166,7 +176,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
 
     .css-1uccc91-singleValue,
     .css-1wa3eu0-placeholder {
-        color: #003e6b;
+        color: $brand-color-dark;
         margin: 0;
     }
 
@@ -201,7 +211,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
         .css-1n7v3ny-option,
         .css-9gakcf-option {
             font-size: 16px;
-            color: #003e6b;
+            color: $brand-color-dark;
             border-bottom: 1px solid #ccd8e1;
             padding: 8px;
             line-height: 20px;
@@ -217,7 +227,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
 
         .css-1n7v3ny-option {
             background: #ccd8e1;
-            color: #003e6b;
+            color: $brand-color-dark;
         }
 
         .css-9gakcf-option {

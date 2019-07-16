@@ -8,25 +8,31 @@
     border: 1px solid #668ba6;
     border-radius: 5px;
     margin: 0;
+    color: #333;
+    font-family: $font-normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
     .lxc-unit-editor-wrapper + & {
         margin-top: 30px;
+    }
+
+    &,
+    & * {
+        box-sizing: border-box;
     }
 }
 
 .lxc-unit-content-bar {
     width: 100%;
-    max-width: calc(100% - 248px - 32px);
-
-    @media (max-width: map-get($screen, "desktop")){
-        width: 100%;
-        max-width: 100%;
-    }
 }
 
 .lxc-answers-wrapper {
     width: 100%;
     padding: 0 32px;
+    min-width: 0;
+    margin: 0;
+    border: 0;
 
     @media (max-width: map-get($screen, "mobile")){
         padding: 0 16px;
@@ -118,6 +124,7 @@
 }
 
 .lxc-answers-radio-label {
+    display: inline-block;
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -242,6 +249,7 @@
 }
 
 .lxc-answers-feedback-title {
+    display: inline-block;
     margin-bottom: 5px;
     font-size: 14px;
     line-height: 16px;
@@ -292,26 +300,32 @@
     width: calc(100% - 30px);
 }
 
+.lxc-answers-form-title {
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
 
 // Advanced settings
-
-.lxc-advanced-settings-wrapper {
-    width: 100%;
-    margin-top: 32px;
-    border-top: 1px solid $brand-color-light;
-}
 
 .lxc-advanced-settings {
     display: none;
 
     &_open {
         display: block;
+        width: 100%;
         padding: 32px 32px 0;
 
         @media (max-width: map-get($screen, "mobile")){
             padding: 32px 16px 0;
         }
     }
+}
+
+.lxc-advanced-settings-wrapper {
+    width: 100%;
+    margin-top: 32px;
+    border-top: 1px solid $brand-color-light;
 }
 
 .lxc-show-advanced-settings {
@@ -348,6 +362,7 @@
     vertical-align: middle;
     width: 14px;
     height: 7.4px;
+    margin: 0 5px;
 }
 
 .lxc-advanced-settings-title {
@@ -383,17 +398,33 @@
 
 .lxc-advanced-settings-label {
     display: block;
+    width: 100%;
     font-size: 13px;
+    line-height: normal;
     margin: 0 0 5px;
 }
 
 .lxc-advanced-settings-note {
     font-size: 14px;
+    line-height: normal;
     margin-top: 16px;
 }
 
 .lxc-advanced-settings-field {
     @extend .lxc-unit-form-field;
+}
+
+.lxc-advanced-hint-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+    &:not(:last-of-type) {
+        margin-bottom: 13px;
+    }
+
+    .lxc-advanced-settings-field {
+        width: calc(100% - 30px);
+    }
 }
 
 .lxc-advanced-settings-another-field-btn {
@@ -435,9 +466,4 @@
     border: 1px solid $brand-border-color;
     border-radius: 5px;
     margin-top: 8px;
-}
-
-.lxc-answers-form-title {
-    font-size: 16px;
-    margin-bottom: 16px;
 }
