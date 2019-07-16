@@ -2,10 +2,17 @@
 
 $font-heading-bold: BebasNeueBold, Impact, sans-serif;
 $font-heading-regular: BebasNeueRegular, Arial, sans-serif;
-$font-alternate: DIN_Alternate_Bold, Arial, sans-serif;
 $font-normal-bold: BioSans_Bold, Arial, sans-serif;
-$font-normal-semibold: BioSans_SemiBold, Arial, sans-serif;
 $font-normal: BioSans_Regular, Arial, sans-serif;
+
+$brand-color-dark: #003e6b;
+$brand-color: #336589;
+$brand-color-light: #99b2c4;
+$brand-border-color: #668ba6;
+$brand-light-background: #f5f7f9;
+$brand-lightest-background: #e5ecf0;
+
+$screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px);
 
 // -----
 // Fonts
@@ -39,265 +46,212 @@ $font-normal: BioSans_Regular, Arial, sans-serif;
   src: url(../fonts/BioSans_Regular.woff) format("woff");
 }
 
-@font-face {
-  font-family: "BioSans_SemiBold";
-  font-style: normal;
-  font-weight: normal;
-  src: url(../fonts/BioSans_SemiBold.woff) format("woff");
+// -----
+// Common classes
+// -----
+
+// common class for titles
+.lxc-unit-title {
+    text-transform: uppercase;
+    font-size: 24px;
+    line-height: 22.5px;
+    letter-spacing: 1px;
+    font-family: $font-heading-regular;
+    margin-bottom: 0;
 }
 
-@font-face {
-  font-family: "DIN_Alternate_Bold";
-  font-style: normal;
-  font-weight: bold;
-  src: url(../fonts/DIN_Alternate_Bold.woff) format("woff");
+// common class for descriptions
+.lxc-unit-description {
+    color: #666;
+    font-size: 16px;
+    line-height: 20px;
 }
 
-// ------
-// Mixins
-// ------
+// common class for dashed button to add field
+.lxc-unit-another-btn {
+    font-size: 16px;
+    text-align: center;
+    line-height: 20px;
+    color: $brand-color-dark;
+    border: 1px dashed $brand-color;
+    border-radius: 5px;
+    background: transparent;
+    width: 100%;
+    padding: 7px 10px;
+    transition: all .15s linear;
 
-@mixin button() {
-  @extend .btn;
-
-  font-size: 16px;
-  line-height: 16px;
-}
-
-@mixin hex-background($color, $stroke: none, $stroke-width: 0) {
-  $rgb-color: "rgb(#{red($color)}, #{green($color)}, #{blue($color)})";
-  $rgb-stroke: none;
-
-  $width: 36;
-  $height: $width / 0.86602540378; // hexagon width/height equals sin(60deg)
-  $half-stroke: $stroke-width / 2;
-  $x1: 0 + $half-stroke;
-  $x2: $width / 2;
-  $x3: $width - $half-stroke;
-  $y1: 0 + $half-stroke;
-  $y2: ($height / 4) - ($half-stroke / 2);
-  $y3: (3 * $height / 4) - ($half-stroke / 2);
-  $y4: $height - $half-stroke;
-
-  @if $stroke != none {
-    $rgb-stroke: "rgb(#{red($stroke)}, #{green($stroke)}, #{blue($stroke)})";
-  }
-
-  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 #{$width} #{$height}' xmlns='http://www.w3.org/2000/svg' version='1.1'><polygon fill='#{$rgb-color}' points='#{$x2},#{$y1} #{$x3},#{$y2} #{$x3},#{$y3} #{$x2},#{$y4} #{$x1},#{$y3} #{$x1},#{$y2}' stroke='#{$rgb-stroke}' stroke-width='#{$stroke-width}'/></svg>");
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-@mixin hex-outline-background($color) {
-  $rgb-color: "rgb(#{red($color)}, #{green($color)}, #{blue($color)})";
-
-  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 36 42' xmlns='http://www.w3.org/2000/svg' version='1.1'><polygon fill='none' stroke='#{$rgb-color}' stroke-width='2' points='18,1 35,10 35,32 18,41 1,32 1,10'/></svg>");
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-// ---------------
-// Utility classes
-// ---------------
-
-/**
-  Allow specifying borders via shorthands like bxw-5 for 5px width border
-  along the x-axis (left and right), or blw-5 for a left border of 5px.
- */
-@for $width from 1 through 5 {
-  .bw-#{$width} {
-    border-width: $width px !important;
-  }
-
-  .bxw-#{$width} {
-    border-left-width: $width px !important;
-    border-right-width: $width px !important;
-  }
-
-  .byw-#{$width} {
-    border-top-width: $width px !important;
-    border-bottom-width: $width px !important;
-  }
-
-  @each $full, $abbrev in (top: t, bottom: b, left: l, right: r) {
-    .b#{$abbrev}w-#{$width} {
-      border-#{$full}-style: solid !important;
-      border-#{$full}-width: #{$width}px !important;
+    &:hover {
+        cursor: pointer;
+        color: lighten($brand-color-dark, 10%);
+        border-color: lighten($brand-color, 10%);
     }
-  }
 }
 
-.hide-on-desktop {
-  @extend .d-flex;
-  @extend .d-lg-none;
+// common class for field (input, textarea)
+.lxc-unit-form-field {
+    display: block;
+    width: 100%;
+    background: #fff;
+    padding: 7px 8px;
+    font-size: 16px;
+    line-height: 20px;
+    border: 1px solid $brand-color-light;
+    border-radius: 5px;
+    resize: none;
+    color: $brand-color-dark;
+    transition: background-color .05s linear;
+
+    &::placeholder {
+        color: $brand-border-color;
+    }
+    
+    &:hover {
+        background: #e5ecf0;
+    }
+    
+    &:focus {
+        outline: none;
+        border-color: $brand-color-dark;
+    }
 }
 
-.hide-on-tablet-and-above {
-  @extend .d-flex;
-  @extend .d-md-none;
+// common class for select
+.lxc-unit-form-select {
+    display: block;
+    width: 100%;
+
+    .css-yk16xz-control {
+        background: #fff;
+        border: 1px solid #99b2c4;
+        color: $brand-color-dark;
+        border-radius: 5px;
+        font-size: 16px;
+        line-height: 20px;
+        min-height: 36px;
+        padding: 3px 26px 3px 8px;
+
+        &:hover {
+            cursor: pointer;
+            background: #e5ecf0;
+        }
+
+        &:focus {
+            background: $brand-color-dark;
+            color: #fff;
+        }
+    }
+
+    .css-1pahdxg-control {
+        min-height: 36px;
+        padding: 3px 26px 3px 8px !important;
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
+        border: 1px solid $brand-color-dark;
+        background: $brand-color-dark;
+
+        &:hover {
+            cursor: pointer;
+            border: 1px solid $brand-color-dark;
+            box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
+        }
+
+        .css-1wa3eu0-placeholder,
+        .css-1uccc91-singleValue {
+            color: #fff;
+        }
+    }
+
+    .css-tlfecz-indicatorContainer,
+    .css-1gtu0rj-indicatorContainer {
+        padding: 0;
+        position: absolute;
+        right: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .css-1okebmr-indicatorSeparator,
+    .css-tj5bde-Svg {
+        display: none;
+    }
+
+    .css-1uccc91-singleValue,
+    .css-1wa3eu0-placeholder {
+        color: $brand-color-dark;
+        margin: 0;
+    }
+
+    .css-1hwfws3 {
+        padding: 0;
+    }
+
+    .css-tlfecz-indicatorContainer,
+    .css-1gtu0rj-indicatorContainer {
+        width: 20px;
+        height: 20px;
+        background: url('../../components/UnitEditorWidget/images/select-arrow.svg') no-repeat center center;
+    }
+
+    .css-1gtu0rj-indicatorContainer {
+        transform: scale(1, -1) translateY(50%);
+        background: url('../../components/UnitEditorWidget/images/select-arrow-focus.svg') no-repeat center center;
+    }
+
+    .css-26l3qy-menu {
+        margin: 0;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .css-1ml51p6-MenuList {
+        padding: 0;
+        background: #f5f7f9;
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
+
+        .css-yt9ioa-option,
+        .css-1n7v3ny-option,
+        .css-9gakcf-option {
+            font-size: 16px;
+            color: $brand-color-dark;
+            border-bottom: 1px solid #ccd8e1;
+            padding: 8px;
+            line-height: 20px;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+
+        .css-1n7v3ny-option {
+            background: #ccd8e1;
+            color: $brand-color-dark;
+        }
+
+        .css-9gakcf-option {
+            background: #336589;
+            color: #fff;
+        }
+    }
 }
 
-.hide-on-tablet-and-below {
-  @extend .d-none;
-  @extend .d-md-flex;
+// common class only for screen reader
+.lxc-sr {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
 }
 
-.hide-on-mobile {
-  @extend .d-none;
-  @extend .d-lg-flex;
-}
-
-.text-header {
-  color: $content-bg;
-
-  &:hover,
-  &:active {
-    color: $content-bg;
-    text-decoration: underline;
-    text-decoration-color: $secondary-2;
-  }
-
-  &:visited {
-    color: $content-bg;
-  }
-}
-
-.white-box {
-  @extend .rounded, .p-3;
-
-  background-color: white;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
-}
-
-.primary-button {
-  @include button();
-  @include button-variant($yellow-1, $yellow-1);
-
-  padding: 16px 32px;
-  color: $charcoal-1;
-
-  svg {
-    margin-right: 8px;
-  }
-}
-
-.nudging-button {
-  @include button();
-
-  @extend .btn-block;
-
-  padding: 0;
-
-  @include media-breakpoint-up(lg) {
-    height: 36px;
-    line-height: 36px;
-  }
-
-  @include media-breakpoint-down(md) {
-    height: 44px;
-    line-height: 44px;
-  }
-}
-
-.nudging-button-primary {
-  @extend .nudging-button, .btn-block;
-
-  @include button-variant($burgundy, $burgundy);
-}
-
-.nudging-button-secondary {
-  @extend .nudging-button, .btn-outline-primary;
-}
-
-.disabled-link {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-// ---------------
-// Default styling
-// ---------------
-
-html {
-  // Without these text looks too heavy on macOS.
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h1 {
-  font-family: $font-heading-bold;
-  font-size: 42px;
-  letter-spacing: 2px;
-  color: $charcoal-1;
-}
-
-h2 {
-  font-family: $font-heading-bold;
-  font-size: 32px;
-  letter-spacing: 1px;
-  color: $charcoal-1;
-}
-
-h3 {
-  font-family: $font-heading-regular;
-  font-size: 24px;
-  letter-spacing: 1px;
-  color: $charcoal-1;
-}
-
-h4 {
-  font-family: $font-alternate;
-  font-size: 20px;
-  color: $charcoal-1;
-}
-
-h5 {
-  font-family: $font-normal-bold;
-  font-size: 18px;
-  color: $charcoal-1;
-}
-
-h6 {
-  font-family: $font-normal-semibold;
-  font-size: 15px;
-  color: $charcoal-1;
-}
-
-body {
-  font-family: $font-normal;
-  font-size: 16px;
-  color: $charcoal-1;
-}
-
-small {
-  font-family: $font-normal;
-  font-size: 14px;
-  color: $charcoal-2;
-  display: inline-block; // If it's inline (default) it has annoying line-height interactions with the parent.
-}
-
-.layout-wrapper {
-  // The DIV that holds the header, main content, and footer
-  min-height: 100vh; // When the page content is small, push the footer to the bottom of the screen
-}
-
-.main-content {
-  @extend .pt-3, .pb-5;
-
-  flex: 1 0 auto; // When the page content is small, expand the main-content div to push the footer to the bottom of the screen
-}
-
-// TODO We need to extract some of the code from Paragon modal to make our own
-// But that is quite a bit of work (we need to convert from JSX -> TSX, and add some types in for
-// specific interfaces on window, for example - or remove the support for IE 11... not straightforward
-:global(.paragon__modal-content) {
-  max-width: 480px;
-  width: 480px;
-}
-
-:global(.paragon__modal .paragon__modal-dialog) {
-  max-width: 480px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+// class for hide block on mobile
+.lxc-hide-mobile {
+    @media (max-width: map-get($screen, "mobile")){
+        display: none !important;
+    }
 }

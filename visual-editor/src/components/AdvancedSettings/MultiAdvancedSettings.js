@@ -26,18 +26,18 @@ export default class MultiAdvancedSettings extends React.Component {
 
     render() {
         return (
-            <div className="advanced-settings-wrapper">
-                <div className={`advanced-settings ${this.state.advancedSettingsOpenned ? 'advanced-settings_open' : ''}`}>
-                    <div className="advanced-settings-title">Advanced settings</div>
+            <div className="lxc-advanced-settings-wrapper">
+                <div className={`lxc-advanced-settings ${this.state.advancedSettingsOpenned ? 'lxc-advanced-settings_open' : ''}`}>
+                    <div className="lxc-advanced-settings-title">Advanced settings</div>
 
                     <GeneralFeedbackSetting {...this.props}/>
                     <GroupFeedback {...this.props}/>
                     <HintSetting {...this.props}/>
                     <ScorringSetting {...this.props}/>
                 </div>
-                <button type='button' className="show-advanced-settings" onClick={this.switchAdvancedSettings.bind(this)}>
+                <button type='button' className="lxc-show-advanced-settings" onClick={this.switchAdvancedSettings.bind(this)}>
                     {this.state.advancedSettingsOpenned ? 'Less options' : 'Show advanced options'}
-                    <span className="show-advanced-settings-icon"></span>
+                    <span className="lxc-show-advanced-settings-icon"></span>
                 </button>
             </div>
         );
