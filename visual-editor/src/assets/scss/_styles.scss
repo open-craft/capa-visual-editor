@@ -467,3 +467,270 @@
     border-radius: 5px;
     margin-top: 8px;
 }
+
+
+// Editor
+
+.lxc-unit-editor-wrapper .tox {
+    border: none;
+    margin-top: 8px;
+
+    &:not([dir=rtl]) .tox-toolbar__group:not(:last-of-type) {
+        border-right: none;
+
+        &:after {
+            content: '';
+            display: inline-block;
+            width: 1px;
+            height: 34px;
+            background: $brand-border-color;
+            position: relative;
+        }
+
+        &:first-of-type {
+            @media (max-width: map-get($screen, "tablet")) {
+                width: 100%;
+                padding-bottom: 5px;
+                margin-bottom: 5px;
+                position: relative;
+
+                &:after {
+                    width: calc(100% + 10px);
+                    height: 1px;
+                    position: absolute;
+                    top: 100%;
+                    left: -5px;
+                }
+            }
+        }
+    }
+
+    .tox-editor-container {
+        border: 1px solid $brand-border-color;
+        border-radius: 5px;
+    }
+
+    .tox-toolbar {
+        background: #e5ecf0;
+        padding: 6px 4px;
+    }
+
+    .tox-edit-area {
+        border-top: 1px solid $brand-border-color;
+    }
+
+    .tox-tbtn__select-chevron svg {
+        fill: $brand-color-dark;
+    }
+
+    .tox-tbtn {
+        width: 28px;
+        height: 28px;
+        margin-right: 7px;
+
+        svg {
+            transform: scale(1, -1);
+        }
+
+        &:hover,
+        &:focus {
+            cursor: pointer;
+            background: $brand-light-background;
+
+            .tox-tbtn__select-label {
+                cursor: pointer;
+            }
+
+            svg {
+                fill: $brand-color-dark;
+            }
+        }
+
+        &--select {
+            width: 135px;
+            height: auto;
+            padding: 9px 4px;
+            border: 1px solid $brand-color-light;
+            background: #fff;
+            justify-content: space-around;
+            margin-right: 14px;
+
+            @media (max-width: map-get($screen, "tablet")) {
+                width: 100%;
+                box-sizing: border-box;
+                max-width: 100%;
+                margin-right: 0;
+                justify-content: space-between;
+                padding: 9px 8px;
+            }
+        }
+
+        &--active {
+            background: $brand-color-dark !important;
+            color: #fff;
+            border-radius: 3px 3px 0 0;
+            
+            .tox-tbtn__select-label {
+                color: #fff !important;
+            }
+            
+            &:hover {
+                color: #fff;
+
+                svg {
+                    fill: #fff;
+                }
+            }
+
+            svg {
+                fill: #fff;
+                transform: none;
+            }
+        }
+
+        .tox-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+        }
+
+        &:disabled .tox-icon {
+            opacity: .5;
+        }
+
+        //.tox-tbtn svg
+        &[title="Bold"] svg,
+        &[title="Italic"] svg,
+        &[title="Blockquote"] svg,
+        &[title="Source code"] svg,
+        &[title="Insert/edit link"] svg,
+        &[title="Insert/edit image"] svg,
+        &[title="Undo"] svg,
+        &[title="Redo"] svg {
+            display: none;
+        }
+
+        &[title="Bold"] .tox-icon {
+            background: url('../../components/UnitEditorWidget/images/editor-bold.svg') no-repeat center center;
+            width: 9px;
+            height: 11px;
+        }
+
+        &[title="Italic"] .tox-icon {
+            background: url('../../components/UnitEditorWidget/images/editor-italic.svg') no-repeat center center;
+            width: 5px;
+            height: 11px;
+        }
+
+        &[title="Source code"] .tox-icon {
+            background: url('../../components/UnitEditorWidget/images/editor-code.svg') no-repeat center center;
+            width: 15px;
+            height: 14px;
+        }
+
+        &[title="Blockquote"] .tox-icon {
+            background: url('../../components/UnitEditorWidget/images/editor-blockquote.svg') no-repeat center center;
+            width: 20px;
+            height: 13px;
+        }
+
+        &[title="Insert/edit link"] .tox-icon {
+            background: url('../../components/UnitEditorWidget/images/editor-link.svg') no-repeat center center;
+            width: 16px;
+            height: 16px;
+        }
+
+        &[title="Insert/edit image"] .tox-icon {
+            background: url('../../components/UnitEditorWidget/images/editor-image.svg') no-repeat center center;
+            width: 20px;
+            height: 15px;
+        }
+
+        &[title="Undo"] .tox-icon {
+            background: url('../../components/UnitEditorWidget/images/editor-undo.svg') no-repeat center center;
+            width: 16px;
+            height: 15px;
+        }
+
+        &[title="Redo"] .tox-icon {
+            background: url('../../components/UnitEditorWidget/images/editor-redo.svg') no-repeat center center;
+            width: 16px;
+            height: 15px;
+        }
+    }
+
+    .tox-toolbar__group {
+        padding: 0 2px;
+    }
+
+    .tox-tbtn--bespoke .tox-tbtn__select-label {
+        font-size: 14px;
+        line-height: normal;
+        color: $brand-color-dark;
+        letter-spacing: 1px;
+        margin: 0;
+    }
+}
+
+.tox-menu {
+    &.tox-collection.tox-collection--list {
+        max-width: 134px;
+        box-sizing: border-box;
+        border-radius: 0 0 3px 3px !important;
+        margin-top: -1px;
+        border-top: none;
+        border-color: $brand-color-light;
+    }
+
+    .tox-collection__item-icon {
+        display: none !important;
+    }
+}
+
+.tox .tox-collection--list {
+    .tox-collection__group {
+        max-height: 202px;
+        overflow: auto;
+        padding: 0 !important;
+    }
+
+    .tox-collection__item--active:not(.tox-collection__item--state-disabled):not(.tox-collection__item--enabled) {
+        background: #ccd8e1 !important;
+
+        .tox-collection__item-label * {
+            color: $brand-color-dark !important;
+        }
+    }
+
+    .tox-collection__item {
+        padding: 8px 8px 9px !important;
+
+        &:hover {
+            background: #ccd8e1 !important;
+        }
+
+        &--enabled,
+        &--enabled:hover {
+            background: $brand-color !important;
+
+            .tox-collection__item-label * {
+                color: #fff !important;
+            }
+        }
+    }
+
+    .tox-collection__item-label {
+        margin-left: 0 !important;
+
+        > * {
+            font-size: 16px !important;
+            font-weight: normal !important;
+            line-height: normal;
+            padding: 0 !important;
+            font-family: $font-normal !important;
+            color: $brand-color-dark;
+            text-transform: none !important;
+        }
+    }
+}
+
