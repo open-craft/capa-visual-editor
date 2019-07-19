@@ -16,29 +16,29 @@ export class MultiSelectContainer extends React.Component {
 
     render() {
         return (
-            <div className="lxc-unit-editor-wrapper">
-                <fieldset className="lxc-answers-wrapper">
-                    <legend className="lxc-answers-title">Question*</legend>
-                    <div className="lxc-answers-description">
+            <div className='lxc-unit-editor-wrapper'>
+                <fieldset className='lxc-answers-wrapper'>
+                    <legend className='lxc-answers-title'>Question*</legend>
+                    <div className='lxc-answers-description'>
                         Create a question that only has one answer.
                     </div>
                     <Editor
                         init={{
                             menubar:false,
                             statusbar: false,
-                            plugins:"link code image",
-                            toolbar: "formatselect bold italic | code blockquote link image | undo redo",
+                            plugins:'link code image',
+                            toolbar: 'formatselect bold italic | code blockquote link image | undo redo',
                             height: 392,
-                            // icons_url: "../assets/icons/lxcicons/icons.js",
-                            // icons: "lxcicons",
+                            // icons_url: '../assets/icons/lxcicons/icons.js',
+                            // icons: 'lxcicons',
                             mobile: {
-                                theme: "silver",
+                                theme: 'mobile',
                                 height: 490,
-                                plugins:"link code image",
-                                toolbar: "formatselect | bold italic | code blockquote link image | undo redo",
+                                plugins:'link code image styleselect forecolor fontsizeselect',
+                                toolbar: 'formatselect | bold italic | code blockquote link image | undo redo | styleselect | forecolor | fontsizeselect',
                             }
                         }}
-                        className="lxc-advanced-settings-block"
+                        className='lxc-advanced-settings-block'
                         apiKey='283hsctoygj8rdat1mccsgurzgph73mg3pdgu0lc7j9wq6vr'
                         onChange={this.handleEditorChange.bind(this)}
                         initialValue={this.props.editorContent}
