@@ -30,14 +30,14 @@ export class ShortAnswersItem extends React.PureComponent {
         const anotherPlaceholderText = isMobile ? 'Enter the answer' : 'Enter another acceptable answer';
 
         return (
-            <div className="lxc-answers-option">
-                <div className="lxc-answers-field-wrapper">
-                    <div className="lxc-answers-item-wrapper">
-                        <label className="lxc-sr" htmlFor={`answer-short-${this.state.id}`}>{anotherPlaceholderText}</label>
-                        <input type="text" className="lxc-answers-item" id={`answer-short-${this.state.id}`}
+            <div className='lxc-answers-option'>
+                <div className='lxc-answers-field-wrapper'>
+                    <div className='lxc-answers-item-wrapper'>
+                        <label className='lxc-sr' htmlFor={`answer-short-${this.state.id}`}>{anotherPlaceholderText}</label>
+                        <input type='text' className='lxc-answers-item' id={`answer-short-${this.state.id}`}
                             placeholder={anotherPlaceholderText} value={this.state.value} onChange={this.changeHandler.bind(this)}/>
                     </div>
-                    <button className="lxc-answers-remove-btn" type='button' aria-label='Remove answer item' onClick={this.removeAnswer.bind(this)}/>
+                    <button className='lxc-answers-remove-btn' type='button' aria-label='Remove answer item' onClick={this.removeAnswer.bind(this)}/>
                 </div>
             </div>
         )

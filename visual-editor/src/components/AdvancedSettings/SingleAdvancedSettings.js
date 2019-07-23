@@ -26,9 +26,9 @@ export default class SingleAdvancedSettings extends React.PureComponent {
     render() {
 
         return (
-            <div className="lxc-advanced-settings-wrapper">
+            <div className='lxc-advanced-settings-wrapper'>
                 <div className={`lxc-advanced-settings ${this.state.advancedSettingsOpenned ? 'lxc-advanced-settings_open' : ''}`}>
-                    <div className="lxc-advanced-settings-title">Advanced settings</div>
+                    <div className='lxc-advanced-settings-title'>Advanced settings</div>
                     <AnswerTypeSetting
                         answerTypeSelectedOption={this.props.answerTypeSelectedOption}
                         answerTypeOptions={this.props.answerTypeOptions}
@@ -53,9 +53,9 @@ export default class SingleAdvancedSettings extends React.PureComponent {
                         scorringPointsChange={this.props.scorringPointsChange}
                     />
                 </div>
-                <button type='button' className="lxc-show-advanced-settings" onClick={this.switchAdvancedSettings.bind(this)}>
+                <button type='button' className='lxc-show-advanced-settings' onClick={this.switchAdvancedSettings.bind(this)}>
                     {this.state.advancedSettingsOpenned ? 'Less options' : 'Show advanced options'}
-                    <span className="lxc-show-advanced-settings-icon"></span>
+                    <span className='lxc-show-advanced-settings-icon'></span>
                 </button>
             </div>
         );

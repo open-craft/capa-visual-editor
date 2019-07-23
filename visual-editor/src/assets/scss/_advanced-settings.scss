@@ -1,0 +1,150 @@
+.lxc-advanced-settings {
+    display: none;
+
+    &_open {
+        display: block;
+        width: 100%;
+        padding: 32px 32px 0;
+
+        @media (max-width: map-get($screen, "mobile")){
+            padding: 32px 16px 0;
+        }
+    }
+}
+
+.lxc-advanced-settings-wrapper {
+    width: 100%;
+    margin-top: 32px;
+    border-top: 1px solid $brand-color-light;
+}
+
+.lxc-show-advanced-settings {
+    display: block;
+    text-align: center;
+    padding: 17px;
+    width: 100%;
+    background: $brand-lightest-background;
+    border: none;
+    border-radius: 0 0 5px 5px;
+    color: $brand-color-dark;
+    font-size: 16px;
+    line-height: 20px;
+    transition: background-color .15s linear;
+    margin: 0;
+
+    &:hover {
+        cursor: pointer;
+        background-color: darken($brand-lightest-background, 5%);
+    }
+
+    .lxc-advanced-settings_open + & {
+        border-top: 1px solid $brand-border-color;
+
+        .lxc-show-advanced-settings-icon {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.lxc-show-advanced-settings-icon {
+    background: url('../../components/UnitEditorWidget/images/arrow-icon.svg') no-repeat 0 0;
+    background-size: auto 100%;
+    display: inline-block;
+    vertical-align: middle;
+    width: 14px;
+    height: 7.4px;
+    margin: 0 5px;
+}
+
+.lxc-advanced-settings-title {
+    font-size: 32px;
+    line-height: 30px;
+    letter-spacing: 1px;
+    font-family: $font-heading-bold;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.lxc-advanced-settings-block {
+    margin-bottom: 32px;
+}
+
+.lxc-advanced-settings-block-title {
+    @extend .lxc-unit-title;
+}
+
+.lxc-advanced-settings-block-Description {
+    @extend .lxc-unit-description;
+}
+
+.lxc-advanced-settings-form {
+    padding: 10px;
+    background: $brand-light-background;
+    border: 1px solid $brand-border-color;
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+.lxc-advanced-settings-label {
+    display: block;
+    width: 100%;
+    font-size: 13px;
+    line-height: normal;
+    margin: 0 0 5px;
+}
+
+.lxc-advanced-settings-note {
+    font-size: 14px;
+    line-height: normal;
+    margin-top: 16px;
+}
+
+.lxc-advanced-settings-field {
+    @extend .lxc-unit-form-field;
+}
+
+.lxc-advanced-hint-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+    &:not(:last-of-type) {
+        margin-bottom: 13px;
+    }
+
+    .lxc-advanced-settings-field {
+        width: calc(100% - 30px);
+    }
+}
+
+.lxc-advanced-settings-another-field-btn {
+    @extend .lxc-unit-another-btn;
+    margin-top: 16px;
+}
+
+.lxc-advanced-settings-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    @media (max-width: map-get($screen, "mobile")){
+        flex-wrap: wrap;
+    }
+}
+
+.lxc-advanced-settings-col-half {
+    width: calc(50% - 4px);
+
+    @media (max-width: map-get($screen, "mobile")){
+        width: 100%;
+        margin-bottom: 16px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.lxc-advanced-settings-select {
+    @extend .lxc-unit-form-select;
+}

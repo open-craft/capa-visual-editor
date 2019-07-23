@@ -26,25 +26,20 @@ export class ShortAnswerContainer extends React.Component {
                         </div>
                         <Editor
                             init={{
-                                menubar:false,
+                                menubar: false,
                                 statusbar: false,
-                                plugins:'link code image',
-                                toolbar: 'formatselect bold italic | code blockquote link image | undo redo',
-                                height: 392,
-                                // icons_url: '../assets/icons/lxcicons/icons.js',
-                                // icons: 'lxcicons',
-                                mobile: {
-                                    theme: 'silver',
-                                    height: 490,
-                                    plugins:'link code image',
-                                    toolbar: 'formatselect | bold italic | code blockquote link image | undo redo',
-                                }
+                                plugins: 'link code image advcode',
+                                apply_source_formatting : true,
+                                toolbar: 'formatselect | bold italic | code blockquote link image | undo redo',
+                                height: 340,
+                                content_style: 'body{font-family: BioSans_Regular, Arial, sans-serif; color: #003e6b}' +
+            '                                   div,p{font-size: 16px;} p{margin: 10px 0 0}',
                             }}
                             className='lxc-advanced-settings-block'
                             apiKey='283hsctoygj8rdat1mccsgurzgph73mg3pdgu0lc7j9wq6vr'
                             onChange={this.handleEditorChange.bind(this)}
                             initialValue={this.props.editorContent}
-                            value={this.props.editorContent}
+                            // value={this.props.editorContent}
                         />
                     </fieldset>
                     <ShortAnswers

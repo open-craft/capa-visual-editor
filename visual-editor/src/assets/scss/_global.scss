@@ -12,7 +12,7 @@ $brand-border-color: #668ba6;
 $brand-light-background: #f5f7f9;
 $brand-lightest-background: #e5ecf0;
 
-$screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "extra-small": 340px);
+$screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "small": 600px, "extra-small": 350px);
 
 // -----
 // Fonts
@@ -100,6 +100,10 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "extra-small": 34
     resize: none;
     color: $brand-color-dark;
     transition: background-color .05s linear;
+    font-family: $font-normal;
+    margin: 0;
+    -webkit-appearance: none;
+    overflow: auto;
 
     &::placeholder {
         color: $brand-border-color;
@@ -129,10 +133,12 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "extra-small": 34
         line-height: 20px;
         min-height: 36px;
         padding: 3px 26px 3px 8px;
+        transition: none;
 
         &:hover {
             cursor: pointer;
             background: #e5ecf0;
+            border-color: #99b2c4;
         }
 
         &:focus {
@@ -145,12 +151,13 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "extra-small": 34
         min-height: 36px;
         padding: 3px 26px 3px 8px !important;
         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
-        border: 1px solid $brand-color-dark;
+        border: 1px solid #99b2c4;
         background: $brand-color-dark;
+        transition: none;
 
         &:hover {
             cursor: pointer;
-            border: 1px solid $brand-color-dark;
+            border: 1px solid #99b2c4;
             box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
         }
 
@@ -182,6 +189,10 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "extra-small": 34
 
     .css-1hwfws3 {
         padding: 0;
+
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            min-height: 28px;
+        }
     }
 
     .css-tlfecz-indicatorContainer,
@@ -197,12 +208,29 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "extra-small": 34
     }
 
     .css-26l3qy-menu {
-        margin: 0;
-        border-radius: 5px;
+        margin: -3px 0 0;
+        border-radius: 0 0 5px 5px;
         overflow: hidden;
+        box-shadow: none;
+        border: 1px solid #99b2c4;
+        border-top: none;
+        padding-top: 3px;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 100%;
+            background: $brand-color-dark;
+            z-index: 2;
+            box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
+        }
     }
 
-    .css-1ml51p6-MenuList {
+    .css-1ml51p6-MenuList,
+    .css-11unzgr {
         padding: 0;
         background: #f5f7f9;
         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
@@ -234,6 +262,10 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "extra-small": 34
             background: #336589;
             color: #fff;
         }
+    }
+
+    .css-19bqh2r {
+        display: none;
     }
 }
 

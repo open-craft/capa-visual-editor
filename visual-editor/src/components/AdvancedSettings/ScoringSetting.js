@@ -44,38 +44,38 @@ export class ScorringSetting extends React.PureComponent {
 
     render() {
         return (
-            <div className="lxc-advanced-settings-block">
-                <div className="lxc-advanced-settings-block-title">Scoring</div>
-                <div className="lxc-advanced-settings-block-description">Decide on the amount of points and attempts per question.</div>
+            <div className='lxc-advanced-settings-block'>
+                <div className='lxc-advanced-settings-block-title'>Scoring</div>
+                <div className='lxc-advanced-settings-block-description'>Decide on the amount of points and attempts per question.</div>
 
-                <div className="lxc-advanced-settings-form">
-                    <div className="lxc-advanced-settings-container">
-                        <div className="lxc-advanced-settings-col-half">
-                            <label className="lxc-advanced-settings-label" htmlFor='sas4'>Default number of at tempts</label>
+                <div className='lxc-advanced-settings-form'>
+                    <div className='lxc-advanced-settings-container'>
+                        <div className='lxc-advanced-settings-col-half'>
+                            <label className='lxc-advanced-settings-label' htmlFor='sas4'>Default number of at tempts</label>
                             <Select
                                 id='sas4'
-                                className="lxc-advanced-settings-select"
+                                className='lxc-advanced-settings-select'
                                 isSearchable={false}
-                                placeholder="- Select -"
+                                placeholder='- Select -'
                                 value={this.props.selectedTemptOption}
                                 onChange={this.props.temptsChange}
                                 options={this.props.temptsOptions}
                             />
                         </div>
-                        <div className="lxc-advanced-settings-col-half">
-                            <label className="lxc-advanced-settings-label" htmlFor='sas5'>Default points</label>
+                        <div className='lxc-advanced-settings-col-half'>
+                            <label className='lxc-advanced-settings-label' htmlFor='sas5'>Default points</label>
                             <Select
                                 id='sas5'
-                                className="lxc-advanced-settings-select"
+                                className='lxc-advanced-settings-select'
                                 isSearchable={false}
-                                placeholder="- Select -"
+                                placeholder='- Select -'
                                 value={this.props.selectedPointOption}
                                 onChange={this.props.pointsChange}
                                 options={this.props.pointsOptions}
                             />
                         </div>
                     </div>
-                    <div className="lxc-advanced-settings-note">Note: Attempts count and points can be altered when adding to an assignment.</div>
+                    <div className='lxc-advanced-settings-note'>Note: Attempts count and points can be altered when adding to an assignment.</div>
                 </div>
             </div>
         )

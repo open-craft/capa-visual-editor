@@ -7,13 +7,13 @@ export default class ShortAnswers extends React.PureComponent {
 
     render() {
         return (
-            <fieldset className="lxc-answers-wrapper">
-                <legend className="lxc-answers-title">Answers*</legend>
-                <div className="lxc-answers-description">
+            <fieldset className='lxc-answers-wrapper'>
+                <legend className='lxc-answers-title'>Answers*</legend>
+                <div className='lxc-answers-description'>
                     Enter the correct answer or other acceptable answers. (Not case sensitive)
                 </div>
-                <div className="lxc-answers-list lxc-answers-list_short">
-                    <div className="lxc-answers-form-title">Acceptable answers</div>
+                <div className='lxc-answers-list lxc-answers-list_short'>
+                    <div className='lxc-answers-form-title'>Acceptable answers</div>
                     {
                         this.props.shortAnswersList.map(shortAnswer => {
                             return <ShortAnswersItem 
@@ -24,9 +24,9 @@ export default class ShortAnswers extends React.PureComponent {
                         })
                     }
 
-                    <div className="lxc-answers-another-option">
-                        <button className="lxc-answers-another-option-btn" type='button' onClick={this.props.shortAnswersAddAnswer}>
-                            + Add <span className="lxc-hide-mobile">another</span> answer
+                    <div className='lxc-answers-another-option'>
+                        <button className='lxc-answers-another-option-btn' type='button' onClick={this.props.shortAnswersAddAnswer}>
+                            + Add <span className='lxc-hide-mobile'>another</span> answer
                         </button>
                     </div>
                 </div>
