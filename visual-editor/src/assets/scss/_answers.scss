@@ -102,7 +102,7 @@
     margin-bottom: 0;
     color: transparent;
     overflow: hidden;
-    background: url('../../components/UnitEditorWidget/images/radio-incorrect.svg');
+    background: url('../images/radio-incorrect.svg');
 
     &:hover {
         cursor: pointer;
@@ -110,7 +110,7 @@
 
     .lxc-answers-list_multi & {
         border-radius: 5px;
-        background: url('../../components/UnitEditorWidget/images/checkbox-incorrect.svg');
+        background: url('../images/checkbox-incorrect.svg');
     }
 
     @media (max-width: map-get($screen, "mobile")){
@@ -124,10 +124,10 @@
     }
 
     input:checked + & {
-        background: url('../../components/UnitEditorWidget/images/radio-correct.svg');
+        background: url('../images/radio-correct.svg');
 
         .lxc-answers-list_multi & {
-            background: url('../../components/UnitEditorWidget/images/checkbox-correct.svg');
+            background: url('../images/checkbox-correct.svg');
         }
     }
 }
@@ -207,7 +207,7 @@
     border-radius: 0 5px 5px 0;
     order: 2;
     transition: background-color .15s linear;
-    background: $brand-lightest-background url('../../components/UnitEditorWidget/images/add-hints.svg') no-repeat center center;
+    background: $brand-lightest-background url('../images/add-hints.svg') no-repeat center center;
     background-size: 22px;
 
     &:hover {
@@ -243,7 +243,7 @@
 .lxc-answers-remove-btn {
     height: 36px;
     width: 30px;
-    background: url('../../components/UnitEditorWidget/images/trash-icon.svg') no-repeat center center;
+    background: url('../images/trash-icon.svg') no-repeat center center;
     border: none;
     transition: opacity .15s linear;
     order: 2;

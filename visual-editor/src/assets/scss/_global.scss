@@ -199,12 +199,12 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "small": 600px, "
     .css-1gtu0rj-indicatorContainer {
         width: 20px;
         height: 20px;
-        background: url('../../components/UnitEditorWidget/images/select-arrow.svg') no-repeat center center;
+        background: url('../images/select-arrow.svg') no-repeat center center;
     }
 
     .css-1gtu0rj-indicatorContainer {
         transform: scale(1, -1) translateY(50%);
-        background: url('../../components/UnitEditorWidget/images/select-arrow-focus.svg') no-repeat center center;
+        background: url('../images/select-arrow-focus.svg') no-repeat center center;
     }
 
     .css-26l3qy-menu {
@@ -286,4 +286,32 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "small": 600px, "
     @media (max-width: map-get($screen, "mobile")){
         display: none !important;
     }
+}
+
+//exactly for edx-platform
+
+.lxc-editor {
+    display: block;
+}
+.lxc-editor.is-inactive {
+    display: none;
+}
+
+.modal-lg.modal-editor .modal-header .editor-modes .action-item .lxc-editor-button {
+    border-color: #ccc;
+    color: #666;
+    font-size: 18px;
+    font-size: 1.8rem;
+    line-height: 26.64px;
+    line-height: 2.664rem;
+    border: 0;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    border-radius: 4px;
+}
+
+.modal-lg.modal-editor .modal-header .editor-modes .action-item .lxc-editor-button.is-set {
+    background-color: #666;
+    color: #fff;
 }
