@@ -66,3 +66,15 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### Installing app to an edx-platform
+### you need to have a platform with needed settings in capa module
+### to set up it on edx-platform run the following in the same order
+
+ - do `export CONFIG_ROOT=<path where your edx-platform locates>`
+ - clone repo into edx-platform/common/lib/xmodule/xmodule
+ - checkout branch to `marenich/development` (so far)
+ - `cd edx-platform/common/lib/xmodule/xmodule/capa-visual-editor/visual-editor`
+ - `npm install`
+ - `./node_modules/gulp/bin/gulp.js`
+ - go to devstack for edx-platform and run `make studio-static`
