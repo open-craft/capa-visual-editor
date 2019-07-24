@@ -15,7 +15,7 @@ const studioStatic = path.resolve(process.env.CONFIG_ROOT || '', 'edx-platform/c
 
 gulp.task('pack-css', function () {
     return gulp.src(['build/static/css/*'])
-        .pipe(replace('/static/media/', '/static/studio/media/'))
+        .pipe(replace('/static/media/', '/static/studio/images/'))
         .pipe(concat('assets/css/stylesheet.css'))
         .pipe(cleanCss())
         .pipe(gulp.dest(static));
