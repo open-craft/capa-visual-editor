@@ -82,8 +82,6 @@ const mapStateToProps = (store) => {
         editorContent: store.editorContent.content,
         // single answers
         answersList: store.singleSelectAnswers.singleSelectAnswersList,
-        // editor content
-        editorContent: store.editorContent.content,
         // single answers feedback 
         feedbackContent: store.generalFeedbackSettings.feedbackContent,
         // group feedback

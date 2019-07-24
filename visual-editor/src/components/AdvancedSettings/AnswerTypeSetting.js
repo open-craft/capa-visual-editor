@@ -1,7 +1,5 @@
 import React from 'react';
 import Select from 'react-select';
-import * as actionTypes from '../../store/actions/action-types';
-import { connect } from 'react-redux';
 
 import '../../assets/scss/app.scss';
 
