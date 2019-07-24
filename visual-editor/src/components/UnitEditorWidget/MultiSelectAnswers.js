@@ -8,13 +8,13 @@ export default class MultiSelectAnswers extends React.PureComponent {
 
     render() {
         return (
-            <fieldset className="lxc-answers-wrapper">
-                <legend className="lxc-answers-title">Answers*</legend>
-                <div className="lxc-answers-description">
+            <fieldset className='lxc-answers-wrapper'>
+                <legend className='lxc-answers-title'>Answers*</legend>
+                <div className='lxc-answers-description'>
                     Enter the answers below and select whether an answer is correct or incorrect.
                     Remember, you can have more than one correct answer.
                 </div>
-                <div className="lxc-answers-list lxc-answers-list_multi">
+                <div className='lxc-answers-list lxc-answers-list_multi'>
                     {
                         this.props.answersList.map((answer) => {
                             return <MultiSelectItem 
@@ -23,9 +23,9 @@ export default class MultiSelectAnswers extends React.PureComponent {
                                     />
                         })
                     }
-                    <div className="lxc-answers-another-option">
-                        <button className="lxc-answers-another-option-btn" type='button' onClick={this.props.multiSelectAddAnswer}>
-                            + Add <span className="lxc-hide-mobile">another</span> answer
+                    <div className='lxc-answers-another-option'>
+                        <button className='lxc-answers-another-option-btn' type='button' onClick={this.props.multiSelectAddAnswer}>
+                            + Add <span className='lxc-hide-mobile'>another</span> answer
                         </button>
                     </div>
                 </div>
