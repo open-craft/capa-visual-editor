@@ -79,7 +79,7 @@
     .mce-caret {
         width: 20px;
         height: 20px;
-        background: url('../../components/UnitEditorWidget/images/select-arrow.svg') no-repeat center center;
+        background: url('../images/select-arrow.svg') no-repeat center center;
         border: none;
         top: 3px;
         right: 0;
@@ -195,7 +195,7 @@
                 }
 
                 .mce-caret {
-                    background: url('../../components/UnitEditorWidget/images/select-arrow-focus.svg') no-repeat center center;
+                    background: url('../images/select-arrow-focus.svg') no-repeat center center;
                 }
             }
 
@@ -226,7 +226,7 @@
                 }
 
                 .mce-caret {
-                    background: url('../../components/UnitEditorWidget/images/select-arrow-focus.svg') no-repeat center center;
+                    background: url('../images/select-arrow-focus.svg') no-repeat center center;
                     transform: none;
                 }
             }
@@ -255,49 +255,49 @@
         }
 
         .mce-i-bold {
-            background: url('../../components/UnitEditorWidget/images/editor-bold.svg') no-repeat center center;
+            background: url('../images/editor-bold.svg') no-repeat center center;
             width: 9px;
             height: 11px;
         }
 
         .mce-i-italic {
-            background: url('../../components/UnitEditorWidget/images/editor-italic.svg') no-repeat center center;
+            background: url('../images/editor-italic.svg') no-repeat center center;
             width: 5px;
             height: 11px;
         }
 
         .mce-i-code {
-            background: url('../../components/UnitEditorWidget/images/editor-code.svg') no-repeat center center;
+            background: url('../images/editor-code.svg') no-repeat center center;
             width: 15px;
             height: 14px;
         }
 
         .mce-i-blockquote {
-            background: url('../../components/UnitEditorWidget/images/editor-blockquote.svg') no-repeat center center;
+            background: url('../images/editor-blockquote.svg') no-repeat center center;
             width: 20px;
             height: 13px;
         }
 
         .mce-i-link {
-            background: url('../../components/UnitEditorWidget/images/editor-link.svg') no-repeat center center;
+            background: url('../images/editor-link.svg') no-repeat center center;
             width: 16px;
             height: 16px;
         }
 
         .mce-i-image {
-            background: url('../../components/UnitEditorWidget/images/editor-image.svg') no-repeat center center;
+            background: url('../images/editor-image.svg') no-repeat center center;
             width: 20px;
             height: 15px;
         }
 
         .mce-i-undo {
-            background: url('../../components/UnitEditorWidget/images/editor-undo.svg') no-repeat center center;
+            background: url('../images/editor-undo.svg') no-repeat center center;
             width: 16px;
             height: 15px;
         }
 
         .mce-i-redo {
-            background: url('../../components/UnitEditorWidget/images/editor-redo.svg') no-repeat center center;
+            background: url('../images/editor-redo.svg') no-repeat center center;
             width: 16px;
             height: 15px;
         }
@@ -566,7 +566,7 @@
             }
 
             .mce-caret {
-                background: url('../../components/UnitEditorWidget/images/select-arrow-focus.svg') no-repeat center center;
+                background: url('../images/select-arrow-focus.svg') no-repeat center center;
                 transform: none;
             }
         }
@@ -585,7 +585,7 @@
         .mce-caret {
             width: 20px !important;
             height: 20px !important;
-            background: url('../../components/UnitEditorWidget/images/select-arrow.svg') no-repeat center center;
+            background: url('../images/select-arrow.svg') no-repeat center center;
             border: none;
             top: 9px;
             right: 0;
