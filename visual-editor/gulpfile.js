@@ -4,7 +4,8 @@ const concat       = require('gulp-concat');
 const cleanCss     = require('gulp-clean-css');
 const autoprefixer    = require('gulp-autoprefixer');
 const copy         = require('gulp-copy');
-var replace = require('gulp-replace');
+const replace = require('gulp-replace');
+const clean        = require('gulp-clean');
 
 const path = require('path');
 
@@ -42,4 +43,13 @@ gulp.task('sass:watch', function () {
     return gulp.watch('assets/scss/**/*.scss', gulp.series('pack-scss'));
 });
 
-gulp.task('default', gulp.series('pack-css', 'pack-js', 'copy-images'));
+gulp.task('clean-bundle', function () {
+    return gulp.src(['build',], {
+            read: false
+        })
+        .pipe(clean({
+            force: true
+        }));
+});
+
+gulp.task('default', gulp.series('pack-css', 'pack-js', 'copy-images', 'clean-bundle'));
