@@ -4,6 +4,7 @@ const concat       = require('gulp-concat');
 const cleanCss     = require('gulp-clean-css');
 const autoprefixer    = require('gulp-autoprefixer');
 const copy         = require('gulp-copy');
+var replace = require('gulp-replace');
 
 const path = require('path');
 
@@ -11,13 +12,14 @@ const static = path.resolve(__dirname);
 
 gulp.task('pack-css', function () {
     return gulp.src(['build/static/css/*'])
+        .pipe(replace('/static/media/', '/static/studio/media/'))
         .pipe(concat('assets/css/stylesheet.css'))
         .pipe(cleanCss())
         .pipe(gulp.dest(static));
 });
 
 gulp.task('pack-js', function () {
-    return gulp.src(['build/static/js/[0123456789]{1}*.chunk.js', 'build/static/js/main*.chunk.js'])
+    return gulp.src(['build/static/js/!(main)*.chunk.js', 'build/static/js/main.*.chunk.js'])
       .pipe(concat('assets/js/bundle.js'))
       .pipe(gulp.dest(static));
 });
