@@ -39,7 +39,6 @@ export class ShortAnswerContainer extends React.Component {
                             apiKey='283hsctoygj8rdat1mccsgurzgph73mg3pdgu0lc7j9wq6vr'
                             onChange={this.handleEditorChange.bind(this)}
                             initialValue={this.props.editorContent}
-                            // value={this.props.editorContent}
                         />
                     </fieldset>
                     <ShortAnswers

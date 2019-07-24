@@ -37,7 +37,6 @@ export class MultiSelectContainer extends React.Component {
                         apiKey='283hsctoygj8rdat1mccsgurzgph73mg3pdgu0lc7j9wq6vr'
                         onChange={this.handleEditorChange.bind(this)}
                         initialValue={this.props.editorContent}
-                        // value={this.props.editorContent}
                     />
                 </fieldset>
                 <MultiSelectAnswers
@@ -122,8 +121,8 @@ const mapDispatchToProps = function(dispatch, ownProps) {
             return dispatch({type: actionTypes.GENERAL_FEEDBACK_CHANGED, feedbackContent: event.target.value});
         },
         // groupFeedback
-        groupFeedbackchange: (event) => {
-            return dispatch({type: actionTypes.GROUP_FEEDBACK_SETTING_CHANGED, groupFeedbackContent: event.target.value});
+        groupFeedbackchange: (value) => {
+            return dispatch({type: actionTypes.GROUP_FEEDBACK_SETTING_CHANGED, groupFeedbackContent: value});
         },
         // Hints
         hintAdd: (event) => {
