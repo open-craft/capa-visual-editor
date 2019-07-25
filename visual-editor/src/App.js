@@ -14,11 +14,20 @@ export default class  App extends React.Component {
       single: SingleSelectContainer,
       multi: MultiSelectContainer,
       short: ShortAnswerContainer
-  }
+    };
 
     this.state = {
-      selected: { value: 'single', label: 'Single select' }
-    }
+      selected: this.getType()
+    };
+  }
+
+  getType() {
+    const defaults = {
+      single: { value: 'single', label: 'Single select' },
+      multi: { value: 'multi', label: 'Multi select' },
+      short: { value: 'short', label: 'Short answer' }
+    };
+    return defaults[window.editorType||'single'];
   }
 
   change(value) {
@@ -29,7 +38,7 @@ export default class  App extends React.Component {
 
   render() {
     
-    const Container = this.typeMapping[this.state.selected.value];
+    const Container = this.typeMapping[this.getType().value];
 
     return (
       <div className="lxc-unit-wrapper">

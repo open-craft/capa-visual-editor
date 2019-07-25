@@ -8,6 +8,9 @@ import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import store from './store/store';
 
+
+window.editorType = 'short';
+
 ReactDOM.render(
     <Provider store={store}>
         <App />
