@@ -37,10 +37,11 @@ export default class  App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("Hi, this is react App, here is data you've just sent to me! - ", window.LXCdata);
+    console.log("Hi, this is react App, here is data you've just sent to me! - ", window.LXCdata, this.getType());
+    
     this.setState({
-      selected:this.getType().value
-    })
+      selected:this.getType()
+    });
   }
 
   render() {
