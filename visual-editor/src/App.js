@@ -32,8 +32,15 @@ export default class  App extends React.Component {
 
   change(value) {
     this.setState({
-      selected: value
+      selected: value.value
     });
+  }
+
+  componentDidMount() {
+    console.log("Hi, this is react App, here is data you've just sent to me! - ", window.LXCdata);
+    this.setState({
+      selected:this.getType().value
+    })
   }
 
   render() {
