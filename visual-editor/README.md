@@ -71,6 +71,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ### you need to have a platform with needed settings in capa module
 ### to set up it on edx-platform run the following in the same order
 
+ - switch your edx-platform onto the `lxc/open-release/ironwood.master` branch
  - do `export CONFIG_ROOT=<path where your edx-platform locates>`
  - clone repo into edx-platform/common/lib/xmodule/xmodule
  - checkout branch to `marenich/development` (so far)
