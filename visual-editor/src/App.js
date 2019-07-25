@@ -17,7 +17,7 @@ export default class  App extends React.Component {
     };
 
     this.state = {
-      selected: this.getType()
+      selected: { value: 'single', label: 'Single select' }
     };
   }
 
@@ -27,25 +27,17 @@ export default class  App extends React.Component {
       multi: { value: 'multi', label: 'Multi select' },
       short: { value: 'short', label: 'Short answer' }
     };
-    return defaults[window.editorType||'single'];
+    return defaults[window.editorType||this.state.selected.value];
   }
 
   change(value) {
     this.setState({
-      selected: value.value
-    });
-  }
-
-  componentDidMount() {
-    console.log("Hi, this is react App, here is data you've just sent to me! - ", window.LXCdata, this.getType());
-    
-    this.setState({
-      selected:this.getType()
+      selected: value
     });
   }
 
   render() {
-    
+    console.log(new Date());
     const Container = this.typeMapping[this.getType().value];
 
     return (
