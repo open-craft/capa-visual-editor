@@ -21,7 +21,6 @@ import store from './store/store';
 
 
 ReactDOM.render(
-    console.log(window.LXCData);
     <Provider store={store}>
         <App />
     </Provider>,

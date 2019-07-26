@@ -38,6 +38,7 @@ export default class  App extends React.Component {
 
   render() {
     console.log(new Date());
+    console.log('GOT DATA - ', window.LXCData);
     const Container = this.typeMapping[this.getType().value];
 
     return (
