@@ -8,8 +8,20 @@ import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import store from './store/store';
 
+    window.tinyMCESettings = {
+        menubar: false,
+        statusbar: false,
+        plugins: 'link code image advcode',
+        apply_source_formatting : true,
+        toolbar: 'formatselect | bold italic | code blockquote link image | undo redo',
+        height: 340,
+        content_style: 'body{font-family: BioSans_Regular, Arial, sans-serif; color: #003e6b}' +
+'                               div,p{font-size: 16px;} p{margin: 10px 0 0}',
+    };
+
 
 ReactDOM.render(
+    console.log(window.LXCData);
     <Provider store={store}>
         <App />
     </Provider>,
