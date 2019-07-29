@@ -47,7 +47,7 @@
 }
 
 .lxc-show-advanced-settings-icon {
-    background: url('../../components/UnitEditorWidget/images/arrow-icon.svg') no-repeat 0 0;
+    background: url('../images/arrow-icon.svg') no-repeat 0 0;
     background-size: auto 100%;
     display: inline-block;
     vertical-align: middle;
@@ -100,7 +100,7 @@
     margin-top: 16px;
 }
 
-.lxc-advanced-settings-field {
+.lxc-unit-editor-wrapper .lxc-advanced-settings-field {
     @extend .lxc-unit-form-field;
 }
 
