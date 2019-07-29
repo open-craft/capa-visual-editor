@@ -104,15 +104,16 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "small": 600px, "
     margin: 0;
     -webkit-appearance: none;
     overflow: auto;
+    height: 36px;
 
     &::placeholder {
         color: $brand-border-color;
     }
-    
+
     &:hover {
         background: #e5ecf0;
     }
-    
+
     &:focus {
         outline: none;
         border-color: $brand-color-dark;
