@@ -1,18 +1,15 @@
 import * as ActionTypes from '../actions/action-types';
+import { getMultipleChoiceOptions } from '../../markdownXmlParser';
+
 
 const initialState = {
-    multiSelectAnswersList: [
-        {id: 1, title: 'Cholesterol molecule', correct: false, selectedFeedback: "Example1", unselectedFeedback: "", answer: ""},
-        {id: 2, title: 'Protein channel', correct: false, selectedFeedback: "Example2", unselectedFeedback: "", answer: ""},
-        {id: 3, title: 'Glycoprotein molecule', correct: true, selectedFeedback: "Example3", unselectedFeedback: "", answer: ""},
-        {id: 4, title: 'Phospholipid molecule', correct: false, selectedFeedback: "Example4", unselectedFeedback: "", answer: ""},
-    ]
+    multiSelectAnswersList: getMultipleChoiceOptions()
 };
 
 const mutliSelectAnswersReducer = function(state=initialState, action) {
     switch(action.type) {
         case ActionTypes.MULTI_SELECT_ANSWERS_ADD_NEW:
-            const lastId = state.multiSelectAnswersList[state.multiSelectAnswersList.length-1].id;
+            const lastId = state.multiSelectAnswersList.length ? state.multiSelectAnswersList[state.multiSelectAnswersList.length-1].id : 0;
             const emptyAnswer = {
                 id: lastId + 1, title: '', correct: false, selectedFeedback: "", unselectedFeedback: "", answer: ""
             };

@@ -8,7 +8,9 @@ import HintSettingReducer from './HintSettingReducer';
 import ScorringSettingReducer from './ScorringSettingReducer';
 import GroupFeedbackSettingReducer from './GroupFeedbackSettingReducer';
 import ShortAnswerReducer from './ShortAnswerReducer';
-import editorContent from './editorContent';
+import MultiSelectEditorReducer from './MultiSelectEditorReducer';
+import SingleSelectEditorReducer from './SingleSelectEditorReducer';
+import ShortAnswerEditorReducer from './ShortAnswerEditorReducer';
 
 
 var reducers = combineReducers({
@@ -21,7 +23,13 @@ var reducers = combineReducers({
     scorringSettings: ScorringSettingReducer,
     groupFeedbackSettings: GroupFeedbackSettingReducer,
     shortAnswersData: ShortAnswerReducer,
-    editorContent: editorContent
+    multiSelectEditor: MultiSelectEditorReducer,
+    singleSelectEditor: SingleSelectEditorReducer,
+    shortAnswerEditor: ShortAnswerEditorReducer
+    // todo: refactor reducers in such way, to store all data related to one question type
+    // in one place
+    // multiSelectSettings: multiSelectSettingsReducer
+    // singleSelectSettings: singleSelectSettingsReducer
 });
 
 export default reducers;

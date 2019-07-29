@@ -11,7 +11,7 @@ import MultiAdvancedSettings from '../components/AdvancedSettings/MultiAdvancedS
 export class MultiSelectContainer extends React.Component {
 
     handleEditorChange (e) {
-        this.props.tinyEditorContentChange(e.target.getContent());
+        this.props.multiEditorContentChange(e.target.getContent());
     }
 
     render() {
@@ -80,7 +80,7 @@ export class MultiSelectContainer extends React.Component {
 const mapStateToProps = (store) => {
     return {
         // editor content
-        editorContent: store.editorContent.content,
+        editorContent: store.multiSelectEditor.content,
         // multi answers
         answersList: store.multiSelectAnswers.multiSelectAnswersList,
         // single answers feedback 
@@ -103,8 +103,8 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = function(dispatch, ownProps) {
     return {
         // editor
-        tinyEditorContentChange: (content) => {
-            return dispatch({type: actionTypes.EDITOR_CONTENT_CHANGE, content: content});
+        multiEditorContentChange: (content) => {
+            return dispatch({type: actionTypes.MULTI_EDITOR_CONTENT_CHANGE, content: content});
         },
         // multiSelect answers
         multiSelectAddAnswer: (event) => {

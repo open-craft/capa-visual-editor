@@ -18,17 +18,13 @@ export class SingleSelectItem extends React.PureComponent {
         }
     }
 
-    componentDidMount() {
-        this.setState({...this.props});
-    }
-
-    answerChanged() {
-        let { id, title, correct, feedback } = this.state;
+    answerChanged(changed) {
+        let { id, title, correct, feedback } = this.props;
         this.props.singleSelectChangeAnswer({
             id: id,
             title: title,
             correct: correct,
-            feedback: feedback
+            feedback: feedback, ...changed
         });
     }
 
@@ -41,21 +37,15 @@ export class SingleSelectItem extends React.PureComponent {
     }
 
     checkBoxChange(event) {
-        this.setState({correct: event.target.checked}, () => {
-            this.answerChanged();
-        });
+        this.answerChanged({correct: event.target.checked});
     }
 
     feedbackChange(event) {
-        this.setState({feedback: event.target.value}, () => {
-            this.answerChanged();
-        });
+        this.answerChanged({feedback: event.target.value});
     }
 
     titleChange(event) {
-        this.setState({title: event.target.value}, () => {
-            this.answerChanged();
-        });
+        this.answerChanged({title: event.target.value});
     }
 
     render() {
@@ -65,10 +55,10 @@ export class SingleSelectItem extends React.PureComponent {
         return (
             <div key={this.props.id} className='lxc-answers-option'>
                 <div className='lxc-answers-radio'>
-                    <input name='correct' type='radio' id={`answer-radio${this.props.id}`} value={this.state.correct}
-                           defaultChecked={this.state.correct} onChange={this.checkBoxChange}/>
+                    <input name='correct' type='radio' id={`answer-radio${this.props.id}`}
+                           defaultChecked={this.props.correct} onChange={this.checkBoxChange}/>
                     <label htmlFor={`answer-radio${this.props.id}`} className='lxc-answers-radio-label'>
-                        {this.state.title}
+                        {this.props.title}
                     </label>
                 </div>
                 <div className='lxc-answers-field-wrapper'>
@@ -77,11 +67,11 @@ export class SingleSelectItem extends React.PureComponent {
                             Specific feedback
                         </label>
                         <textarea rows={1} className='lxc-answers-feedback-field' id={`feedback-field${this.props.id}`}
-                                  placeholder='Enter feedback for when the choice is selected' value={this.state.feedback} onChange={this.feedbackChange}/>
+                                  placeholder='Enter feedback for when the choice is selected' value={this.props.feedback} onChange={this.feedbackChange}/>
                     </div>
                     <div className='lxc-answers-item-wrapper'>
                         <label className='lxc-sr' htmlFor={`answer-single${this.props.id}`}>{placeholderText}</label>
-                        <textarea rows={1} className='lxc-answers-item' id={`answer-single${this.props.id}`} value={this.state.title}
+                        <textarea rows={1} className='lxc-answers-item' id={`answer-single${this.props.id}`} value={this.props.title}
                                   placeholder={placeholderText} onChange={this.titleChange}/>
                         <button className='lxc-answers-feedback-btn' type='button' aria-label='Show feedback block' onClick={this.openFeedbackButtonClick}/>
                     </div>

@@ -1,18 +1,14 @@
 import * as ActionTypes from '../actions/action-types';
+import {getSingleChoiceOptions} from '../../markdownXmlParser';
 
 const initialState = {
-    singleSelectAnswersList: [
-        {id: 1, title: 'Cholesterol molecule', correct: false, feedback: "Example1"},
-        {id: 2, title: 'Protein channel', correct: false, feedback: "Example2"},
-        {id: 3, title: 'Glycoprotein molecule', correct: true, feedback: "Example3"},
-        {id: 4, title: 'Phospholipid molecule', correct: false, feedback: "Example4"},
-    ]
+    singleSelectAnswersList: getSingleChoiceOptions()
 };
 
 const singleSelectAnswersReducer = function(state=initialState, action) {
     switch(action.type) {
         case ActionTypes.SINGLE_SELECT_ANSWERS_ADD_NEW:
-            const lastId = state.singleSelectAnswersList[state.singleSelectAnswersList.length-1].id;
+            const lastId = state.singleSelectAnswersList.length ? state.singleSelectAnswersList[state.singleSelectAnswersList.length-1].id : 0;
             let emptyAnswer = {
                 id: lastId + 1, title: '', correct: false, feedback: ""
             };
@@ -35,7 +31,10 @@ const singleSelectAnswersReducer = function(state=initialState, action) {
                         };
                     } else {
                         return {
-                            ...single, correct: false
+                            id: single.id,
+                            title: single.title,
+                            correct: action.correct ? false : single.correct,
+                            feedback: single.feedback
                         };
                     }
                 })

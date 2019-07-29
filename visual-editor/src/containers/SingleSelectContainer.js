@@ -11,7 +11,7 @@ import SingleAdvancedSettings from '../components/AdvancedSettings/SingleAdvance
 export class SingleSelectContainer extends React.Component {
 
     handleEditorChange (e) {
-        this.props.tinyEditorContentChange(e.target.getContent());
+        this.props.singleEditorContentChange(e.target.getContent());
     }
 
     render() {
@@ -79,7 +79,7 @@ export class SingleSelectContainer extends React.Component {
 const mapStateToProps = (store) => {
     return {
         // editor content
-        editorContent: store.editorContent.content,
+        editorContent: store.singleSelectEditor.content,
         // single answers
         answersList: store.singleSelectAnswers.singleSelectAnswersList,
         // single answers feedback 
@@ -102,9 +102,8 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = function(dispatch, ownProps) {
     return {
         // editor
-        tinyEditorContentChange: (content) => {
-            console.log(content)
-            return dispatch({type: actionTypes.EDITOR_CONTENT_CHANGE, content: content});
+        singleEditorContentChange: (content) => {
+            return dispatch({type: actionTypes.SINGLE_EDITOR_CONTENT_CHANGE, content: content});
         },
         // singleSelect answers
         singleSelectAddAnswer: (event) => {
