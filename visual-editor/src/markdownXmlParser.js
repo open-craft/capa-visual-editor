@@ -54,6 +54,30 @@ window.LXCData = window.LXCData || {};
 window.LXCData.markdown = window.LXCData.markdown || multiMarkdown;
 
 
+function getHints() {
+    let hints = [];
+    function getHint(row){
+        let hint = '';
+        if (row.startsWith('||')) {
+            const hintStart = row.indexOf('||');
+            const hintEnd = row.slice(hintStart + 2).indexOf('||');
+            hint = row.slice(hintStart + 2, hintEnd + 2);
+        }
+        return hint;
+    };
+    for(let d in window.LXCData.markdown.split('\n')) {
+        let row = window.LXCData.markdown.split('\n')[d];
+        const hint = getHint(row);
+        if (hint.length) {
+            hints.push({
+                id: d,
+                value: hint
+            })
+        }
+    };
+  return hints;
+};
+
 
 function getMultipleChoiceOptions() {
   let multipleChoiceOptions = [];
@@ -136,4 +160,4 @@ function setMarkdownData(markdown) {
   window.LXCData.markdownHasChanged = true;
 }
 
-export { getMultipleChoiceOptions, getSingleChoiceOptions, getEditorData, setMarkdownData };
+export { getMultipleChoiceOptions, getSingleChoiceOptions, getEditorData, getHints, setMarkdownData };
