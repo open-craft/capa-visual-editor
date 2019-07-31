@@ -34,10 +34,10 @@ export default class SingleAdvancedSettings extends React.PureComponent {
                         answerTypeOptions={this.props.answerTypeOptions}
                         answerTypeChange={this.props.answerTypeChange}
                     />
-                    <GeneralFeedbackSetting
+                    {/* <GeneralFeedbackSetting
                         groupFeedbackContent={this.props.groupFeedbackContent}
                         generalFeedbackChange={this.props.groupFeedbackchange}
-                    />
+                    /> */}
                     <HintSetting
                         hints={this.props.hints}
                         hintAdd={this.props.hintAdd}
@@ -46,10 +46,10 @@ export default class SingleAdvancedSettings extends React.PureComponent {
                     />
                     <ScorringSetting
                         scorringSelectedPointOption={this.props.scorringSelectedPointOption}
-                        scorringSelectedTemptOption={this.props.scorringSelectedTemptOption}
-                        scorringTemptsOptions={this.props.scorringTemptsOptions}
+                        scorringselectedAttemptsOption={this.props.scorringselectedAttemptsOption}
+                        scorringattemptsOptions={this.props.scorringattemptsOptions}
                         scorringPointsOptions={this.props.scorringPointsOptions}
-                        scorringTemptsChange={this.props.scorringTemptsChange}
+                        scorringAttemptsChange={this.props.scorringAttemptsChange}
                         scorringPointsChange={this.props.scorringPointsChange}
                     />
                 </div>

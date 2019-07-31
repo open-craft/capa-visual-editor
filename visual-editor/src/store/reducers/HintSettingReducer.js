@@ -1,5 +1,5 @@
 import {ADVANCED_SETTING_HINT_ADD, ADVANCED_SETTING_HINT_REMOVE, ADVANCED_SETTING_HINT_CHANGED} from '../actions/action-types';
-import { getHints } from '../../markdownXmlParser';
+import { getHints } from '../../dataParser';
 
 const initialState = {
     hints: getHints(),

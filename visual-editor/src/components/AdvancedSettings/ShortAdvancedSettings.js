@@ -27,10 +27,10 @@ export class ShortAdvancedSettings extends React.PureComponent {
                 <div className={`lxc-advanced-settings ${this.state.advancedSettingsOpenned ? 'lxc-advanced-settings_open' : ''}`}>
                     <div className='lxc-advanced-settings-title'>Advanced settings</div>
 
-                    <GeneralFeedbackSetting
+                    {/* <GeneralFeedbackSetting
                         feedbackContent={this.props.feedbackContent}
                         generalFeedbackChange={this.props.generalFeedbackChange}
-                    />
+                    /> */}
                     <HintSetting
                         hints={this.props.hints}
 
@@ -40,10 +40,10 @@ export class ShortAdvancedSettings extends React.PureComponent {
                     />
                     <ScorringSetting
                         scorringSelectedPointOption={this.props.scorringSelectedPointOption}
-                        scorringSelectedTemptOption={this.props.scorringSelectedTemptOption}
-                        scorringTemptsOptions={this.props.scorringTemptsOptions}
+                        scorringselectedAttemptsOption={this.props.scorringselectedAttemptsOption}
+                        scorringattemptsOptions={this.props.scorringattemptsOptions}
                         scorringPointsOptions={this.props.scorringPointsOptions}
-                        scorringTemptsChange={this.props.scorringTemptsChange}
+                        scorringAttemptsChange={this.props.scorringAttemptsChange}
                         scorringPointsChange={this.props.scorringPointsChange}
                     />
                 </div>

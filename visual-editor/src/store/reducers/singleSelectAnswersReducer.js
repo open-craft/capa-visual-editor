@@ -1,9 +1,7 @@
 import * as ActionTypes from '../actions/action-types';
-import {getSingleChoiceOptions} from '../../markdownXmlParser';
+import {getSingleChoiceOptions} from '../../dataParser';
 
-const initialState = {
-    singleSelectAnswersList: getSingleChoiceOptions()
-};
+const initialState = getSingleChoiceOptions();
 
 const singleSelectAnswersReducer = function(state=initialState, action) {
     switch(action.type) {
@@ -13,14 +11,17 @@ const singleSelectAnswersReducer = function(state=initialState, action) {
                 id: lastId + 1, title: '', correct: false, feedback: ""
             };
             return {
+                ...state,
                 singleSelectAnswersList: state.singleSelectAnswersList.concat([emptyAnswer])
             };
         case ActionTypes.SINGLE_SELECT_ANSWERS_REMOVE:
             return {
+                ...state,
                 singleSelectAnswersList: state.singleSelectAnswersList.filter(single => single.id !== action.id)
             };
         case ActionTypes.SINGLE_SELECT_ANSWERS_CHANGED:
             return {
+                ...state,
                 singleSelectAnswersList: state.singleSelectAnswersList.map((single) => {
                     if (single.id === action.id) {
                         return {
@@ -39,6 +40,8 @@ const singleSelectAnswersReducer = function(state=initialState, action) {
                     }
                 })
             };
+        case ActionTypes.ANSWER_TYPE_SETTING_CHANGED:
+            return Object.assign({}, state, {...state, selectedType: action.selectedType});
         default:
             return state;
     }

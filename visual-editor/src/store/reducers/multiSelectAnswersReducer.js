@@ -1,10 +1,8 @@
 import * as ActionTypes from '../actions/action-types';
-import { getMultipleChoiceOptions } from '../../markdownXmlParser';
+import { getMultipleChoiceOptions } from '../../dataParser';
 
 
-const initialState = {
-    multiSelectAnswersList: getMultipleChoiceOptions()
-};
+const initialState = getMultipleChoiceOptions();
 
 const mutliSelectAnswersReducer = function(state=initialState, action) {
     switch(action.type) {
@@ -14,14 +12,17 @@ const mutliSelectAnswersReducer = function(state=initialState, action) {
                 id: lastId + 1, title: '', correct: false, selectedFeedback: "", unselectedFeedback: "", answer: ""
             };
             return {
+                ...state,
                 multiSelectAnswersList: state.multiSelectAnswersList.concat([emptyAnswer])
             };
         case ActionTypes.MULTI_SELECT_ANSWERS_REMOVE:
             return {
+                ...state,
                 multiSelectAnswersList: state.multiSelectAnswersList.filter(multi => multi.id !== action.id)
             };
         case ActionTypes.MULTI_SELECT_ANSWERS_CHANGED:
             return {
+                ...state,
                 multiSelectAnswersList: state.multiSelectAnswersList.map((multi) => {
                     if (multi.id === action.id) {
                         return {
@@ -36,6 +37,11 @@ const mutliSelectAnswersReducer = function(state=initialState, action) {
                         return multi;
                     }
                 })
+            };
+        case ActionTypes.GROUP_FEEDBACK_SETTING_CHANGED:
+            return {
+                ...state,
+                groupFeedbackContent: action.groupFeedbackContent
             };
         default:
             return state;

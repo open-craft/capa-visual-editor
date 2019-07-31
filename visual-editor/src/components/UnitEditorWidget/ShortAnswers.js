@@ -16,7 +16,8 @@ export default class ShortAnswers extends React.PureComponent {
                     <div className='lxc-answers-form-title'>Acceptable answers</div>
                     {
                         this.props.shortAnswersList.map(shortAnswer => {
-                            return <ShortAnswersItem 
+                            return <ShortAnswersItem
+                                    typeOptions={this.props.typeOptions}
                                     remove={this.props.shortAnswersRemoveAnswer}
                                     change={this.props.shortAnswersChangeAnswer}
                                     key={shortAnswer.id}

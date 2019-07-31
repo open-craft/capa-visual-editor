@@ -1,28 +1,29 @@
 import * as React from 'react';
+import Select from 'react-select';
 
 import '../../assets/scss/app.scss';
 
-export class ShortAnswersItem extends React.PureComponent {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {};
-
-    }
-
-    componentDidMount() {
-        this.setState({...this.props});
-    }
+export class ShortAnswersItem extends React.Component {
 
     removeAnswer() {
-        this.props.remove(this.state.id);
+        this.props.remove(this.props.id);
     }
 
-    changeHandler(event) {
-        this.setState({
+    typeChanged(value) {
+        console.log(value)
+        this.props.change({
+            id: this.props.id,
+            value: this.props.value,
+            currentType: value
+        })
+    }
+
+    valueChanged(event) {
+        this.props.change({
+            id: this.props.id,
+            currentType: this.props.currentType,
             value: event.target.value
-        }, () => this.props.change(this.state));
+        })
     }
 
     render() {
@@ -33,9 +34,16 @@ export class ShortAnswersItem extends React.PureComponent {
             <div className='lxc-answers-option'>
                 <div className='lxc-answers-field-wrapper'>
                     <div className='lxc-answers-item-wrapper'>
-                        <label className='lxc-sr' htmlFor={`answer-short-${this.state.id}`}>{anotherPlaceholderText}</label>
-                        <input type='text' className='lxc-answers-item' id={`answer-short-${this.state.id}`}
-                            placeholder={anotherPlaceholderText} value={this.state.value} onChange={this.changeHandler.bind(this)}/>
+                        <label className='lxc-sr' htmlFor={`answer-short-${this.props.id}`}>{anotherPlaceholderText}</label>
+                        <Select className='lxc-advanced-settings-select'
+                            isSearchable={false}
+                            placeholder='- Select -'
+                            options={this.props.typeOptions}
+                            value={this.props.currentType}
+                            onChange={this.typeChanged.bind(this)}
+                        />
+                        <input type='text' className='lxc-answers-item' id={`answer-short1-${this.props.id}`}
+                            placeholder={anotherPlaceholderText} value={this.props.value} onChange={this.valueChanged.bind(this)}/>
                     </div>
                     <button className='lxc-answers-remove-btn' type='button' aria-label='Remove answer item' onClick={this.removeAnswer.bind(this)}/>
                 </div>

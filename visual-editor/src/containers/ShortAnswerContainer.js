@@ -48,6 +48,7 @@ export class ShortAnswerContainer extends React.Component {
                     </fieldset>
                     <ShortAnswers
                         shortAnswersList={this.props.shortAnswersList}
+                        typeOptions={this.props.typeOptions}
                         shortAnswersAddAnswer={this.props.shortAnswersAddAnswer}
                         shortAnswersRemoveAnswer={this.props.shortAnswersRemoveAnswer}
                         shortAnswersChangeAnswer={this.props.shortAnswersChangeAnswer}
@@ -72,10 +73,10 @@ export class ShortAnswerContainer extends React.Component {
                         answerTypeChange={this.props.answerTypeChange}
     
                         scorringSelectedPointOption={this.props.scorringSelectedPointOption}
-                        scorringSelectedTemptOption={this.props.scorringSelectedTemptOption}
-                        scorringTemptsOptions={this.props.scorringTemptsOptions}
+                        scorringselectedAttemptsOption={this.props.scorringselectedAttemptsOption}
+                        scorringattemptsOptions={this.props.scorringattemptsOptions}
                         scorringPointsOptions={this.props.scorringPointsOptions}
-                        scorringTemptsChange={this.props.scorringTemptsChange}
+                        scorringAttemptsChange={this.props.scorringAttemptsChange}
                         scorringPointsChange={this.props.scorringPointsChange}
 
                     />
@@ -88,21 +89,22 @@ export class ShortAnswerContainer extends React.Component {
 const mapStateToProps = (store) => {
     return {
         shortAnswersList: store.shortAnswersData.shortAnswersList,
+        typeOptions: store.shortAnswersData.typeOptions,
         // editor content
         editorContent: store.shortAnswerEditor.content,
         // single answers feedback 
         feedbackContent: store.generalFeedbackSettings.feedbackContent,
         // group feedback
-        groupFeedbackContent: store.groupFeedbackSettings.groupFeedbackContent,
+        groupFeedbackContent: store.multiSelectAnswers.groupFeedbackContent,
         // hints
         hints: store.hintSettings.hints,
         // answer type
-        answerTypeSelectedOption: store.answerTypeSettings.selectedType,
-        answerTypeOptions: store.answerTypeSettings.accessibleTypes,
+        answerTypeSelectedOption: store.singleSelectAnswers.selectedType,
+        answerTypeOptions: store.singleSelectAnswers.accessibleTypes,
         // scorring
         scorringSelectedPointOption: store.scorringSettings.selectedPointOption,
-        scorringSelectedTemptOption: store.scorringSettings.selectedTemptOption,
-        scorringTemptsOptions: store.scorringSettings.temptsOptions,
+        scorringselectedAttemptsOption: store.scorringSettings.selectedAttemptsOption,
+        scorringattemptsOptions: store.scorringSettings.attemptsOptions,
         scorringPointsOptions: store.scorringSettings.pointsOptions
     }
 };
@@ -145,7 +147,7 @@ const mapDispatchToProps = function(dispatch, ownProps) {
             return dispatch({type: actionTypes.ANSWER_TYPE_SETTING_CHANGED, selectedType: value})
         },
         // scorring settings
-        scorringTemptsChange: (value) => {
+        scorringAttemptsChange: (value) => {
             return dispatch({type: actionTypes.SCORRING_TEMPTS_CHANGED, ...value})
         },
         scorringPointsChange: (value) => {

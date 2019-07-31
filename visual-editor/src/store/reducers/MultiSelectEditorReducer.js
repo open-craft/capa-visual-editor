@@ -1,5 +1,5 @@
 import {MULTI_EDITOR_CONTENT_CHANGE} from '../actions/action-types';
-import { getEditorData } from '../../markdownXmlParser';
+import { getEditorData } from '../../dataParser';
 
 const initialState = {
     content: getEditorData()

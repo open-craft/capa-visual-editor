@@ -12,7 +12,7 @@ export default class MultiAdvancedSettings extends React.Component {
         super(props);
 
         this.state = {
-            selectedTemptOption: null,
+            selectedAttemptsOption: null,
             selectedPointOption: null,
             advancedSettingsOpenned: false,
             selectedTypeOption: null
@@ -30,7 +30,7 @@ export default class MultiAdvancedSettings extends React.Component {
                 <div className={`lxc-advanced-settings ${this.state.advancedSettingsOpenned ? 'lxc-advanced-settings_open' : ''}`}>
                     <div className='lxc-advanced-settings-title'>Advanced settings</div>
 
-                    <GeneralFeedbackSetting {...this.props}/>
+                    {/* <GeneralFeedbackSetting {...this.props}/> */}
                     <GroupFeedback {...this.props}/>
                     <HintSetting {...this.props}/>
                     <ScorringSetting {...this.props}/>

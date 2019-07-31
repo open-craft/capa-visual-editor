@@ -9,28 +9,24 @@ const nop = require('gulp-nop');
 const path = require('path');
 
 const static = path.resolve(__dirname);
-const studioStatic = path.resolve(process.env.CONFIG_ROOT || '', 'edx-platform/cms/static/images');
 
 gulp.task('pack-css', function () {
     return gulp.src(['build/static/css/*'])
-        .pipe(replace('/static/media/', '/static/studio/images/'))
+        .pipe(replace('/static/media/', '/static/studio/visual-editor/assets/media/'))
         .pipe(concat('assets/css/stylesheet.css'))
         .pipe(cleanCss())
         .pipe(gulp.dest(static));
 });
 
 gulp.task('pack-js', function () {
-    return gulp.src(['build/static/js/!(main)*.chunk.js', 'build/static/js/main.*.chunk.js'])
+    return gulp.src(['build/static/js/*.js'])
       .pipe(concat('assets/js/bundle.js'))
       .pipe(gulp.dest(static));
 });
 
 gulp.task('copy-images', function () {
-    if (process.env.CONFIG_ROOT !== undefined) {
-        return gulp.src('build/static/media/*')
-               .pipe(gulp.dest(studioStatic));
-    }
-    return gulp.src('.').pipe(nop());
+    return gulp.src('build/static/media/*')
+            .pipe(gulp.dest('assets/media/'));
 });
 
 gulp.task('clean-build', function () {
