@@ -1,6 +1,8 @@
 import React from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
+import { FormattedMessage } from 'react-intl';
+
 import { connect } from 'react-redux';
 import * as actionTypes from '../store/actions/action-types';
 
@@ -18,9 +20,17 @@ export class SingleSelectContainer extends React.Component {
         return (
             <div className='lxc-unit-editor-wrapper'>
                 <fieldset className='lxc-answers-wrapper'>
-                    <legend className='lxc-answers-title'>Question*</legend>
+                    <legend className='lxc-answers-title'>
+                        <FormattedMessage
+                            id="singleSelect.question.title"
+                            defaultMessage="Question*"
+                        />
+                    </legend>
                     <div className='lxc-answers-description'>
-                        Create a question that only has one answer.
+                        <FormattedMessage
+                            id="singleSelect.question.description"
+                            defaultMessage="Create a question that only has one answer."
+                        />
                     </div>
                     <Editor
                         init={{
