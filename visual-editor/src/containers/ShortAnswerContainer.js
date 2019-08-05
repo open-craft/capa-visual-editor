@@ -13,7 +13,6 @@ import '../assets/scss/app.scss';
 export class ShortAnswerContainer extends React.Component {
 
     handleEditorChange (e) {
-        e.target.formatter.apply('pre');
         this.props.shortAnswerEditorContentChange(e.target.getContent());
     }
 
@@ -28,10 +27,6 @@ export class ShortAnswerContainer extends React.Component {
                         <Editor
                             init={{
                                 menubar: false,
-                                formats: {
-                                    // Changes the default format for h1 to have a class of heading
-                                    pre: { block: 'pre', classes: 'heading' }
-                                  },
                                 statusbar: false,
                                 plugins: 'link code image advcode',
                                 apply_source_formatting : true,

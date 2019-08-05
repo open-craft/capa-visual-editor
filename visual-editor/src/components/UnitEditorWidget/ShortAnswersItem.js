@@ -10,7 +10,6 @@ export class ShortAnswersItem extends React.Component {
     }
 
     typeChanged(value) {
-        console.log(value)
         this.props.change({
             id: this.props.id,
             value: this.props.value,

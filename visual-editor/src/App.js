@@ -127,7 +127,7 @@ function handleStateChange() {
 	if (hintsMarkdown.length > 2) { // in this case hintsMarkdown has already been filled
 		markdown += hintsMarkdown;
 	}
-console.log(markdown)
+
 	setMarkdownData({
 		selectedAttemptsOption: globalState.scorringSettings.selectedAttemptsOption,
 		selectedPointOption: globalState.scorringSettings.selectedPointOption,

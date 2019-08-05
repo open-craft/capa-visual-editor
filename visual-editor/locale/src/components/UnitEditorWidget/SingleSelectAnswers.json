@@ -1,0 +1,41 @@
+[
+  {
+    "id": "singleSelectAnswers.title",
+    "defaultMessage": "Answers*",
+    "file": "src/components/UnitEditorWidget/SingleSelectAnswers.js",
+    "start": {
+      "line": 14,
+      "column": 20
+    },
+    "end": {
+      "line": 17,
+      "column": 22
+    }
+  },
+  {
+    "id": "singleSelectAnswers.description",
+    "defaultMessage": "Enter the answers below and select whether an answer is correct or incorrect.",
+    "file": "src/components/UnitEditorWidget/SingleSelectAnswers.js",
+    "start": {
+      "line": 20,
+      "column": 20
+    },
+    "end": {
+      "line": 23,
+      "column": 22
+    }
+  },
+  {
+    "id": "addButton",
+    "defaultMessage": "+ Add <span class={className}>another</span> answer",
+    "file": "src/components/UnitEditorWidget/SingleSelectAnswers.js",
+    "start": {
+      "line": 37,
+      "column": 28
+    },
+    "end": {
+      "line": 43,
+      "column": 30
+    }
+  }
+]
