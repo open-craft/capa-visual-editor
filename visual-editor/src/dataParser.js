@@ -75,7 +75,7 @@ const numericalWithHintsFeedback = `You can use this template as a guide to the 
 
 
 window.LXCData = window.LXCData || {};
-window.LXCData.markdown = window.LXCData.markdown || dropdownWithHintsAndFeedback;
+window.LXCData.markdown = window.LXCData.markdown || singleWithHintAndFeedback;
 
 
 function getHints() {
