@@ -44,7 +44,7 @@ export class SingleSelectContainer extends React.Component {
             '                               div,p{font-size: 16px;} p{margin: 10px 0 0}',
                         }}
                         className='lxc-advanced-settings-block'
-                        apiKey='283hsctoygj8rdat1mccsgurzgph73mg3pdgu0lc7j9wq6vr'
+
                         onChange={this.handleEditorChange.bind(this)}
                         initialValue={this.props.editorContent}
                     />

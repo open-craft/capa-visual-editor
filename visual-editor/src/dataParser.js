@@ -75,7 +75,7 @@ const numericalWithHintsFeedback = `You can use this template as a guide to the 
 
 
 window.LXCData = window.LXCData || {};
-window.LXCData.markdown = window.LXCData.markdown || singleWithHintAndFeedback;
+window.LXCData.markdown = window.LXCData.markdown || dropdownWithHintsAndFeedback;
 
 
 function getHints() {
@@ -309,7 +309,7 @@ function getSingleChoiceOptions() {
 }
 
 function getEditorData() {
-    const descriptionReg = /(.[^([{=]*)/;
+    const descriptionReg = /(^.[^([{=]*)/;
     const matching = window.LXCData.markdown.match(descriptionReg);
     if (matching && matching.length) {
         return matching[1];
@@ -325,19 +325,11 @@ function getScorringSettings() {
     }
 }
 
-function setMarkdownData(data) {
-    window.LXCData.markdown = data.markdown;
-    window.LXCData.max_attempts = data.selectedAttemptsOption ? data.selectedAttemptsOption.value || null : null;
-    window.LXCData.weight = data.selectedPointOption ? data.selectedPointOption.value || null : null;
-    window.LXCData.markdownHasChanged = true;
-}
-
 export {
     getMultipleChoiceOptions,
     getSingleChoiceOptions,
     getEditorData,
     getHints,
-    setMarkdownData,
     getScorringSettings,
     getShortAnswerOptions
 };
