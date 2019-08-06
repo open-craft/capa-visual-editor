@@ -7,7 +7,7 @@
         padding: 32px 32px 0;
 
         @media (max-width: map-get($screen, "mobile")){
-            padding: 32px 16px 0;
+            padding: 32px 10px 0;
         }
     }
 }
@@ -147,4 +147,131 @@
 
 .lxc-advanced-settings-select {
     @extend .lxc-unit-form-select;
+}
+
+.lxc-advanced-settings-feedback-wrapper {
+    padding: 13px 15px;
+    border: 2px solid $brand-border-color;
+    border-radius: 5px;
+    margin: 10px 6px 19px;
+
+    @media (max-width: map-get($screen, "mobile")){
+        padding: 20px 10px;
+        margin: 0 0 10px;
+    }
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+.lxc-advanced-settings-feedback-options {
+    background: #fff;
+    border: 1px solid $brand-border-color;
+    border-radius: 5px;
+    padding: 16px 16px 0;
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.lxc-switch-checkbox {
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    border-radius: 100px;
+    border: 1px solid $brand-border-color;
+    background: $brand-light-background;
+    padding: 2px 3px;
+    margin-right: 7px;
+    transition: all .15s linear;
+
+    &:before {
+        content: '';
+        display: inline-block;
+        box-sizing: border-box;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        border: solid 1px $brand-color;
+        background-color: $brand-lightest-background;
+        transition: all .15s linear;
+    }
+}
+
+.lxc-advanced-settings-feedback-label {
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    line-height: normal;
+
+    @media (max-width: map-get($screen, "mobile")){
+        display: flex;
+    }
+
+    &:hover,
+    &:focus {
+        opacity: .8;
+        cursor: pointer;
+    }
+
+    input:checked + & {
+        .lxc-switch-checkbox {
+            border-color: $brand-color-dark;
+            background: $brand-color;
+
+            &:before {
+                border-color: #fff;
+                background: #fff;
+                transform: translateX(18px);
+            }
+        }
+    }
+}
+
+.lxc-advanced-settings-feedback-option {
+    min-width: 25%;
+    margin-bottom: 14px;
+    padding-right: 5px;
+
+    @media (max-width: map-get($screen, "mobile")){
+        min-width: 50%;
+    }
+
+    input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        clip-path: polygon(0 0);
+    }
+}
+
+.lxc-feedback-remove-btn {
+    color: $brand-color-dark;
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    line-height: normal;
+    padding: 0;
+
+    &:hover,
+    &:focus {
+        cursor: pointer;
+        opacity: .8;
+    }
+
+    &:before {
+        content: '';
+        height: 20px;
+        width: 20px;
+        background: url('../images/trash-icon.svg') no-repeat center center;
+        transition: opacity .15s linear;
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        top: -3px;
+        left: 0;
+        margin-right: 5px;
+    }
 }

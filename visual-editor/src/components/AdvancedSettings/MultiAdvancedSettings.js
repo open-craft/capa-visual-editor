@@ -29,8 +29,6 @@ export default class MultiAdvancedSettings extends React.Component {
             <div className='lxc-advanced-settings-wrapper'>
                 <div className={`lxc-advanced-settings ${this.state.advancedSettingsOpenned ? 'lxc-advanced-settings_open' : ''}`}>
                     <div className='lxc-advanced-settings-title'>Advanced settings</div>
-
-                    {/* <GeneralFeedbackSetting {...this.props}/> */}
                     <GroupFeedback {...this.props}/>
                     <HintSetting {...this.props}/>
                     <ScorringSetting {...this.props}/>
