@@ -1,7 +1,7 @@
 import React from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
-import { FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 import * as actionTypes from '../store/actions/action-types';
@@ -9,6 +9,16 @@ import * as actionTypes from '../store/actions/action-types';
 import SingleSelectAnswers from '../components/UnitEditorWidget/SingleSelectAnswers';
 import SingleAdvancedSettings from '../components/AdvancedSettings/SingleAdvancedSettings';
 
+const messages = defineMessages({
+    title: {
+        id: 'SingleSelectContainer.title',
+        defaultMessage: 'Question*'
+    },
+    description: {
+        id: 'SingleSelectContainer.description',
+        defaultMessage: 'Create a question that only has one answer.'
+    }
+});
 
 export class SingleSelectContainer extends React.Component {
 
@@ -17,20 +27,15 @@ export class SingleSelectContainer extends React.Component {
     }
 
     render() {
+        const { formatMessage } = this.props.intl;
         return (
             <div className='lxc-unit-editor-wrapper'>
                 <fieldset className='lxc-answers-wrapper'>
                     <legend className='lxc-answers-title'>
-                        <FormattedMessage
-                            id="singleSelect.question.title"
-                            defaultMessage="Question*"
-                        />
+                        {formatMessage(messages.title)}
                     </legend>
                     <div className='lxc-answers-description'>
-                        <FormattedMessage
-                            id="singleSelect.question.description"
-                            defaultMessage="Create a question that only has one answer."
-                        />
+                        {formatMessage(messages.description)}
                     </div>
                     <Editor
                         init={{
@@ -48,9 +53,9 @@ export class SingleSelectContainer extends React.Component {
                         initialValue={this.props.editorContent}
                     />
                 </fieldset>
-                <SingleSelectAnswers 
+                <SingleSelectAnswers
                     answersList={this.props.answersList}
-                    singleSelectChangeAnswer={this.props.singleSelectChangeAnswer} 
+                    singleSelectChangeAnswer={this.props.singleSelectChangeAnswer}
                     singleSelectRemoveAnswer={this.props.singleSelectRemoveAnswer}
                     singleSelectAddAnswer={this.props.singleSelectAddAnswer}
                 />
@@ -145,4 +150,4 @@ const mapDispatchToProps = function(dispatch, ownProps) {
     }
   };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleSelectContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(SingleSelectContainer));

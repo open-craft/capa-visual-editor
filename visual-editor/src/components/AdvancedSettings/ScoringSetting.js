@@ -1,10 +1,43 @@
 import React from 'react';
+import { defineMessages, injectIntl } from 'react-intl';
+
 import Select from 'react-select';
 import { connect } from 'react-redux';
 import { SCORRING_POINTS_CHANGED, SCORRING_TEMPTS_CHANGED } from '../../store/actions/action-types';
 
 
-export class ScorringSetting extends React.PureComponent {
+const messages = defineMessages({
+    title: {
+        id: 'ScoringSetting.title',
+        defaultMessage: 'Scoring'
+    },
+    description: {
+        id: 'ScoringSetting.description',
+        defaultMessage: 'Decide on the amount of points and attempts per question.'
+    },
+    labelAttempts: {
+        id: 'ScoringSetting.labelAttemps',
+        defaultMessage: 'Default number of attempts'
+    },
+    labelPoints: {
+        id: 'ScoringSetting.labelPoints',
+        defaultMessage: 'Default points'
+    },
+    note: {
+        id: 'ScoringSetting.note',
+        defaultMessage: 'Note: Attempts count and points can be altered when adding to an assignment.'
+    },
+    placeholderAttemps: {
+        id: 'ScoringSetting.placeholderAttemps',
+        defaultMessage: '- Select -'
+    },
+    placeholderPoints: {
+        id: 'ScoringSetting.placeholderPoints',
+        defaultMessage: '- Select -'
+    }
+})
+
+class ScorringSetting extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -26,39 +59,51 @@ export class ScorringSetting extends React.PureComponent {
     }
 
     render() {
+        const { formatMessage } = this.props.intl;
+
         return (
             <div className='lxc-advanced-settings-block'>
-                <div className='lxc-advanced-settings-block-title'>Scoring</div>
-                <div className='lxc-advanced-settings-block-description'>Decide on the amount of points and attempts per question.</div>
+                <div className='lxc-advanced-settings-block-title'>
+                    {formatMessage(messages.title)}
+                </div>
+                <div className='lxc-advanced-settings-block-description'>
+                    {formatMessage(messages.description)}
+                </div>
 
                 <div className='lxc-advanced-settings-form'>
                     <div className='lxc-advanced-settings-container'>
                         <div className='lxc-advanced-settings-col-half'>
-                            <label className='lxc-advanced-settings-label' htmlFor='sas4'>Default number of attempts</label>
+                            <label className='lxc-advanced-settings-label' htmlFor='sas4'>
+                                {formatMessage(messages.labelAttempts)}
+                            </label>
                             <Select
                                 id='sas4'
                                 className='lxc-advanced-settings-select'
                                 isSearchable={false}
-                                placeholder='- Select -'
+                                placeholder={formatMessage(messages.placeholderAttemps)}
                                 defaultValue={this.props.selectedAttemptsOption}
                                 onChange={this.props.temptsChange}
                                 options={this.props.attemptsOptions}
                             />
                         </div>
                         <div className='lxc-advanced-settings-col-half'>
-                            <label className='lxc-advanced-settings-label' htmlFor='sas5'>Default points</label>
+                            <label className='lxc-advanced-settings-label' htmlFor='sas5'>
+                                {formatMessage(messages.labelPoints)}
+                            </label>
                             <Select
                                 id='sas5'
                                 className='lxc-advanced-settings-select'
                                 isSearchable={false}
-                                placeholder='- Select -'
+                                placeholder={formatMessage(messages.placeholderPoints)}
                                 defaultValue={this.props.selectedPointOption}
                                 onChange={this.props.pointsChange}
                                 options={this.props.pointsOptions}
                             />
                         </div>
                     </div>
-                    <div className='lxc-advanced-settings-note'>Note: Attempts count and points can be altered when adding to an assignment.</div>
+                    <div className='lxc-advanced-settings-note'>
+                        {formatMessage(messages.note)}
+                    </div>
                 </div>
             </div>
         )
@@ -85,4 +130,4 @@ const mapDispatchToProps = function(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ScorringSetting);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(ScorringSetting));

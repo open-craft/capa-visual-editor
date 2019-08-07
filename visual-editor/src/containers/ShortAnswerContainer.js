@@ -1,28 +1,42 @@
 import React  from 'react';
 import { Editor } from '@tinymce/tinymce-react';
+import { defineMessages, injectIntl } from 'react-intl';
+
 import { connect } from 'react-redux';
 
 import * as actionTypes from '../store/actions/action-types';
 
 import ShortAnswers from '../components/UnitEditorWidget/ShortAnswers';
-import {ShortAdvancedSettings} from '../components/AdvancedSettings/ShortAdvancedSettings';
+import ShortAdvancedSettings from '../components/AdvancedSettings/ShortAdvancedSettings';
 
 import '../assets/scss/app.scss';
 
-
-export class ShortAnswerContainer extends React.Component {
+const messages = defineMessages({
+    title: {
+        id: 'ShortAnswerContainer.title',
+        defaultMessage: 'Question*'
+    },
+    description: {
+        id: 'ShortAnswerContainer.description',
+        defaultMessage: 'Create a question that only has one answer.'
+    }
+});
+class ShortAnswerContainer extends React.Component {
 
     handleEditorChange (e) {
         this.props.shortAnswerEditorContentChange(e.target.getContent());
     }
 
     render() {
+        const { formatMessage } = this.props.intl;
         return (
                 <div className='lxc-unit-editor-wrapper'>
                     <fieldset className='lxc-answers-wrapper'>
-                        <legend className='lxc-answers-title'>Question*</legend>
+                        <legend className='lxc-answers-title'>
+                            {formatMessage(messages.title)}
+                        </legend>
                         <div className='lxc-answers-description'>
-                            Create a question that only has one answer.
+                            {formatMessage(messages.description)}
                         </div>
                         <Editor
                             init={{
@@ -51,19 +65,19 @@ export class ShortAnswerContainer extends React.Component {
                     <ShortAdvancedSettings
 
                         groupFeedbackContent={this.props.groupFeedbackContent}
-    
+
                         hints={this.props.hints}
-    
+
                         groupFeedbackchange={this.props.groupFeedbackchange}
-    
+
                         hintAdd={this.props.hintAdd}
                         hintRemove={this.props.hintRemove}
                         hintChange={this.props.hintChange}
-    
+
                         answerTypeSelectedOption={this.props.answerTypeSelectedOption}
                         answerTypeOptions={this.props.answerTypeOptions}
                         answerTypeChange={this.props.answerTypeChange}
-    
+
                         scorringSelectedPointOption={this.props.scorringSelectedPointOption}
                         scorringselectedAttemptsOption={this.props.scorringselectedAttemptsOption}
                         scorringattemptsOptions={this.props.scorringattemptsOptions}
@@ -141,4 +155,4 @@ const mapDispatchToProps = function(dispatch, ownProps) {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShortAnswerContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(ShortAnswerContainer));

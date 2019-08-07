@@ -1,33 +1,38 @@
 import * as React from 'react';
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
-
-import {SingleSelectItem} from './SingleSelectItem';
+import { defineMessages, injectIntl, FormattedHTMLMessage } from 'react-intl';
+import SingleSelectItem from './SingleSelectItem';
 
 import '../../assets/scss/app.scss';
 
-export default class SingleSelectAnswers extends React.Component {
+const messages = defineMessages({
+    title: {
+        id: 'SingleSelectAnswers.title',
+        defaultMessage: 'Answers*'
+    },
+    description: {
+        id: 'SingleSelectAnswers.description',
+        defaultMessage: 'Enter the answers below and select whether an answer is correct or incorrect.'
+    }
+})
+
+class SingleSelectAnswers extends React.Component {
 
     render() {
+        const { formatMessage } = this.props.intl;
         return (
             <fieldset className='lxc-answers-wrapper'>
                 <legend className='lxc-answers-title'>
-                    <FormattedMessage
-                        id="singleSelectAnswers.title"
-                        defaultMessage="Answers*"
-                    />
+                    {formatMessage(messages.title)}
                 </legend>
                 <div className='lxc-answers-description'>
-                    <FormattedMessage
-                        id="singleSelectAnswers.description"
-                        defaultMessage="Enter the answers below and select whether an answer is correct or incorrect."
-                    />
+                    {formatMessage(messages.description)}
                 </div>
                 <div className='lxc-answers-list'>
                     {
                         this.props.answersList.map(answer => {
-                            return <SingleSelectItem 
-                                        key={answer.id} {...answer} 
-                                        singleSelectChangeAnswer={this.props.singleSelectChangeAnswer} 
+                            return <SingleSelectItem
+                                        key={answer.id} {...answer}
+                                        singleSelectChangeAnswer={this.props.singleSelectChangeAnswer}
                                         singleSelectRemoveAnswer={this.props.singleSelectRemoveAnswer}
                                         />
                         })
@@ -48,3 +53,5 @@ export default class SingleSelectAnswers extends React.Component {
         );
     }
 };
+
+export default injectIntl(SingleSelectAnswers);

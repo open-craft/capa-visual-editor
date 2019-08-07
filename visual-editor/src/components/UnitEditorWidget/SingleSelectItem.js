@@ -1,8 +1,36 @@
 import * as React from 'react';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import '../../assets/scss/app.scss';
 
-export class SingleSelectItem extends React.PureComponent {
+const messages = defineMessages({
+    correct: {
+        id: 'SingleSelectItem.placeholder.correct',
+        defaultMessage: 'Enter the correct answer'
+    },
+    incorrect: {
+        id: 'SingleSelectItem.placeholder.incorrect',
+        defaultMessage: 'Enter an incorrect answer'
+    },
+    feedbackTitle: {
+        id: 'SingleSelectItem.feedbackTitle',
+        defaultMessage: 'Specific feedback'
+    },
+    feedbackPlaceholder: {
+        id: 'SingleSelectItem.feedbackPlaceholder',
+        defaultMessage: 'Enter feedback for when the choice is selected'
+    },
+    feedbackBtnAreaLabel: {
+        id: 'SingleSelectItem.feedbackBtn.areaLabel',
+        defaultMessage: 'Show feedback block'
+    },
+    removeBtnAreaLabel: {
+        id: 'SingleSelectItem.removeBtnAreaLabel',
+        defaultMessage: 'Remove answer item'
+    }
+});
+
+class SingleSelectItem extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -54,8 +82,10 @@ export class SingleSelectItem extends React.PureComponent {
     }
 
     render() {
+        const { formatMessage } = this.props.intl;
+
         const additionallyСlass = this.state.openFeedback ? 'lxc-answers-feedback_open' : '';
-        const placeholderText = Number(this.props.id) === 2 ? 'Enter the correct answer' : 'Enter an incorrect answer';
+        const placeholderText = this.props.correct ? formatMessage(messages.correct) : formatMessage(messages.incorrect);
 
         return (
             <div key={this.props.id} className='lxc-answers-option'>
@@ -69,21 +99,23 @@ export class SingleSelectItem extends React.PureComponent {
                 <div className='lxc-answers-field-wrapper'>
                     <div className={`lxc-answers-feedback ${additionallyСlass}`}>
                         <label className='lxc-answers-feedback-title' htmlFor={`feedback-field${this.props.id}`}>
-                            Specific feedback
+                            {formatMessage(messages.feedbackTitle)}
                         </label>
                         <textarea rows={1} className='lxc-answers-feedback-field' id={`feedback-field${this.props.id}`}
-                                  placeholder='Enter feedback for when the choice is selected' value={this.props.feedback}
+                                  placeholder={formatMessage(messages.feedbackPlaceholder)} value={this.props.feedback}
                                   onChange={this.feedbackChange} onKeyUp={this.handleKeyDown}/>
                     </div>
                     <div className='lxc-answers-item-wrapper'>
                         <label className='lxc-sr' htmlFor={`answer-single${this.props.id}`}>{placeholderText}</label>
                         <textarea rows={1} className='lxc-answers-item' id={`answer-single${this.props.id}`}value={this.props.title}
                         placeholder={placeholderText} onChange={this.titleChange} onKeyUp={this.handleKeyDown}/>
-                        <button className='lxc-answers-feedback-btn' type='button' aria-label='Show feedback block' onClick={this.openFeedbackButtonClick}/>
+                        <button className='lxc-answers-feedback-btn' type='button' aria-label={formatMessage(messages.feedbackBtnAreaLabel)} onClick={this.openFeedbackButtonClick}/>
                     </div>
-                    <button className='lxc-answers-remove-btn' type='button' aria-label='Remove answer item' onClick={this.removeAnswer}/>
+                    <button className='lxc-answers-remove-btn' type='button' aria-label={formatMessage(messages.removeBtnAreaLabel)} onClick={this.removeAnswer}/>
                 </div>
             </div>
         );
     }
 }
+
+export default injectIntl(SingleSelectItem);

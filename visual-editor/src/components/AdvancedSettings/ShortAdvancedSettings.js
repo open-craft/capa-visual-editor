@@ -1,12 +1,27 @@
 import * as React from 'react';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import HintSetting from './HintSetting';
 import ScorringSetting from './ScoringSetting';
 
 import '../../assets/scss/app.scss';
 
+const messages = defineMessages({
+    title: {
+        id: 'ShortAdvansedSettings.title',
+        defaultMessage: 'Advanced settings'
+    },
+    closeSettings: {
+        id: 'ShortAdvansedSettings.closeSettings',
+        defaultMessage: 'Less options'
+    },
+    showSettings: {
+        id: 'ShortAdvansedSettings.showSettings',
+        defaultMessage: 'Show advanced options'
+    }
+})
 
-export class ShortAdvancedSettings extends React.PureComponent {
+class ShortAdvancedSettings extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -23,11 +38,14 @@ export class ShortAdvancedSettings extends React.PureComponent {
     }
 
     render() {
+        const { formatMessage } = this.props.intl;
 
         return (
             <div className='lxc-advanced-settings-wrapper'>
                 <div className={`lxc-advanced-settings ${this.state.advancedSettingsOpenned ? 'lxc-advanced-settings_open' : ''}`}>
-                    <div className='lxc-advanced-settings-title'>Advanced settings</div>
+                    <div className='lxc-advanced-settings-title'>
+                        {formatMessage(messages.title)}
+                    </div>
                     <HintSetting
                         hints={this.props.hints}
 
@@ -45,10 +63,12 @@ export class ShortAdvancedSettings extends React.PureComponent {
                     />
                 </div>
                 <button type='button' className='lxc-show-advanced-settings' onClick={this.switchAdvancedSettings}>
-                    {this.state.advancedSettingsOpenned ? 'Less options' : 'Show advanced options'}
+                    {this.state.advancedSettingsOpenned ? formatMessage(messages.closeSettings) : formatMessage(messages.showSettings)}
                     <span className='lxc-show-advanced-settings-icon'></span>
                 </button>
             </div>
         );
     }
 }
+
+export default injectIntl(ShortAdvancedSettings);

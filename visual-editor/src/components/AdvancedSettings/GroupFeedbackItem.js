@@ -1,9 +1,27 @@
 import React from 'react';
-
+import { defineMessages, injectIntl } from 'react-intl';
 import { groupFeedbackWordMapping } from '../../Utils';
 
+const messages = defineMessages({
+    label: {
+        id: 'GroupFeedbackItem.lable',
+        defaultMessage: 'Group fail feedback'
+    },
+    placeholder: {
+        id: 'GroupFeedbackItem.placeholder',
+        defaultMessage: 'Enter group feedback'
+    },
+    note: {
+        id: 'GroupFeedbackItem.note',
+        defaultMessage: 'Show this when the following options are selected:'
+    },
+    btn: {
+        id: 'GroupFeedbackItem.btn',
+        defaultMessage: 'Delete group feedback'
+    },
+})
 
-export default class GroupFeedbackItem extends React.Component{
+class GroupFeedbackItem extends React.Component{
 
     feedbackChangeHandler(event) {
         this.props.groupFeedbackChange({
@@ -34,20 +52,24 @@ export default class GroupFeedbackItem extends React.Component{
     }
 
     render() {
+        const { formatMessage } = this.props.intl;
+
         return (
             <fieldset className='lxc-advanced-settings-feedback-wrapper'>
                 <label className='lxc-advanced-settings-label' htmlFor={`feedbackField${this.props.id}`}>
-                    Group fail feedback
+                    {formatMessage(messages.label)}
                 </label>
                 <input
                     id={`feedbackField${this.props.id}`}
                     type='text'
                     className='lxc-advanced-settings-field'
-                    placeholder='Enter group feedback'
+                    placeholder={formatMessage(messages.placeholder)}
                     value={this.props.feedback}
                     onChange={this.feedbackChangeHandler.bind(this)}>
                 </input>
-                <div className='lxc-advanced-settings-note'>Show this when the following options are selected:</div>
+                <div className='lxc-advanced-settings-note'>
+                    {formatMessage(messages.note)}
+                </div>
                 <div className='lxc-advanced-settings-feedback-options'>
                     {
                         this.props.answersList.map((el) => {
@@ -71,9 +93,11 @@ export default class GroupFeedbackItem extends React.Component{
                     }
                 </div>
                 <button className='lxc-feedback-remove-btn' onClick={this.delete.bind(this)}>
-                    Delete group feedback
+                    {formatMessage(messages.btn)}
                 </button>
             </fieldset>
         )
     }
 }
+
+export default injectIntl(GroupFeedbackItem);
