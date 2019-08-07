@@ -541,7 +541,7 @@
     .mce-textbox {
         @extend .lxc-unit-form-field;
         width: 100% !important;
-        height: 36px !important;
+        height: $form-field-default-height !important;
         box-sizing: border-box;
 
         &[size="5"] {
