@@ -12,7 +12,9 @@ $brand-border-color: #668ba6;
 $brand-light-background: #f5f7f9;
 $brand-lightest-background: #e5ecf0;
 
-$screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "small": 600px, "extra-small": 350px);
+$form-field-default-height: 36px;
+
+$screen: ("desktop": 1200px, "tablet": 990px, "mobile": 767px, "small": 600px, "extra-small": 350px);
 
 // -----
 // Fonts
@@ -104,7 +106,9 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "small": 600px, "
     margin: 0;
     -webkit-appearance: none;
     overflow: auto;
-    height: 36px;
+    height: $form-field-default-height;
+    min-height: $form-field-default-height;
+    max-height: 400px;
 
     &::placeholder {
         color: $brand-border-color;
@@ -132,7 +136,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "small": 600px, "
         border-radius: 5px;
         font-size: 16px;
         line-height: 20px;
-        min-height: 36px;
+        min-height: $form-field-default-height;
         padding: 3px 26px 3px 8px;
         transition: none;
 
@@ -149,7 +153,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "small": 600px, "
     }
 
     .css-1pahdxg-control {
-        min-height: 36px;
+        min-height: $form-field-default-height;
         padding: 3px 26px 3px 8px !important;
         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
         border: 1px solid #99b2c4;

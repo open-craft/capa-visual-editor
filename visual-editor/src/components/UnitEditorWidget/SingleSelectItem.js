@@ -18,6 +18,11 @@ export class SingleSelectItem extends React.PureComponent {
         }
     }
 
+    handleKeyDown(e) {
+        e.target.style.height = 'inherit';
+        e.target.style.height = `${e.target.scrollHeight+2}px`;
+    }
+
     answerChanged(changed) {
         let { id, title, correct, feedback } = this.props;
         this.props.singleSelectChangeAnswer({
@@ -67,12 +72,13 @@ export class SingleSelectItem extends React.PureComponent {
                             Specific feedback
                         </label>
                         <textarea rows={1} className='lxc-answers-feedback-field' id={`feedback-field${this.props.id}`}
-                                  placeholder='Enter feedback for when the choice is selected' value={this.props.feedback} onChange={this.feedbackChange}/>
+                                  placeholder='Enter feedback for when the choice is selected' value={this.props.feedback}
+                                  onChange={this.feedbackChange} onKeyUp={this.handleKeyDown}/>
                     </div>
                     <div className='lxc-answers-item-wrapper'>
                         <label className='lxc-sr' htmlFor={`answer-single${this.props.id}`}>{placeholderText}</label>
-                        <textarea rows={1} className='lxc-answers-item' id={`answer-single${this.props.id}`} value={this.props.title}
-                                  placeholder={placeholderText} onChange={this.titleChange}/>
+                        <textarea rows={1} className='lxc-answers-item' id={`answer-single${this.props.id}`}value={this.props.title}
+                        placeholder={placeholderText} onChange={this.titleChange} onKeyUp={this.handleKeyDown}/>
                         <button className='lxc-answers-feedback-btn' type='button' aria-label='Show feedback block' onClick={this.openFeedbackButtonClick}/>
                     </div>
                     <button className='lxc-answers-remove-btn' type='button' aria-label='Remove answer item' onClick={this.removeAnswer}/>

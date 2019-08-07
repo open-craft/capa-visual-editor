@@ -12,6 +12,11 @@ export class MultiSelectItem extends React.PureComponent {
         };
     }
 
+    handleKeyDown(e) {
+        e.target.style.height = 'inherit';
+        e.target.style.height = `${e.target.scrollHeight+2}px`;
+    }
+
     showHideFeedback() {
         this.setState({
             feedbackOpenned: !this.state.feedbackOpenned
@@ -72,20 +77,22 @@ export class MultiSelectItem extends React.PureComponent {
                         </label>
                         <textarea rows={1} className='lxc-answers-feedback-field'
                                   id={`feedback-selected${this.props.id}`} value={this.props.selectedFeedback}
-                                  placeholder='Enter feedback for when the choice is selected' onChange={this.selectedFeedbackChanged.bind(this)}/>
+                                  placeholder='Enter feedback for when the choice is selected' onChange={this.selectedFeedbackChanged.bind(this)}
+                                  onKeyUp={this.handleKeyDown}/>
 
                         <label className='lxc-answers-feedback-title' htmlFor={`feedback-unselected${this.props.id}`}>
                             Unselected feedback (specific)
                         </label>
                         <textarea rows={1} className='lxc-answers-feedback-field'
                                   id={`feedback-unselected${this.props.id}`} value={this.props.unselectedFeedback}
-                                  placeholder='Enter feedback for when the choice is selected' onChange={this.unselectedFeedbackChanged.bind(this)}/>
+                                  placeholder='Enter feedback for when the choice is selected' onChange={this.unselectedFeedbackChanged.bind(this)}
+                                  onKeyUp={this.handleKeyDown}/>
                     </div>
                     <div className='lxc-answers-item-wrapper'>
                         <label className='lxc-sr' htmlFor={`answer-multi${this.props.id}`}>{placeholderText}</label>
                         <textarea rows={1} className='lxc-answers-item' id={`answer-multi${this.props.id}`}
                                   placeholder={placeholderText} value={this.props.title}
-                                  title='Enter the correct answer' onChange={this.titleChanged.bind(this)}/>
+                                  title='Enter the correct answer' onChange={this.titleChanged.bind(this)} onKeyUp={this.handleKeyDown}/>
                         <button className='lxc-answers-feedback-btn' type='button' aria-label='Show feedback block' onClick={this.showHideFeedback.bind(this)}/>
                     </div>
                     <button className='lxc-answers-remove-btn' type='button' aria-label='Remove answer item' onClick={this.removeAnswer.bind(this)}/>

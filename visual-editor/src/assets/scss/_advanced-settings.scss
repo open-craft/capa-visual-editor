@@ -147,6 +147,16 @@
 
 .lxc-advanced-settings-select {
     @extend .lxc-unit-form-select;
+
+    .lxc-answers-list_short & {
+        max-width: 110px;
+        margin-right: 8px;
+
+        @media (max-width: map-get($screen, "mobile")){
+            max-width: 100%;
+            margin: 0 0 15px;
+        }
+    }
 }
 
 .lxc-advanced-settings-feedback-wrapper {

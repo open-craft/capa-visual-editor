@@ -8,6 +8,10 @@
     @media (max-width: map-get($screen, "mobile")){
         padding: 0 10px;
     }
+
+    .lxc-answers-wrapper + & {
+        margin-top: 32px;
+    }
 }
 
 .lxc-answers-title {
@@ -28,6 +32,10 @@
 
     @media (max-width: map-get($screen, "mobile")){
         padding: 16px 8px;
+
+        &.lxc-answers-list_short {
+            padding: 8px;
+        }
     }
 }
 
@@ -71,6 +79,18 @@
     display: flex;
     align-items: flex-start;
     margin-bottom: 13px;
+
+    .lxc-answers-list_short & {
+        @media (max-width: map-get($screen, "mobile")){
+            display: flex;
+            flex-wrap: wrap;
+            border: 1px solid $brand-color;
+            border-radius: 5px;
+            padding: 8px;
+            background: $brand-lightest-background;
+            margin-bottom: 8px;
+        }
+    }
 }
 
 .lxc-answers-another-option {
@@ -137,12 +157,24 @@
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
+
+    .lxc-answers-list_short & {
+        @media (max-width: map-get($screen, "mobile")){
+            justify-content: flex-end;
+        }
+    }
 }
 
 .lxc-answers-item-wrapper {
     display: flex;
     width: calc(100% - 30px);
     order: 1;
+
+    .lxc-answers-list_short & {
+        @media (max-width: map-get($screen, "mobile")){
+            width: 100%;
+        }
+    }
 }
 
 .lxc-answers-item {
@@ -154,15 +186,12 @@
 
     @media (max-width: map-get($screen, "mobile")){
         height: 88px;
+        min-height: 88px;
     }
 
-    .lxc-answers-list_short &  {
-        width: 100%;
-        border-radius: 5px;
-        border-right: 1px solid $brand-color-light;
-
+    .lxc-answers-list_short & {
         @media (max-width: map-get($screen, "mobile")){
-            height: 36px;
+            height: $form-field-default-height;
         }
     }
 }
@@ -184,6 +213,12 @@
             padding: 8px;
         }
 
+        .lxc-answers-list_short & {
+            @media (max-width: map-get($screen, "mobile")){
+                width: 100%;
+            }
+        }
+
         & + .lxc-answers-item-wrapper {
             .lxc-answers-item {
                 border-radius: 5px 0 0 0;
@@ -191,6 +226,16 @@
 
             .lxc-answers-feedback-btn {
                 border-radius: 0 5px 0 0;
+                background-image: none;
+
+                &:before {
+                    content: '';
+                    display: inline-block;
+                    width: 22px;
+                    height: 22px;
+                    background: url('../images/arrow-icon.svg') no-repeat center center;
+                    transform: scale(1, -1);
+                }
             }
         }
     }
@@ -235,8 +280,12 @@
     @extend .lxc-unit-form-field;
 
     @media (max-width: map-get($screen, "mobile")){
-      height: 103px;
-      padding: 8px;
+        height: 103px;
+        padding: 8px;
+
+        .lxc-answers-list_short & {
+            height: $form-field-default-height;
+        }
     }
 }
 
@@ -263,6 +312,7 @@
     .lxc-answers-list_short & {
         @media (max-width: map-get($screen, "mobile")){
             margin-top: 0;
+            order: 3;
         }
     }
 
@@ -276,9 +326,27 @@
 .lxc-answers-another-option-btn {
     @extend .lxc-unit-another-btn;
     width: calc(100% - 30px);
+
+    .lxc-answers-list_short & {
+        @media (max-width: map-get($screen, "mobile")){
+            width: 100%;
+        }
+    }
 }
 
 .lxc-answers-form-title {
     font-size: 16px;
     margin-bottom: 16px;
+}
+
+.lxc-answers-field-title {
+    display: none;
+
+    @media (max-width: map-get($screen, "mobile")){
+        display: block;
+        width: 100%;
+        font-size: 13px;
+        line-height: normal;
+        margin: 0 0 5px;
+    }
 }
