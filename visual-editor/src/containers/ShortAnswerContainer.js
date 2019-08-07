@@ -13,7 +13,7 @@ import '../assets/scss/app.scss';
 export class ShortAnswerContainer extends React.Component {
 
     handleEditorChange (e) {
-        this.props.tinyEditorContentChange(e.target.getContent());
+        this.props.shortAnswerEditorContentChange(e.target.getContent());
     }
 
     render() {
@@ -43,6 +43,7 @@ export class ShortAnswerContainer extends React.Component {
                     </fieldset>
                     <ShortAnswers
                         shortAnswersList={this.props.shortAnswersList}
+                        typeOptions={this.props.typeOptions}
                         shortAnswersAddAnswer={this.props.shortAnswersAddAnswer}
                         shortAnswersRemoveAnswer={this.props.shortAnswersRemoveAnswer}
                         shortAnswersChangeAnswer={this.props.shortAnswersChangeAnswer}
@@ -67,10 +68,10 @@ export class ShortAnswerContainer extends React.Component {
                         answerTypeChange={this.props.answerTypeChange}
     
                         scorringSelectedPointOption={this.props.scorringSelectedPointOption}
-                        scorringSelectedTemptOption={this.props.scorringSelectedTemptOption}
-                        scorringTemptsOptions={this.props.scorringTemptsOptions}
+                        scorringselectedAttemptsOption={this.props.scorringselectedAttemptsOption}
+                        scorringattemptsOptions={this.props.scorringattemptsOptions}
                         scorringPointsOptions={this.props.scorringPointsOptions}
-                        scorringTemptsChange={this.props.scorringTemptsChange}
+                        scorringAttemptsChange={this.props.scorringAttemptsChange}
                         scorringPointsChange={this.props.scorringPointsChange}
 
                     />
@@ -83,21 +84,22 @@ export class ShortAnswerContainer extends React.Component {
 const mapStateToProps = (store) => {
     return {
         shortAnswersList: store.shortAnswersData.shortAnswersList,
+        typeOptions: store.shortAnswersData.typeOptions,
         // editor content
-        editorContent: store.editorContent.content,
+        editorContent: store.shortAnswerEditor.content,
         // single answers feedback 
         feedbackContent: store.generalFeedbackSettings.feedbackContent,
         // group feedback
-        groupFeedbackContent: store.groupFeedbackSettings.groupFeedbackContent,
+        groupFeedbackContent: store.multiSelectAnswers.groupFeedbackContent,
         // hints
         hints: store.hintSettings.hints,
         // answer type
-        answerTypeSelectedOption: store.answerTypeSettings.selectedType,
-        answerTypeOptions: store.answerTypeSettings.accessibleTypes,
+        answerTypeSelectedOption: store.singleSelectAnswers.selectedType,
+        answerTypeOptions: store.singleSelectAnswers.accessibleTypes,
         // scorring
         scorringSelectedPointOption: store.scorringSettings.selectedPointOption,
-        scorringSelectedTemptOption: store.scorringSettings.selectedTemptOption,
-        scorringTemptsOptions: store.scorringSettings.temptsOptions,
+        scorringselectedAttemptsOption: store.scorringSettings.selectedAttemptsOption,
+        scorringattemptsOptions: store.scorringSettings.attemptsOptions,
         scorringPointsOptions: store.scorringSettings.pointsOptions
     }
 };
@@ -105,8 +107,8 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = function(dispatch, ownProps) {
     return {
         // editor
-        tinyEditorContentChange: (content) => {
-            return dispatch({type: actionTypes.EDITOR_CONTENT_CHANGE, content: content});
+        shortAnswerEditorContentChange: (content) => {
+            return dispatch({type: actionTypes.SHORT_ANSWER_EDITOR_CONTENT_CHANGE, content: content});
         },
         shortAnswersAddAnswer: (event) => {
             return dispatch({type: actionTypes.SHORT_ANSWERS_ADD_NEW});
@@ -140,7 +142,7 @@ const mapDispatchToProps = function(dispatch, ownProps) {
             return dispatch({type: actionTypes.ANSWER_TYPE_SETTING_CHANGED, selectedType: value})
         },
         // scorring settings
-        scorringTemptsChange: (value) => {
+        scorringAttemptsChange: (value) => {
             return dispatch({type: actionTypes.SCORRING_TEMPTS_CHANGED, ...value})
         },
         scorringPointsChange: (value) => {

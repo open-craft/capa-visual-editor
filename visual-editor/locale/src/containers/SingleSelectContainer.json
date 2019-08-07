@@ -1,0 +1,28 @@
+[
+  {
+    "id": "singleSelect.question.title",
+    "defaultMessage": "Question*",
+    "file": "src/containers/SingleSelectContainer.js",
+    "start": {
+      "line": 24,
+      "column": 24
+    },
+    "end": {
+      "line": 27,
+      "column": 26
+    }
+  },
+  {
+    "id": "singleSelect.question.description",
+    "defaultMessage": "Create a question that only has one answer.",
+    "file": "src/containers/SingleSelectContainer.js",
+    "start": {
+      "line": 30,
+      "column": 24
+    },
+    "end": {
+      "line": 33,
+      "column": 26
+    }
+  }
+]

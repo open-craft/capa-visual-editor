@@ -1,16 +1,60 @@
 import {SCORRING_TEMPTS_CHANGED, SCORRING_POINTS_CHANGED} from '../actions/action-types';
+import { getScorringSettings } from '../../dataParser';
+
+
+const {selectedAttemptsOption, selectedPointOption} = getScorringSettings();
+
+
+let unknownAttempt, unknownPoint, initAttempt, initPoint;
+
+const attemptsOptions = [...Array(10).keys()].map(ind=>{
+    // set selected value of attempts
+    if (+selectedAttemptsOption === ind ) {
+        initAttempt = { id: ind, value: ind, label: ind };
+    } else {
+        initAttempt = { 
+            id: +selectedAttemptsOption, 
+            value: +selectedAttemptsOption,
+            label: selectedAttemptsOption 
+        };
+        unknownAttempt = initAttempt;
+    }
+
+    return { id: ind, value: ind || '', label: ind || '-----' }
+});
+
+const pointsOptions = [...Array(10).keys()].map(ind=>{
+    // set selected value of points
+
+    if (+selectedPointOption === ind ) {
+        initPoint = { id: ind, value: ind, label: ind };
+    } else {
+        initPoint = {
+            id: +selectedPointOption,
+            value: +selectedPointOption,
+            label: selectedPointOption
+        };
+        unknownPoint = initPoint;
+    }
+    return { id: ind, value: ind || '', label: ind || '-----' }
+});
+
+if (unknownAttempt) {
+    attemptsOptions.push(unknownAttempt);
+}
+
+if (unknownPoint) {
+    pointsOptions.push(unknownPoint);
+}
+
+
+
 
 const initialState = {
-    temptsOptions: [
-        { id: 1, value: 'radio', label: '1' },
-        { id: 2, value: 'select', label: '2' },
-    ],
-    pointsOptions: [
-        { id: 1, value: 'radio', label: '1' },
-        { id: 2, value: 'select', label: '2' },
-    ],
-    selectedTemptOption: { id: 1, value: 'radio', label: '1' },
-    selectedPointOption: { id: 2, value: 'select', label: '2' }
+    attemptsOptions: attemptsOptions,
+    pointsOptions: pointsOptions,
+    selectedAttemptsOption: initAttempt,
+    selectedPointOption: initPoint
 };
 
 
@@ -23,7 +67,7 @@ const ScorringSettingReducer = function(state=initialState, action) {
                 label: action.label
             };
             return Object.assign({}, state, {
-                temptsOptions: state.temptsOptions.map(tempt => {
+                attemptsOptions: state.attemptsOptions.map(tempt => {
                     if (tempt.id === action.id) {
                         return {
                             id: action.id,
@@ -34,7 +78,7 @@ const ScorringSettingReducer = function(state=initialState, action) {
                         return tempt;
                     }
                 }),
-                selectedTemptOption: selectedTempt
+                selectedAttemptsOption: selectedTempt
             });
         case SCORRING_POINTS_CHANGED:
             const selectedPoint = {

@@ -12,10 +12,6 @@ export class MultiSelectItem extends React.PureComponent {
         };
     }
 
-    componentDidMount() {
-        this.setState({...this.props});
-    }
-
     showHideFeedback() {
         this.setState({
             feedbackOpenned: !this.state.feedbackOpenned
@@ -23,31 +19,35 @@ export class MultiSelectItem extends React.PureComponent {
     }
 
     checkboxChange(event) {
-        this.setState({
+        this.propsChanged({
+            ...this.props,
             correct: event.target.checked
-        }, () => {this.propsChanged()});
+        })
     }
 
     selectedFeedbackChanged(event) {
-        this.setState({
+        this.propsChanged({
+            ...this.props,
             selectedFeedback: event.target.value
-        }, () => {this.propsChanged()});
+        });
     }
 
     unselectedFeedbackChanged(event) {
-        this.setState({
+        this.propsChanged({
+            ...this.props,
             unselectedFeedback: event.target.value
-        }, () => {this.propsChanged()});
+        });
     }
 
-    answerChanged(event) {
-        this.setState({answer: event.target.value}, () => {
-            this.propsChanged()}
-        );
+    titleChanged(event) {
+        this.propsChanged({
+            ...this.props,
+            title: event.target.value
+        });
     }
 
-    propsChanged() {
-        this.props.multiSelectChangeAnswer(this.state);
+    propsChanged(props) {
+        this.props.multiSelectChangeAnswer(props);
     }
 
     removeAnswer() {
@@ -56,14 +56,13 @@ export class MultiSelectItem extends React.PureComponent {
 
     render() {
         const placeholderText = Number(this.props.id) === 2 || Number(this.props.id) === 3 ? 'Enter the correct answer' : 'Enter an incorrect answer';
-
         return (
             <div key={this.props.id} className='lxc-answers-option'>
                 <div className='lxc-answers-radio'>
-                    <input name='answer' type='checkbox' id={`answer-checkbox${this.props.id}`} value={this.state.correct}
-                           defaultChecked={this.state.correct} onChange={this.checkboxChange.bind(this)}/>
+                    <input name='answer' type='checkbox' id={`answer-checkbox${this.props.id}`} value={this.props.correct}
+                           defaultChecked={this.props.correct} onChange={this.checkboxChange.bind(this)}/>
                     <label htmlFor={`answer-checkbox${this.props.id}`} className='lxc-answers-radio-label'>
-                        {this.state.title}
+                        {this.props.title}
                     </label>
                 </div>
                 <div className='lxc-answers-field-wrapper'>
@@ -72,21 +71,21 @@ export class MultiSelectItem extends React.PureComponent {
                             Selected feedback (specific)
                         </label>
                         <textarea rows={1} className='lxc-answers-feedback-field'
-                                  id={`feedback-selected${this.props.id}`} value={this.state.selectedFeedback}
+                                  id={`feedback-selected${this.props.id}`} value={this.props.selectedFeedback}
                                   placeholder='Enter feedback for when the choice is selected' onChange={this.selectedFeedbackChanged.bind(this)}/>
 
                         <label className='lxc-answers-feedback-title' htmlFor={`feedback-unselected${this.props.id}`}>
                             Unselected feedback (specific)
                         </label>
                         <textarea rows={1} className='lxc-answers-feedback-field'
-                                  id={`feedback-unselected${this.props.id}`} value={this.unselectedFeedback}
+                                  id={`feedback-unselected${this.props.id}`} value={this.props.unselectedFeedback}
                                   placeholder='Enter feedback for when the choice is selected' onChange={this.unselectedFeedbackChanged.bind(this)}/>
                     </div>
                     <div className='lxc-answers-item-wrapper'>
                         <label className='lxc-sr' htmlFor={`answer-multi${this.props.id}`}>{placeholderText}</label>
                         <textarea rows={1} className='lxc-answers-item' id={`answer-multi${this.props.id}`}
-                                  placeholder={placeholderText} value={this.state.answer}
-                                  title='Enter the correct answer' onChange={this.answerChanged.bind(this)}/>
+                                  placeholder={placeholderText} value={this.props.title}
+                                  title='Enter the correct answer' onChange={this.titleChanged.bind(this)}/>
                         <button className='lxc-answers-feedback-btn' type='button' aria-label='Show feedback block' onClick={this.showHideFeedback.bind(this)}/>
                     </div>
                     <button className='lxc-answers-remove-btn' type='button' aria-label='Remove answer item' onClick={this.removeAnswer.bind(this)}/>

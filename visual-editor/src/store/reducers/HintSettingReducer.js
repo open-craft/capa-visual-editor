@@ -1,11 +1,8 @@
 import {ADVANCED_SETTING_HINT_ADD, ADVANCED_SETTING_HINT_REMOVE, ADVANCED_SETTING_HINT_CHANGED} from '../actions/action-types';
+import { getHints } from '../../dataParser';
 
 const initialState = {
-    hints: [
-        {id: 1, value: 'Hint 1'},
-        {id: 2, value: 'Hint 2'},
-        {id: 3, value: 'Hint 3'}
-    ],
+    hints: getHints(),
 };
 
 const HintSettingReducer = function(state=initialState, action) {

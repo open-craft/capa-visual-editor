@@ -11,7 +11,7 @@ import MultiAdvancedSettings from '../components/AdvancedSettings/MultiAdvancedS
 export class MultiSelectContainer extends React.Component {
 
     handleEditorChange (e) {
-        this.props.tinyEditorContentChange(e.target.getContent());
+        this.props.multiEditorContentChange(e.target.getContent());
     }
 
     render() {
@@ -61,15 +61,11 @@ export class MultiSelectContainer extends React.Component {
                     hintRemove={this.props.hintRemove}
                     hintChange={this.props.hintChange}
 
-                    answerTypeSelectedOption={this.props.answerTypeSelectedOption}
-                    answerTypeOptions={this.props.answerTypeOptions}
-                    answerTypeChange={this.props.answerTypeChange}
-
                     scorringSelectedPointOption={this.props.scorringSelectedPointOption}
-                    scorringSelectedTemptOption={this.props.scorringSelectedTemptOption}
-                    scorringTemptsOptions={this.props.scorringTemptsOptions}
+                    scorringselectedAttemptsOption={this.props.scorringselectedAttemptsOption}
+                    scorringattemptsOptions={this.props.scorringattemptsOptions}
                     scorringPointsOptions={this.props.scorringPointsOptions}
-                    scorringTemptsChange={this.props.scorringTemptsChange}
+                    scorringAttemptsChange={this.props.scorringAttemptsChange}
                     scorringPointsChange={this.props.scorringPointsChange}
                 />
             </div>
@@ -80,22 +76,19 @@ export class MultiSelectContainer extends React.Component {
 const mapStateToProps = (store) => {
     return {
         // editor content
-        editorContent: store.editorContent.content,
+        editorContent: store.multiSelectEditor.content,
         // multi answers
         answersList: store.multiSelectAnswers.multiSelectAnswersList,
         // single answers feedback 
         feedbackContent: store.generalFeedbackSettings.feedbackContent,
         // group feedback
-        groupFeedbackContent: store.groupFeedbackSettings.groupFeedbackContent,
+        groupFeedbackContent: store.multiSelectAnswers.groupFeedbackContent,
         // hints
         hints: store.hintSettings.hints,
-        // answer type
-        answerTypeSelectedOption: store.answerTypeSettings.selectedType,
-        answerTypeOptions: store.answerTypeSettings.accessibleTypes,
         // scorring
         scorringSelectedPointOption: store.scorringSettings.selectedPointOption,
-        scorringSelectedTemptOption: store.scorringSettings.selectedTemptOption,
-        scorringTemptsOptions: store.scorringSettings.temptsOptions,
+        scorringselectedAttemptsOption: store.scorringSettings.selectedAttemptsOption,
+        scorringattemptsOptions: store.scorringSettings.attemptsOptions,
         scorringPointsOptions: store.scorringSettings.pointsOptions
     }
 }
@@ -103,8 +96,8 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = function(dispatch, ownProps) {
     return {
         // editor
-        tinyEditorContentChange: (content) => {
-            return dispatch({type: actionTypes.EDITOR_CONTENT_CHANGE, content: content});
+        multiEditorContentChange: (content) => {
+            return dispatch({type: actionTypes.MULTI_EDITOR_CONTENT_CHANGE, content: content});
         },
         // multiSelect answers
         multiSelectAddAnswer: (event) => {
@@ -134,12 +127,8 @@ const mapDispatchToProps = function(dispatch, ownProps) {
         hintChange: (data) => {
             return dispatch({type: actionTypes.ADVANCED_SETTING_HINT_CHANGED, ...data});
         },
-        // answerType setting
-        answerTypeChange: (value) => {
-            return dispatch({type: actionTypes.ANSWER_TYPE_SETTING_CHANGED, selectedType: value})
-        },
         // scorring settings
-        scorringTemptsChange: (value) => {
+        scorringAttemptsChange: (value) => {
             return dispatch({type: actionTypes.SCORRING_TEMPTS_CHANGED, ...value})
         },
         scorringPointsChange: (value) => {

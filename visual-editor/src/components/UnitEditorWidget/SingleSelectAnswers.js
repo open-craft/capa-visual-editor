@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
+
 import {SingleSelectItem} from './SingleSelectItem';
 
 import '../../assets/scss/app.scss';
@@ -8,9 +10,17 @@ export default class SingleSelectAnswers extends React.Component {
     render() {
         return (
             <fieldset className='lxc-answers-wrapper'>
-                <legend className='lxc-answers-title'>Answers*</legend>
+                <legend className='lxc-answers-title'>
+                    <FormattedMessage
+                        id="singleSelectAnswers.title"
+                        defaultMessage="Answers*"
+                    />
+                </legend>
                 <div className='lxc-answers-description'>
-                    Enter the answers below and select whether an answer is correct or incorrect.
+                    <FormattedMessage
+                        id="singleSelectAnswers.description"
+                        defaultMessage="Enter the answers below and select whether an answer is correct or incorrect."
+                    />
                 </div>
                 <div className='lxc-answers-list'>
                     {
@@ -24,7 +34,13 @@ export default class SingleSelectAnswers extends React.Component {
                     }
                     <div className='lxc-answers-another-option'>
                         <button className='lxc-answers-another-option-btn' type='button' onClick={this.props.singleSelectAddAnswer}>
-                            + Add <span className='lxc-hide-mobile'>another</span> answer
+                            <FormattedHTMLMessage
+                                id="addButton"
+                                defaultMessage="+ Add <span class={className}>another</span> answer"
+                                values={{
+                                    className: 'lxc-hide-mobile'
+                                }}
+                            />
                         </button>
                     </div>
                 </div>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
+import { FormattedMessage } from 'react-intl';
+
 import { connect } from 'react-redux';
 import * as actionTypes from '../store/actions/action-types';
 
@@ -11,16 +13,24 @@ import SingleAdvancedSettings from '../components/AdvancedSettings/SingleAdvance
 export class SingleSelectContainer extends React.Component {
 
     handleEditorChange (e) {
-        this.props.tinyEditorContentChange(e.target.getContent());
+        this.props.singleEditorContentChange(e.target.getContent());
     }
 
     render() {
         return (
             <div className='lxc-unit-editor-wrapper'>
                 <fieldset className='lxc-answers-wrapper'>
-                    <legend className='lxc-answers-title'>Question*</legend>
+                    <legend className='lxc-answers-title'>
+                        <FormattedMessage
+                            id="singleSelect.question.title"
+                            defaultMessage="Question*"
+                        />
+                    </legend>
                     <div className='lxc-answers-description'>
-                        Create a question that only has one answer.
+                        <FormattedMessage
+                            id="singleSelect.question.description"
+                            defaultMessage="Create a question that only has one answer."
+                        />
                     </div>
                     <Editor
                         init={{
@@ -34,7 +44,7 @@ export class SingleSelectContainer extends React.Component {
             '                               div,p{font-size: 16px;} p{margin: 10px 0 0}',
                         }}
                         className='lxc-advanced-settings-block'
-                        apiKey='283hsctoygj8rdat1mccsgurzgph73mg3pdgu0lc7j9wq6vr'
+
                         onChange={this.handleEditorChange.bind(this)}
                         initialValue={this.props.editorContent}
                     />
@@ -65,10 +75,10 @@ export class SingleSelectContainer extends React.Component {
                     answerTypeChange={this.props.answerTypeChange}
 
                     scorringSelectedPointOption={this.props.scorringSelectedPointOption}
-                    scorringSelectedTemptOption={this.props.scorringSelectedTemptOption}
-                    scorringTemptsOptions={this.props.scorringTemptsOptions}
+                    scorringselectedAttemptsOption={this.props.scorringselectedAttemptsOption}
+                    scorringattemptsOptions={this.props.scorringattemptsOptions}
                     scorringPointsOptions={this.props.scorringPointsOptions}
-                    scorringTemptsChange={this.props.scorringTemptsChange}
+                    scorringAttemptsChange={this.props.scorringAttemptsChange}
                     scorringPointsChange={this.props.scorringPointsChange}
                 />
             </div>
@@ -79,22 +89,22 @@ export class SingleSelectContainer extends React.Component {
 const mapStateToProps = (store) => {
     return {
         // editor content
-        editorContent: store.editorContent.content,
+        editorContent: store.singleSelectEditor.content,
         // single answers
         answersList: store.singleSelectAnswers.singleSelectAnswersList,
+        // answer type
+        answerTypeSelectedOption: store.singleSelectAnswers.selectedType,
+        answerTypeOptions: store.singleSelectAnswers.accessibleTypes,
         // single answers feedback 
         feedbackContent: store.generalFeedbackSettings.feedbackContent,
         // group feedback
-        groupFeedbackContent: store.groupFeedbackSettings.groupFeedbackContent,
+        groupFeedbackContent: store.multiSelectAnswers.groupFeedbackContent,
         // hints
         hints: store.hintSettings.hints,
-        // answer type
-        answerTypeSelectedOption: store.answerTypeSettings.selectedType,
-        answerTypeOptions: store.answerTypeSettings.accessibleTypes,
         // scorring
         scorringSelectedPointOption: store.scorringSettings.selectedPointOption,
-        scorringSelectedTemptOption: store.scorringSettings.selectedTemptOption,
-        scorringTemptsOptions: store.scorringSettings.temptsOptions,
+        scorringselectedAttemptsOption: store.scorringSettings.selectedAttemptsOption,
+        scorringattemptsOptions: store.scorringSettings.attemptsOptions,
         scorringPointsOptions: store.scorringSettings.pointsOptions
     }
 }
@@ -102,9 +112,8 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = function(dispatch, ownProps) {
     return {
         // editor
-        tinyEditorContentChange: (content) => {
-            console.log(content)
-            return dispatch({type: actionTypes.EDITOR_CONTENT_CHANGE, content: content});
+        singleEditorContentChange: (content) => {
+            return dispatch({type: actionTypes.SINGLE_EDITOR_CONTENT_CHANGE, content: content});
         },
         // singleSelect answers
         singleSelectAddAnswer: (event) => {
@@ -139,7 +148,7 @@ const mapDispatchToProps = function(dispatch, ownProps) {
             return dispatch({type: actionTypes.ANSWER_TYPE_SETTING_CHANGED, selectedType: value})
         },
         // scorring settings
-        scorringTemptsChange: (value) => {
+        scorringAttemptsChange: (value) => {
             return dispatch({type: actionTypes.SCORRING_TEMPTS_CHANGED, ...value})
         },
         scorringPointsChange: (value) => {

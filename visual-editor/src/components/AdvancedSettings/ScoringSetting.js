@@ -11,28 +11,11 @@ export class ScorringSetting extends React.PureComponent {
 
         this.handleTemptsChange = this.handleTemptsChange.bind(this);
         this.handleOptionsChange = this.handleOptionsChange.bind(this);
-
-        this.state = {
-            temptsOptions: [
-                { value: 'radio', label: '1' },
-                { value: 'select', label: '2' },
-            ],
-            pointsOptions: [
-                { value: 'radio', label: '1' },
-                { value: 'select', label: '2' },
-            ],
-            selectedTemptOption: null,
-            selectedPointOption: null
-        };
-    }
-
-    componentDidMount() {
-        this.setState({...this.props});
     }
 
     handleTemptsChange(value) {
         this.setState({
-            selectedTemptOption: value
+            selectedAttemptsOption: value
         });
     }
 
@@ -51,15 +34,15 @@ export class ScorringSetting extends React.PureComponent {
                 <div className='lxc-advanced-settings-form'>
                     <div className='lxc-advanced-settings-container'>
                         <div className='lxc-advanced-settings-col-half'>
-                            <label className='lxc-advanced-settings-label' htmlFor='sas4'>Default number of at tempts</label>
+                            <label className='lxc-advanced-settings-label' htmlFor='sas4'>Default number of attempts</label>
                             <Select
                                 id='sas4'
                                 className='lxc-advanced-settings-select'
                                 isSearchable={false}
                                 placeholder='- Select -'
-                                value={this.props.selectedTemptOption}
+                                value={this.props.selectedAttemptsOption}
                                 onChange={this.props.temptsChange}
-                                options={this.props.temptsOptions}
+                                options={this.props.attemptsOptions}
                             />
                         </div>
                         <div className='lxc-advanced-settings-col-half'>
@@ -85,8 +68,8 @@ export class ScorringSetting extends React.PureComponent {
 const mapStateToProps = function(store) {
     return {
         selectedPointOption: store.scorringSettings.selectedPointOption,
-        selectedTemptOption: store.scorringSettings.selectedTemptOption,
-        temptsOptions: store.scorringSettings.temptsOptions,
+        selectedAttemptsOption: store.scorringSettings.selectedAttemptsOption,
+        attemptsOptions: store.scorringSettings.attemptsOptions,
         pointsOptions: store.scorringSettings.pointsOptions
     }
 }

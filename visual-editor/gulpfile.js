@@ -9,28 +9,29 @@ const nop = require('gulp-nop');
 const path = require('path');
 
 const static = path.resolve(__dirname);
-const studioStatic = path.resolve(process.env.CONFIG_ROOT || '', 'edx-platform/cms/static/images');
 
 gulp.task('pack-css', function () {
     return gulp.src(['build/static/css/*'])
-        .pipe(replace('/static/media/', '/static/studio/images/'))
-        .pipe(concat('assets/css/stylesheet.css'))
+        .pipe(replace('/static/media/', '/static/studio/visual-editor/media/'))
+        .pipe(concat('visual-editor/css/stylesheet.css'))
         .pipe(cleanCss())
         .pipe(gulp.dest(static));
 });
 
 gulp.task('pack-js', function () {
-    return gulp.src(['build/static/js/!(main)*.chunk.js', 'build/static/js/main.*.chunk.js'])
-      .pipe(concat('assets/js/bundle.js'))
+    return gulp.src(['build/static/js/*.js'])
+      .pipe(concat('visual-editor/js/bundle.js'))
       .pipe(gulp.dest(static));
 });
 
 gulp.task('copy-images', function () {
-    if (process.env.CONFIG_ROOT !== undefined) {
-        return gulp.src('build/static/media/*')
-               .pipe(gulp.dest(studioStatic));
-    }
-    return gulp.src('.').pipe(nop());
+    return gulp.src('build/static/media/*')
+            .pipe(gulp.dest('visual-editor/media/'));
+});
+
+gulp.task('copy-vendor', function () {
+    return gulp.src('public/vendor/*.js')
+            .pipe(gulp.dest('visual-editor/vendor/'));
 });
 
 gulp.task('clean-build', function () {
@@ -50,4 +51,4 @@ gulp.task('build', function (cb) {
     });
 });
 
-gulp.task('default', gulp.series('build', 'pack-css', 'pack-js', 'copy-images', 'clean-build'));
+gulp.task('default', gulp.series('build', 'pack-css', 'pack-js', 'copy-images', 'copy-vendor', 'clean-build'));

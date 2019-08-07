@@ -291,14 +291,14 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "small": 600px, "
 
 //exactly for edx-platform
 
-.lxc-editor {
+.visual-editor {
     display: block;
 }
-.lxc-editor.is-inactive {
+.visual-editor.is-inactive {
     display: none;
 }
 
-.modal-lg.modal-editor .modal-header .editor-modes .action-item .lxc-editor-button {
+.modal-lg.modal-editor .modal-header .editor-modes .action-item .visual-editor-button {
     border-color: #ccc;
     color: #666;
     font-size: 18px;
@@ -312,7 +312,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 768px, "small": 600px, "
     border-radius: 4px;
 }
 
-.modal-lg.modal-editor .modal-header .editor-modes .action-item .lxc-editor-button.is-set {
+.modal-lg.modal-editor .modal-header .editor-modes .action-item .visual-editor-button.is-set {
     background-color: #666;
     color: #fff;
 }
