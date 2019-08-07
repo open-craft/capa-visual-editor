@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import {Editor} from '@tinymce/tinymce-react/lib/cjs/index';
 
 
@@ -11,8 +12,18 @@ export default class GroupFeedback extends React.PureComponent {
     render() {
         return (
             <div className='lxc-advanced-settings-block'>
-                <div className='lxc-advanced-settings-block-title'>GROUP feedback</div>
-                <div className='lxc-advanced-settings-block-description'>Feedback will appear when a student submits a wrong answer. </div>
+                <div className='lxc-advanced-settings-block-title'>
+                    <FormattedMessage
+                        id="groupFeedback.block.title"
+                        defaultMessage="GROUP feedback"
+                    />
+                </div>
+                <div className='lxc-advanced-settings-block-description'>
+                    <FormattedMessage
+                        id="groupFeedback.block.description"
+                        defaultMessage="Feedback will appear when a student submits a wrong answer."
+                    />
+                </div>
 
                 <Editor
                         init={{

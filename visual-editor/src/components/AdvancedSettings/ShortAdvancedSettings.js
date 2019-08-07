@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
 import '../../assets/scss/app.scss';
 import GeneralFeedbackSetting from './GeneralFeedbackSetting';
 import HintSetting from './HintSetting';
@@ -25,7 +26,12 @@ export class ShortAdvancedSettings extends React.PureComponent {
         return (
             <div className='lxc-advanced-settings-wrapper'>
                 <div className={`lxc-advanced-settings ${this.state.advancedSettingsOpenned ? 'lxc-advanced-settings_open' : ''}`}>
-                    <div className='lxc-advanced-settings-title'>Advanced settings</div>
+                    <div className='lxc-advanced-settings-title'>
+                        <FormattedMessage
+                            id="shortAdvancedSettings.title"
+                            defaultMessage="Advanced settings"
+                        />
+                    </div>
 
                     {/* <GeneralFeedbackSetting
                         feedbackContent={this.props.feedbackContent}

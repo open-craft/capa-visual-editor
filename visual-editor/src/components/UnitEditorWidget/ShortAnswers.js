@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 import {ShortAnswersItem} from './ShortAnswersItem';
 
 import '../../assets/scss/app.scss';
@@ -8,12 +9,25 @@ export default class ShortAnswers extends React.PureComponent {
     render() {
         return (
             <fieldset className='lxc-answers-wrapper'>
-                <legend className='lxc-answers-title'>Answers*</legend>
+                <legend className='lxc-answers-title'>
+                    <FormattedMessage
+                        id="shortAnswers.title"
+                        defaultMessage="Answers*"
+                    />
+                </legend>
                 <div className='lxc-answers-description'>
-                    Enter the correct answer or other acceptable answers. (Not case sensitive)
+                    <FormattedMessage
+                        id="shortAnswers.description"
+                        defaultMessage="Enter the correct answer or other acceptable answers. (Not case sensitive)"
+                    />
                 </div>
                 <div className='lxc-answers-list lxc-answers-list_short'>
-                    <div className='lxc-answers-form-title'>Acceptable answers</div>
+                    <div className='lxc-answers-form-title'>
+                        <FormattedMessage
+                            id="shortAnswers.form.title"
+                            defaultMessage="Acceptable answers"
+                        />
+                        </div>
                     {
                         this.props.shortAnswersList.map(shortAnswer => {
                             return <ShortAnswersItem
@@ -27,7 +41,13 @@ export default class ShortAnswers extends React.PureComponent {
 
                     <div className='lxc-answers-another-option'>
                         <button className='lxc-answers-another-option-btn' type='button' onClick={this.props.shortAnswersAddAnswer}>
-                            + Add <span className='lxc-hide-mobile'>another</span> answer
+                        <FormattedHTMLMessage
+                            id="addAnswer"
+                            defaultMessage="+ Add <span class={className}>another</span> answer"
+                            values={{
+                                className: 'lxc-hide-mobile'
+                            }}
+                        />
                         </button>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 import React  from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Editor } from '@tinymce/tinymce-react';
 import { connect } from 'react-redux';
 
@@ -21,9 +22,17 @@ export class ShortAnswerContainer extends React.Component {
         return (
                 <div className='lxc-unit-editor-wrapper'>
                     <fieldset className='lxc-answers-wrapper'>
-                        <legend className='lxc-answers-title'>Question*</legend>
+                        <legend className='lxc-answers-title'>
+                            <FormattedMessage
+                                id="shortAnswer.title"
+                                defaultMessage="Question*"
+                            />
+                        </legend>
                         <div className='lxc-answers-description'>
-                            Create a question that only has one answer.
+                            <FormattedMessage
+                                id="shortAnswer.description"
+                                defaultMessage="Create a question that only has one answer."
+                            />
                         </div>
                         <Editor
                             init={{
@@ -57,21 +66,21 @@ export class ShortAnswerContainer extends React.Component {
                         feedbackContent={this.props.feedbackContent}
 
                         groupFeedbackContent={this.props.groupFeedbackContent}
-    
+
                         hints={this.props.hints}
-    
+
                         generalFeedbackChange={this.props.generalFeedbackChange}
-    
+
                         groupFeedbackchange={this.props.groupFeedbackchange}
-    
+
                         hintAdd={this.props.hintAdd}
                         hintRemove={this.props.hintRemove}
                         hintChange={this.props.hintChange}
-    
+
                         answerTypeSelectedOption={this.props.answerTypeSelectedOption}
                         answerTypeOptions={this.props.answerTypeOptions}
                         answerTypeChange={this.props.answerTypeChange}
-    
+
                         scorringSelectedPointOption={this.props.scorringSelectedPointOption}
                         scorringselectedAttemptsOption={this.props.scorringselectedAttemptsOption}
                         scorringattemptsOptions={this.props.scorringattemptsOptions}
@@ -92,7 +101,7 @@ const mapStateToProps = (store) => {
         typeOptions: store.shortAnswersData.typeOptions,
         // editor content
         editorContent: store.shortAnswerEditor.content,
-        // single answers feedback 
+        // single answers feedback
         feedbackContent: store.generalFeedbackSettings.feedbackContent,
         // group feedback
         groupFeedbackContent: store.multiSelectAnswers.groupFeedbackContent,

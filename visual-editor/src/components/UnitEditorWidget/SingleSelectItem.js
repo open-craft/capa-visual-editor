@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import '../../assets/scss/app.scss';
 
@@ -50,7 +51,15 @@ export class SingleSelectItem extends React.PureComponent {
 
     render() {
         const additionallyСlass = this.state.openFeedback ? 'lxc-answers-feedback_open' : '';
-        const placeholderText = Number(this.props.id) === 2 ? 'Enter the correct answer' : 'Enter an incorrect answer';
+        const correctAnswer = <FormattedMessage
+                                id="singleSelect.item.correctAnswer"
+                                defaultMessage="Enter the correct answer"
+                                />
+        const incorrectAnswer = <FormattedMessage
+                                id="singleSelect.item.incorrectAnswer"
+                                defaultMessage="Enter an incorrect answer"
+                                />
+        const placeholderText = this.props.correct ? "Enter the correct answer" : "Enter an incorrect answer";
 
         return (
             <div key={this.props.id} className='lxc-answers-option'>
@@ -64,18 +73,40 @@ export class SingleSelectItem extends React.PureComponent {
                 <div className='lxc-answers-field-wrapper'>
                     <div className={`lxc-answers-feedback ${additionallyСlass}`}>
                         <label className='lxc-answers-feedback-title' htmlFor={`feedback-field${this.props.id}`}>
-                            Specific feedback
+                        <FormattedMessage
+                            id="singleSelect.item.feedbackTitle"
+                            defaultMessage="Specific feedback"
+                        />
                         </label>
-                        <textarea rows={1} className='lxc-answers-feedback-field' id={`feedback-field${this.props.id}`}
-                                  placeholder='Enter feedback for when the choice is selected' value={this.props.feedback} onChange={this.feedbackChange}/>
+                        <FormattedMessage id="singleSelect.item.feedbackPlaceholder" defaultMessage="Enter feedback for when the choice is selected">
+                        {
+                            placeholder => (
+                                <textarea rows={1} className='lxc-answers-feedback-field' id={`feedback-field${this.props.id}`}
+                                  placeholder={placeholder} value={this.props.feedback} onChange={this.feedbackChange}/>
+                            )
+                        }
+                        </FormattedMessage>
                     </div>
                     <div className='lxc-answers-item-wrapper'>
-                        <label className='lxc-sr' htmlFor={`answer-single${this.props.id}`}>{placeholderText}</label>
-                        <textarea rows={1} className='lxc-answers-item' id={`answer-single${this.props.id}`} value={this.props.title}
-                                  placeholder={placeholderText} onChange={this.titleChange}/>
-                        <button className='lxc-answers-feedback-btn' type='button' aria-label='Show feedback block' onClick={this.openFeedbackButtonClick}/>
+                        <label className='lxc-sr' htmlFor={`answer-single${this.props.id}`}>
+                        {placeholderText}
+                        </label>
+                        <textarea rows={1} className='lxc-answers-item' id={`answer-single${this.props.id}`} value={this.props.title} placeholder={placeholderText} onChange={this.titleChange}/>
+                        <FormattedMessage id="singleSelect.button.feedback" defaultMessage="Show feedback block">
+                        {
+                            ariaLable => (
+                                <button className='lxc-answers-feedback-btn' type='button' aria-label={ariaLable} onClick={this.openFeedbackButtonClick}/>
+                            )
+                        }
+                        </FormattedMessage>
                     </div>
-                    <button className='lxc-answers-remove-btn' type='button' aria-label='Remove answer item' onClick={this.removeAnswer}/>
+                    <FormattedMessage id="singleSelect.button.remove" defaultMessage="Remove answer item">
+                        {
+                            ariaLable => (
+                                <button className='lxc-answers-remove-btn' type='button' aria-label={ariaLable} onClick={this.removeAnswer}/>
+                            )
+                        }
+                    </FormattedMessage>
                 </div>
             </div>
         );

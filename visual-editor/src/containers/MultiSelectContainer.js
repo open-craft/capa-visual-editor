@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Editor } from '@tinymce/tinymce-react';
 
 import { connect } from 'react-redux';
@@ -18,9 +19,17 @@ export class MultiSelectContainer extends React.Component {
         return (
             <div className='lxc-unit-editor-wrapper'>
                 <fieldset className='lxc-answers-wrapper'>
-                    <legend className='lxc-answers-title'>Question*</legend>
+                    <legend className='lxc-answers-title'>
+                    <FormattedMessage
+                        id="multiSelect.quistion.title"
+                        defaultMessage="Question*"
+                    />
+                    </legend>
                     <div className='lxc-answers-description'>
-                        Create a question that only has one answer.
+                    <FormattedMessage
+                        id="multiSelect.question.description"
+                        defaultMessage="Create a question that has more than one answer."
+                    />
                     </div>
                     <Editor
                         init={{
@@ -79,7 +88,7 @@ const mapStateToProps = (store) => {
         editorContent: store.multiSelectEditor.content,
         // multi answers
         answersList: store.multiSelectAnswers.multiSelectAnswersList,
-        // single answers feedback 
+        // single answers feedback
         feedbackContent: store.generalFeedbackSettings.feedbackContent,
         // group feedback
         groupFeedbackContent: store.multiSelectAnswers.groupFeedbackContent,

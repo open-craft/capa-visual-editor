@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
+
 import Select from 'react-select';
 
 import '../../assets/scss/app.scss';
@@ -35,17 +37,29 @@ export class ShortAnswersItem extends React.Component {
                 <div className='lxc-answers-field-wrapper'>
                     <div className='lxc-answers-item-wrapper'>
                         <label className='lxc-sr' htmlFor={`answer-short-${this.props.id}`}>{anotherPlaceholderText}</label>
-                        <Select className='lxc-advanced-settings-select'
-                            isSearchable={false}
-                            placeholder='- Select -'
-                            options={this.props.typeOptions}
-                            value={this.props.currentType}
-                            onChange={this.typeChanged.bind(this)}
-                        />
+                        <FormattedMessage id="shortAnswers.item.advancedSettingsSelect" defaultMessage="- Select -">
+                        {
+                            placeholder => (
+                                <Select className='lxc-advanced-settings-select'
+                                    isSearchable={false}
+                                    placeholder={placeholder}
+                                    options={this.props.typeOptions}
+                                    value={this.props.currentType}
+                                    onChange={this.typeChanged.bind(this)}
+                                />
+                            )
+                        }
+                        </FormattedMessage>
                         <input type='text' className='lxc-answers-item' id={`answer-short1-${this.props.id}`}
                             placeholder={anotherPlaceholderText} value={this.props.value} onChange={this.valueChanged.bind(this)}/>
                     </div>
-                    <button className='lxc-answers-remove-btn' type='button' aria-label='Remove answer item' onClick={this.removeAnswer.bind(this)}/>
+                    <FormattedMessage id="shortAnswers.item.removeAnswerButton" defaultMessage="Remove answer item">
+                        {
+                            ariaLable => (
+                                <button className='lxc-answers-remove-btn' type='button' aria-label={ariaLable} onClick={this.removeAnswer.bind(this)}/>
+                            )
+                        }
+                    </FormattedMessage>
                 </div>
             </div>
         )

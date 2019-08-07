@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
+
 
 import '../../assets/scss/app.scss';
 
@@ -55,7 +57,7 @@ export class MultiSelectItem extends React.PureComponent {
     }
 
     render() {
-        const placeholderText = Number(this.props.id) === 2 || Number(this.props.id) === 3 ? 'Enter the correct answer' : 'Enter an incorrect answer';
+        const placeholderText = this.props.correct || Number(this.props.id) === 3 ? 'Enter the correct answer' : 'Enter an incorrect answer';
         return (
             <div key={this.props.id} className='lxc-answers-option'>
                 <div className='lxc-answers-radio'>
@@ -68,27 +70,62 @@ export class MultiSelectItem extends React.PureComponent {
                 <div className='lxc-answers-field-wrapper'>
                     <div className={`lxc-answers-feedback ${this.state.feedbackOpenned ? 'lxc-answers-feedback_open' : ''}`}>
                         <label className='lxc-answers-feedback-title' htmlFor={`feedback-selected${this.props.id}`}>
-                            Selected feedback (specific)
+                            <FormattedMessage
+                                id="multiSelect.item.selectedFeedbackTitle"
+                                defaultMessage="Selected feedback (specific)"
+                            />
                         </label>
-                        <textarea rows={1} className='lxc-answers-feedback-field'
+                        <FormattedMessage id="multiSelect.item.feedbackPlaceholder" defaultMessage="Enter feedback for when the choice is selected">
+                            {
+                                placeholder => (
+                                    <textarea rows={1} className='lxc-answers-feedback-field'
                                   id={`feedback-selected${this.props.id}`} value={this.props.selectedFeedback}
-                                  placeholder='Enter feedback for when the choice is selected' onChange={this.selectedFeedbackChanged.bind(this)}/>
-
+                                  placeholder={placeholder} onChange={this.selectedFeedbackChanged.bind(this)}/>
+                                )
+                            }
+                        </FormattedMessage>
                         <label className='lxc-answers-feedback-title' htmlFor={`feedback-unselected${this.props.id}`}>
-                            Unselected feedback (specific)
+                            <FormattedMessage
+                                id="multiSelect.item.unselectedFeedbackTitle"
+                                defaultMessage="Unselected feedback (specific)"
+                            />
                         </label>
-                        <textarea rows={1} className='lxc-answers-feedback-field'
-                                  id={`feedback-unselected${this.props.id}`} value={this.props.unselectedFeedback}
-                                  placeholder='Enter feedback for when the choice is selected' onChange={this.unselectedFeedbackChanged.bind(this)}/>
+                        <FormattedMessage id="multiSelect.item.feedbackPlaceholder" defaultMessage="Enter feedback for when the choice is selected">
+                            {
+                                placeholder => (
+                                    <textarea rows={1} className='lxc-answers-feedback-field'
+                                        id={`feedback-unselected${this.props.id}`} value={this.props.unselectedFeedback}
+                                        placeholder={placeholder} onChange={this.unselectedFeedbackChanged.bind(this)}/>
+                                )
+                            }
+                        </FormattedMessage>
                     </div>
                     <div className='lxc-answers-item-wrapper'>
                         <label className='lxc-sr' htmlFor={`answer-multi${this.props.id}`}>{placeholderText}</label>
-                        <textarea rows={1} className='lxc-answers-item' id={`answer-multi${this.props.id}`}
-                                  placeholder={placeholderText} value={this.props.title}
-                                  title='Enter the correct answer' onChange={this.titleChanged.bind(this)}/>
-                        <button className='lxc-answers-feedback-btn' type='button' aria-label='Show feedback block' onClick={this.showHideFeedback.bind(this)}/>
+                        <FormattedMessage id="multiSelect.item.answerTitle" defaultMessage="Enter the correct answer">
+                            {
+                                title => (
+                                    <textarea rows={1} className='lxc-answers-item' id={`answer-multi${this.props.id}`}
+                                        placeholder={placeholderText} value={this.props.title}
+                                        title={title} onChange={this.titleChanged.bind(this)}/>
+                                )
+                            }
+                        </FormattedMessage>
+                        <FormattedMessage id="multiSelect.item.showFeedbackButton" defaultMessage="Show feedback block">
+                            {
+                                ariaLable => (
+                                    <button className='lxc-answers-feedback-btn' type='button' aria-label={ariaLable} onClick={this.showHideFeedback.bind(this)}/>
+                                )
+                            }
+                        </FormattedMessage>
                     </div>
-                    <button className='lxc-answers-remove-btn' type='button' aria-label='Remove answer item' onClick={this.removeAnswer.bind(this)}/>
+                    <FormattedMessage id="multiSelect.item.removeAnswerButton" defaultMessage="Remove answer item">
+                        {
+                            ariaLable => (
+                                <button className='lxc-answers-remove-btn' type='button' aria-label={ariaLable} onClick={this.removeAnswer.bind(this)}/>
+                            )
+                        }
+                    </FormattedMessage>
                 </div>
             </div>
         );

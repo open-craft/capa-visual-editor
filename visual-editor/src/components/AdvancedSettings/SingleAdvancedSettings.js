@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import { FormattedMessage } from 'react-intl';
 import AnswerTypeSetting from './AnswerTypeSetting';
 import GeneralFeedbackSetting from './GeneralFeedbackSetting';
 
@@ -28,7 +28,12 @@ export default class SingleAdvancedSettings extends React.PureComponent {
         return (
             <div className='lxc-advanced-settings-wrapper'>
                 <div className={`lxc-advanced-settings ${this.state.advancedSettingsOpenned ? 'lxc-advanced-settings_open' : ''}`}>
-                    <div className='lxc-advanced-settings-title'>Advanced settings</div>
+                    <div className='lxc-advanced-settings-title'>
+                        <FormattedMessage
+                            id="singleAdvancedSettings.title"
+                            defaultMessage="Advanced settings"
+                        />
+                    </div>
                     <AnswerTypeSetting
                         answerTypeSelectedOption={this.props.answerTypeSelectedOption}
                         answerTypeOptions={this.props.answerTypeOptions}

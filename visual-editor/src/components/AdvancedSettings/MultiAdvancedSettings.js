@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
 import '../../assets/scss/app.scss';
 import GeneralFeedbackSetting from './GeneralFeedbackSetting';
 import HintSetting from './HintSetting';
@@ -28,7 +29,12 @@ export default class MultiAdvancedSettings extends React.Component {
         return (
             <div className='lxc-advanced-settings-wrapper'>
                 <div className={`lxc-advanced-settings ${this.state.advancedSettingsOpenned ? 'lxc-advanced-settings_open' : ''}`}>
-                    <div className='lxc-advanced-settings-title'>Advanced settings</div>
+                    <div className='lxc-advanced-settings-title'>
+                        <FormattedMessage
+                            id="multiAdvancedSettings.title"
+                            defaultMessage="Advanced settings"
+                        />
+                    </div>
 
                     {/* <GeneralFeedbackSetting {...this.props}/> */}
                     <GroupFeedback {...this.props}/>
