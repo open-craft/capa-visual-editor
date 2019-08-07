@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 import AnswerTypeSetting from './AnswerTypeSetting';
-import GeneralFeedbackSetting from './GeneralFeedbackSetting';
-
-import '../../assets/scss/app.scss';
 import HintSetting from './HintSetting';
 import ScorringSetting from './ScoringSetting';
+
+import '../../assets/scss/app.scss';
+
 
 export default class SingleAdvancedSettings extends React.PureComponent {
 
@@ -34,10 +34,6 @@ export default class SingleAdvancedSettings extends React.PureComponent {
                         answerTypeOptions={this.props.answerTypeOptions}
                         answerTypeChange={this.props.answerTypeChange}
                     />
-                    {/* <GeneralFeedbackSetting
-                        groupFeedbackContent={this.props.groupFeedbackContent}
-                        generalFeedbackChange={this.props.groupFeedbackchange}
-                    /> */}
                     <HintSetting
                         hints={this.props.hints}
                         hintAdd={this.props.hintAdd}

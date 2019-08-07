@@ -8,9 +8,8 @@ const initialState = {
 const HintSettingReducer = function(state=initialState, action) {
     switch(action.type) {
         case ADVANCED_SETTING_HINT_ADD:
-            let lastId = state.hints[state.hints.length-1].id;
             let newOne = {
-                id: lastId + 1,
+                id: state.hints.length,
                 value: ""
             };
             return Object.assign({}, state, {hints: state.hints.concat([newOne])});

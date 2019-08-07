@@ -44,7 +44,6 @@ export class SingleSelectContainer extends React.Component {
             '                               div,p{font-size: 16px;} p{margin: 10px 0 0}',
                         }}
                         className='lxc-advanced-settings-block'
-
                         onChange={this.handleEditorChange.bind(this)}
                         initialValue={this.props.editorContent}
                     />
@@ -56,7 +55,6 @@ export class SingleSelectContainer extends React.Component {
                     singleSelectAddAnswer={this.props.singleSelectAddAnswer}
                 />
                 <SingleAdvancedSettings
-                    feedbackContent={this.props.feedbackContent}
 
                     groupFeedbackContent={this.props.groupFeedbackContent}
 
@@ -95,8 +93,6 @@ const mapStateToProps = (store) => {
         // answer type
         answerTypeSelectedOption: store.singleSelectAnswers.selectedType,
         answerTypeOptions: store.singleSelectAnswers.accessibleTypes,
-        // single answers feedback 
-        feedbackContent: store.generalFeedbackSettings.feedbackContent,
         // group feedback
         groupFeedbackContent: store.multiSelectAnswers.groupFeedbackContent,
         // hints
@@ -124,14 +120,6 @@ const mapDispatchToProps = function(dispatch, ownProps) {
         },
         singleSelectChangeAnswer: (event) => {
             return dispatch({type: actionTypes.SINGLE_SELECT_ANSWERS_CHANGED, ...event});
-        },
-        // general Feedback
-        generalFeedbackChange: (event) => {
-            return dispatch({type: actionTypes.GENERAL_FEEDBACK_CHANGED, feedbackContent: event.target.value});
-        },
-        // groupFeedback
-        groupFeedbackchange: (event) => {
-            return dispatch({type: actionTypes.GROUP_FEEDBACK_SETTING_CHANGED, groupFeedbackContent: event.target.value});
         },
         // Hints
         hintAdd: (event) => {

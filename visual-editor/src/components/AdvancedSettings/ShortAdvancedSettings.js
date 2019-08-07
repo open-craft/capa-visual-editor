@@ -1,8 +1,10 @@
 import * as React from 'react';
-import '../../assets/scss/app.scss';
-import GeneralFeedbackSetting from './GeneralFeedbackSetting';
+
 import HintSetting from './HintSetting';
 import ScorringSetting from './ScoringSetting';
+
+import '../../assets/scss/app.scss';
+
 
 export class ShortAdvancedSettings extends React.PureComponent {
 
@@ -26,11 +28,6 @@ export class ShortAdvancedSettings extends React.PureComponent {
             <div className='lxc-advanced-settings-wrapper'>
                 <div className={`lxc-advanced-settings ${this.state.advancedSettingsOpenned ? 'lxc-advanced-settings_open' : ''}`}>
                     <div className='lxc-advanced-settings-title'>Advanced settings</div>
-
-                    {/* <GeneralFeedbackSetting
-                        feedbackContent={this.props.feedbackContent}
-                        generalFeedbackChange={this.props.generalFeedbackChange}
-                    /> */}
                     <HintSetting
                         hints={this.props.hints}
 

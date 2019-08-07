@@ -1,10 +1,10 @@
 import * as React from 'react';
-import '../../assets/scss/app.scss';
-import GeneralFeedbackSetting from './GeneralFeedbackSetting';
+
+import GroupFeedback from './GroupFeedback';
 import HintSetting from './HintSetting';
 import ScorringSetting from './ScoringSetting';
-import GroupFeedback from './GroupFeedback';
 
+import '../../assets/scss/app.scss';
 
 
 export default class MultiAdvancedSettings extends React.Component {
@@ -12,10 +12,7 @@ export default class MultiAdvancedSettings extends React.Component {
         super(props);
 
         this.state = {
-            selectedAttemptsOption: null,
-            selectedPointOption: null,
             advancedSettingsOpenned: false,
-            selectedTypeOption: null
         };
     }
     switchAdvancedSettings() {
@@ -29,7 +26,13 @@ export default class MultiAdvancedSettings extends React.Component {
             <div className='lxc-advanced-settings-wrapper'>
                 <div className={`lxc-advanced-settings ${this.state.advancedSettingsOpenned ? 'lxc-advanced-settings_open' : ''}`}>
                     <div className='lxc-advanced-settings-title'>Advanced settings</div>
-                    <GroupFeedback {...this.props}/>
+                    <GroupFeedback
+                        answersList={this.props.answersList}
+                        groupFeedbackList={this.props.groupFeedbackList}
+                        groupFeedbackChange={this.props.groupFeedbackChange}
+                        groupFeedbackAdd={this.props.groupFeedbackAdd}
+                        groupFeedbackRemove={this.props.groupFeedbackRemove}
+                    />
                     <HintSetting {...this.props}/>
                     <ScorringSetting {...this.props}/>
                 </div>

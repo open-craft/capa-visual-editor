@@ -36,7 +36,6 @@ export class ShortAnswerContainer extends React.Component {
             '                                   div,p{font-size: 16px;} p{margin: 10px 0 0}',
                             }}
                             className='lxc-advanced-settings-block'
-                            apiKey='283hsctoygj8rdat1mccsgurzgph73mg3pdgu0lc7j9wq6vr'
                             onChange={this.handleEditorChange.bind(this)}
                             initialValue={this.props.editorContent}
                         />
@@ -44,18 +43,16 @@ export class ShortAnswerContainer extends React.Component {
                     <ShortAnswers
                         shortAnswersList={this.props.shortAnswersList}
                         typeOptions={this.props.typeOptions}
-                        shortAnswersAddAnswer={this.props.shortAnswersAddAnswer}
+                        shortAnswersAddCorrectAnswer={this.props.shortAnswersAddCorrectAnswer}
+                        shortAnswersAddIncorrectAnswer={this.props.shortAnswersAddIncorrectAnswer}
                         shortAnswersRemoveAnswer={this.props.shortAnswersRemoveAnswer}
                         shortAnswersChangeAnswer={this.props.shortAnswersChangeAnswer}
                     />
                     <ShortAdvancedSettings
-                        feedbackContent={this.props.feedbackContent}
 
                         groupFeedbackContent={this.props.groupFeedbackContent}
     
                         hints={this.props.hints}
-    
-                        generalFeedbackChange={this.props.generalFeedbackChange}
     
                         groupFeedbackchange={this.props.groupFeedbackchange}
     
@@ -87,10 +84,8 @@ const mapStateToProps = (store) => {
         typeOptions: store.shortAnswersData.typeOptions,
         // editor content
         editorContent: store.shortAnswerEditor.content,
-        // single answers feedback 
-        feedbackContent: store.generalFeedbackSettings.feedbackContent,
         // group feedback
-        groupFeedbackContent: store.multiSelectAnswers.groupFeedbackContent,
+        groupFeedbackData: store.multiSelectAnswers.groupFeedbackData,
         // hints
         hints: store.hintSettings.hints,
         // answer type
@@ -110,22 +105,17 @@ const mapDispatchToProps = function(dispatch, ownProps) {
         shortAnswerEditorContentChange: (content) => {
             return dispatch({type: actionTypes.SHORT_ANSWER_EDITOR_CONTENT_CHANGE, content: content});
         },
-        shortAnswersAddAnswer: (event) => {
-            return dispatch({type: actionTypes.SHORT_ANSWERS_ADD_NEW});
+        shortAnswersAddCorrectAnswer: (event) => {
+            return dispatch({type: actionTypes.SHORT_ANSWERS_ADD_CORRECT});
+        },
+        shortAnswersAddIncorrectAnswer: (event) => {
+            return dispatch({type: actionTypes.SHORT_ANSWERS_ADD_INCORRECT});
         },
         shortAnswersRemoveAnswer: (id) => {
             return dispatch({type: actionTypes.SHORT_ANSWERS_REMOVE, id: id});
         },
         shortAnswersChangeAnswer: (data) => {
             return dispatch({type: actionTypes.SHORT_ANSWERS_CHANGED, ...data});
-        },
-        // general Feedback
-        generalFeedbackChange: (event) => {
-            return dispatch({type: actionTypes.GENERAL_FEEDBACK_CHANGED, feedbackContent: event.target.value});
-        },
-        // groupFeedback
-        groupFeedbackchange: (event) => {
-            return dispatch({type: actionTypes.GROUP_FEEDBACK_SETTING_CHANGED, groupFeedbackContent: event.target.value});
         },
         // Hints
         hintAdd: (event) => {
