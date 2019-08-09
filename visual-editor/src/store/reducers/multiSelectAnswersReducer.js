@@ -38,10 +38,34 @@ const mutliSelectAnswersReducer = function(state=initialState, action) {
                     }
                 })
             };
-        case ActionTypes.GROUP_FEEDBACK_SETTING_CHANGED:
+        // GroupFeedback
+        case ActionTypes.GROUP_FEEDBACK_CHANGE:
+            let groupFeedbackList = state.groupFeedbackList.map(el => {
+                if (el.id === action.id) {
+                    return {...action};
+                } else {
+                    return el;
+                }
+            });
             return {
                 ...state,
-                groupFeedbackContent: action.groupFeedbackContent
+                groupFeedbackList: groupFeedbackList
+            };
+        case ActionTypes.GROUP_FEEDBACK_ADD:
+            return {
+                ...state,
+                groupFeedbackList: state.groupFeedbackList.concat({
+                    answers: [],
+                    feedback: '',
+                    id: state.groupFeedbackList.length
+                })
+            };
+        case ActionTypes.GROUP_FEEDBACK_REMOVE:
+            return {
+                ...state,
+                groupFeedbackList: state.groupFeedbackList.filter(el => {
+                    return el.id !== action.id;
+                })
             };
         default:
             return state;

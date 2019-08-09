@@ -34,7 +34,6 @@ export class MultiSelectContainer extends React.Component {
             '                               div,p{font-size: 16px;} p{margin: 10px 0 0}',
                         }}
                         className='lxc-advanced-settings-block'
-                        apiKey='283hsctoygj8rdat1mccsgurzgph73mg3pdgu0lc7j9wq6vr'
                         onChange={this.handleEditorChange.bind(this)}
                         initialValue={this.props.editorContent}
                     />
@@ -47,15 +46,13 @@ export class MultiSelectContainer extends React.Component {
 
                 />
                 <MultiAdvancedSettings
-                    feedbackContent={this.props.feedbackContent}
-
-                    groupFeedbackContent={this.props.groupFeedbackContent}
-
+                    answersList={this.props.answersList}
                     hints={this.props.hints}
 
-                    generalFeedbackChange={this.props.generalFeedbackChange}
-
-                    groupFeedbackchange={this.props.groupFeedbackchange}
+                    groupFeedbackList={this.props.groupFeedbackList}
+                    groupFeedbackChange={this.props.groupFeedbackChange}
+                    groupFeedbackAdd={this.props.groupFeedbackAdd}
+                    groupFeedbackRemove={this.props.groupFeedbackRemove}
 
                     hintAdd={this.props.hintAdd}
                     hintRemove={this.props.hintRemove}
@@ -79,10 +76,8 @@ const mapStateToProps = (store) => {
         editorContent: store.multiSelectEditor.content,
         // multi answers
         answersList: store.multiSelectAnswers.multiSelectAnswersList,
-        // single answers feedback 
-        feedbackContent: store.generalFeedbackSettings.feedbackContent,
         // group feedback
-        groupFeedbackContent: store.multiSelectAnswers.groupFeedbackContent,
+        groupFeedbackList: store.multiSelectAnswers.groupFeedbackList,
         // hints
         hints: store.hintSettings.hints,
         // scorring
@@ -109,13 +104,15 @@ const mapDispatchToProps = function(dispatch, ownProps) {
         multiSelectChangeAnswer: (event) => {
             return dispatch({type: actionTypes.MULTI_SELECT_ANSWERS_CHANGED, ...event});
         },
-        // general Feedback
-        generalFeedbackChange: (event) => {
-            return dispatch({type: actionTypes.GENERAL_FEEDBACK_CHANGED, feedbackContent: event.target.value});
-        },
         // groupFeedback
-        groupFeedbackchange: (value) => {
-            return dispatch({type: actionTypes.GROUP_FEEDBACK_SETTING_CHANGED, groupFeedbackContent: value});
+        groupFeedbackChange: (data) => {
+            return dispatch({type: actionTypes.GROUP_FEEDBACK_CHANGE, ...data});
+        },
+        groupFeedbackAdd: () => {
+            return dispatch({type: actionTypes.GROUP_FEEDBACK_ADD});
+        },
+        groupFeedbackRemove: (id) => {
+            return dispatch({type: actionTypes.GROUP_FEEDBACK_REMOVE, id: id});
         },
         // Hints
         hintAdd: (event) => {

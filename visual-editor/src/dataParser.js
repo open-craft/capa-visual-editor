@@ -1,20 +1,4 @@
-/*
-Singlechoice data structure:
-
-<choiceresponse>                                - Required. Indicates that the problem is a checkbox problem.
-    <label>                                     - Required. Identifies the question or prompt. You can include HTML tags within this element.
-    <description>                               - Optional. Provides clarifying information about how to answer the question. You can include HTML tags within this element
-    <checkboxgroup>                             - Required. Indicates the beginning of the list of options.
-          <choice>                              - Required. Designates an answer option.
-              <choicehint>                      - Optional. Specifies feedback for the answer.
-          <compoundhint>                        - Optional. Specifies feedback for a specific combination of answers.
-    <solution>                                  - Optional. Identifies the explanation or solution for the problem, or for one of the questions in a problem that contains more than one question.
-                                                   This element contains an HTML division <div>. The division contains one or more paragraphs <p> of explanatory text.
-<demandhint>                                    - Optional. Specifies hints for the learner. For problems that include multiple questions, the hints apply to the entire problem.
-    <hint>                                      - Required. Specifies additional information that learners can access if needed.
-
-
-*/
+import { groupFeedbackWordMapping } from './Utils';
 
 const markdown = `You can use this template as a guide to the simple editor markdown and OLX markup to use for multiple choice problems. Edit this component to replace this template with your own assessment.
 
@@ -72,13 +56,41 @@ const numericalWithHintsFeedback = `You can use this template as a guide to the 
 ||You can add an optional hint like this. Problems that have a hint include a hint button, and this text appears the first time learners select the button.||
 ||If you add more than one hint, a different hint appears each time learners select the hint button.||`;
 
+const textInputWithHintsAndFeedback = `You can use this template as a guide to the simple editor markdown and OLX markup to use for text input with hints and feedback problems. Edit this component to replace this template with your own assessment.
+
+>>Add the question text, or prompt, here. This text is required.||You can add an optional tip or note related to the prompt like this. <<
+
+= the correct answer {{You can specify optional feedback like this, which appears after this answer is submitted.}}
+or= optional acceptable variant of the correct answer
+not= optional incorrect answer such as a frequent misconception  {{You can specify optional feedback for none, a subset, or all of the answers.}}
+
+||You can add an optional hint like this. Problems that have a hint include a hint button, and this text appears the first time learners select the button.||
+||If you add more than one hint, a different hint appears each time learners select the hint button.||
+`;
+
+const markdownWithImage = `<p>You can use this template as a guide to the simple editor markdown and OLX markup to</p>
+
+
+<p><img src="/asset-v1:RaccoonGang+TT-101+2019_T1+type@asset+block@IMG_20190529_172209.jpg" alt="image" /></p>
+
+[x] a correct answer {{ selected: You can specify optional }, { unselected: You can specify optional }}
+[ ] an incorrect answer {{ selected: You can specify optional feedback for none, all, or a subset of the answers. }, { unselected: You can specify optional feedback for selecte }}
+[x] a correct answer
+[ ] hz ^)t
+
+||You can add an optional hint like this. Problems that have a hint include a hint button, and this text appears the first time learners select the button.||
+||If you add more than one hint, a different hint appears each time learners select the hint button.||`;
 
 
 window.LXCData = window.LXCData || {};
-window.LXCData.markdown = window.LXCData.markdown || singleWithHintAndFeedback;
+window.LXCData.markdown = process.env.NODE_ENV === 'development' ? markdownWithImage : window.LXCData.markdown;
 
 
 function getHints() {
+
+    if (!window.LXCData.markdown || !window.LXCData.markdown.trim()) {
+        return [];
+    }
     let hints = [];
 
     function getHint(row) {
@@ -111,26 +123,57 @@ function getShortAnswerOptions() {
         textOption,
         numberOption
     ];
+    if (!window.LXCData.markdown || !window.LXCData.markdown.trim()) {
+        return {
+            typeOptions: typeOptions,
+            shortAnswersList: []
+        };
+    }
     let markdownListData = window.LXCData.markdown.split('\n');
     let shortAnswersList = [];
-
+    let gotAnswer = false;
     for (let i in markdownListData) {
         const row = markdownListData[i].trim();
-
-        if (row.startsWith('=')) {
-            const feedbackStart = row.indexOf('{{'); // we don't use feedbacks so far
-            let answer;
+        const feedbackStart = row.indexOf('{{');
+        const feedbackEnd = row.indexOf('}}');
+        let feedback = '';
+        let answer = '';
+        let correct = true;
+        if (row.startsWith('=') && !gotAnswer) {
+            gotAnswer = true;
             if (feedbackStart > -1) {
+                feedback = row.slice(feedbackStart+2, feedbackEnd);
                 answer = row.slice(1, feedbackStart).trim();
             } else {
                 answer = row.slice(1).trim();
             }
-            const currentType = +answer !== NaN ? numberOption : textOption;
-            answer = answer.slice(0, answer.indexOf('+-'));
+        } else if (row.startsWith('=') && gotAnswer) {
+            break;
+        } else if (gotAnswer && row.startsWith('or=')) {  // the next correct answer
+            if (feedbackStart > -1) {
+                answer = row.slice(3, feedbackStart).trim();
+                feedback = row.slice(feedbackStart+2, feedbackEnd);
+            } else {
+                answer = row.slice(3).trim();
+            }
+        } else if (gotAnswer && row.startsWith('not=')) {  // the incorrect answer
+            if (feedbackStart > -1) {
+                answer = row.slice(4, feedbackStart).trim();
+                feedback = row.slice(feedbackStart+2, feedbackEnd);
+            } else {
+                answer = row.slice(4).trim();
+            }
+            correct = false;
+        }
+        const currentType = !isNaN(answer) ? numberOption : textOption;
+        if (answer) {
+
             shortAnswersList.push({
-                id : i,
+                id : shortAnswersList.length,
                 value: answer,
                 currentType: currentType,
+                feedback: feedback,
+                correct: correct
             })
         }
     };
@@ -143,9 +186,16 @@ function getShortAnswerOptions() {
 
 function getMultipleChoiceOptions() {
     let multipleChoiceOptions = [];
+    let data = {
+        multiSelectAnswersList: multipleChoiceOptions,
+        groupFeedbackList: []
+    };
+    if (!window.LXCData.markdown || !window.LXCData.markdown.trim()) {
+        return data;
+    }
     let markdownListData = window.LXCData.markdown.split('\n');
-    let groupFeedback = '';
-    const groupFeedbackWordMapping = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+    let feedback = '';
+    let counter = 0;
     for (let d in markdownListData) {
         let row = markdownListData[d];
         // multiple choices
@@ -175,7 +225,7 @@ function getMultipleChoiceOptions() {
                 }
             }
             multipleChoiceOptions.push({
-                id: Number(d),
+                id: counter++,
                 title: title,
                 correct: row.startsWith('[ ]') ? false : true,
                 selectedFeedback: selectedFeedback,
@@ -184,33 +234,51 @@ function getMultipleChoiceOptions() {
         }
         // group Feedback
         if (row.startsWith('{{')) {
-            const start = row.indexOf('{{');
-            const end = row.indexOf('}}');
-            const feed = row.slice(start+2, end).trim();
-            groupFeedback += `<p>${feed}</p>`;
-
-
-        }
-    };
-    return {
-        multiSelectAnswersList: multipleChoiceOptions,
-        groupFeedbackContent: groupFeedback
-    };
-}
-
-function getAnswerType() {
-    let markdownListData = window.LXCData.markdown.split('\n');
-    for (let d in markdownListData) {
-        let row = markdownListData[d];
-        if (row.startsWith('[[')) {
-            return {
-
+            const groupFeedbackEnd = row.indexOf('}}');
+            const goupStart = row.indexOf('((');
+            const groupEnd = row.indexOf('))');
+            let t = row.slice(goupStart+2, groupEnd).split(' ');
+            let groupChoices = [];
+            for (let i in t) {
+                let letter = t[i];
+                groupChoices.push(groupFeedbackWordMapping.indexOf(letter));
             }
+            feedback = row.slice(groupEnd+2, groupFeedbackEnd).trim()
+
+            if (groupChoices.length && feedback) {
+                data.groupFeedbackList.push({
+                    id: data.groupFeedbackList.length,
+                    answers: groupChoices,
+                    feedback: feedback
+                })
+            }
+
         }
-    }
+    };
+    return data;
 }
 
 function getSingleChoiceOptions() {
+
+    if (!window.LXCData.markdown || !window.LXCData.markdown.trim()) {
+        return {
+            singleSelectAnswersList: [],
+            selectedType: {
+                value: 'radio',
+                label: 'Radio button'
+            },
+            accessibleTypes: [{
+                    value: 'radio',
+                    label: 'Radio button'
+                },
+                {
+                    value: 'select',
+                    label: 'Select list'
+                },
+            ]
+        };
+    }
+
     let singleChoiceOptions = [];
     let dropDownMode = false;
     let markdownListData = window.LXCData.markdown.split('\n');
@@ -309,13 +377,21 @@ function getSingleChoiceOptions() {
 }
 
 function getEditorData() {
-    const descriptionReg = /(^.[^([{=]*)/;
-    const matching = window.LXCData.markdown.match(descriptionReg);
-    if (matching && matching.length) {
-        return matching[1];
-    } else {
+
+    if (!window.LXCData.markdown || !window.LXCData.markdown.trim()) {
         return '';
     }
+    let description = '';
+    const markdownData = window.LXCData.markdown.trim().split('\n');
+    for (let i in markdownData) {
+        const row = markdownData[i];
+        if (['{', '(', '[', '=', '|'].indexOf(row.trim()[0]) === -1) {
+            description += row + '\n';
+        } else {
+            break;
+        }
+    }
+    return description;
 }
 
 function getScorringSettings() {

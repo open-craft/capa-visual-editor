@@ -1,11 +1,16 @@
 import React from 'react';
-import './assets/scss/app.scss';
-import SingleSelectContainer from './containers/SingleSelectContainer';
+
 import MultiSelectContainer from './containers/MultiSelectContainer';
 import ShortAnswerContainer from './containers/ShortAnswerContainer';
+import SingleSelectContainer from './containers/SingleSelectContainer';
+
+import { groupFeedbackWordMapping } from './Utils';
 import store from './store/store';
 
-function getMarkdown(needToCompare = false) {
+
+import './assets/scss/app.scss';
+
+function getMarkdown(needToCompare=false) {
     let globalState = store.getState();
     let markdown = '';
     let hintsMarkdown = '\n';
@@ -87,34 +92,41 @@ function getMarkdown(needToCompare = false) {
             }
         }
 
-        const groupFeedbackReg = /<(?:\w+)>(.[^<>]*)\<\/(?:\w+)>/g;
-        var content = globalState.multiSelectAnswers.groupFeedbackContent.replace(/<(.+)>&nbsp;<\/(.+)>/g, '').trim();
-        var matches = [];
-        var match = groupFeedbackReg.exec(content);
-        while (match != null) {
-            matches.push(match[1]);
-            match = groupFeedbackReg.exec(content);
+        let groupFeedbackmardown = '';
+        if (globalState.multiSelectAnswers.groupFeedbackList.length) {
+            for (let i in globalState.multiSelectAnswers.groupFeedbackList) {
+                const groupFeedback = globalState.multiSelectAnswers.groupFeedbackList[i];
+                if (groupFeedback.answers.length && groupFeedback.feedback.trim()) {
+                    const answers = groupFeedback.answers.sort().map(el => groupFeedbackWordMapping[el]).join(' ');
+                    groupFeedbackmardown += `{{ ((${answers})) ${groupFeedback.feedback} }}\n`;
+                }
+            }
         }
-        if (matches.length) {
-            markdown += '\n';
-            matches.forEach((el, ind) => {
-                markdown += `{{ ${el} }}\n`;
-            });
+
+        if (groupFeedbackmardown) {
+            markdown += '\n' + groupFeedbackmardown;
         }
+
+
 
     } else if (globalState.shortAnswersData.shortAnswersList.length) {
         const title = globalState.shortAnswerEditor.content.replace(/<(.+)>&nbsp;<\/(.+)>/g, '\n').trim();
         markdown += title + '\n\n';
 
+        let gotFirstCorrect = false;
         for (let i in globalState.shortAnswersData.shortAnswersList) {
             const answerObj = globalState.shortAnswersData.shortAnswersList[i];
             const value = answerObj.value.trim();
+            let answerMarkdown;
             if (value) {
-                const currentTypeMapping = {
-                    text: '',
-                    number: ' +- 1' // need to decide how to handle it
-                };
-                const answerMarkdown = `= ${value}${currentTypeMapping[answerObj.currentType.value]}`;
+                if (answerObj.correct && !gotFirstCorrect) {
+                    gotFirstCorrect = true;
+                    answerMarkdown = answerObj.feedback && answerObj.feedback.length ? `= ${value} {{${answerObj.feedback.trim()}}}` : `= ${value}`;
+                } else if (answerObj.correct && gotFirstCorrect) {
+                    answerMarkdown = answerObj.feedback && answerObj.feedback.length ? `or= ${value} {{${answerObj.feedback.trim()}}}` : `or= ${value}`;
+                } else if (!answerObj.correct && gotFirstCorrect) {
+                    answerMarkdown = answerObj.feedback && answerObj.feedback.length ? `not= ${value} {{${answerObj.feedback.trim()}}}` : `not= ${value}`;
+                }
                 markdown += answerMarkdown + '\n';
             }
         }
@@ -123,12 +135,10 @@ function getMarkdown(needToCompare = false) {
     if (hintsMarkdown.length > 2) { // in this case hintsMarkdown has already been filled
         markdown += hintsMarkdown;
     }
-
-
-
     if (needToCompare) {
+
         if (window.LXCData.markdown) {
-            return markdown.trim().replace(/\n/g, '').split(' ').join('') == window.LXCData.markdown.trim().replace(/\n/g, '').split(' ').join('');
+            return markdown.trim().replace(/\n/g, '').split(' ').join('') === window.LXCData.markdown.trim().replace(/\n/g, '').split(' ').join('');
         }
         return false;
 
@@ -157,19 +167,16 @@ export default class App extends React.Component {
             return "Sorry, Simple Editor can not edit this problem";
         };
         if (storeData.singleSelectAnswers.singleSelectAnswersList.length) {
-            console.log('singleSelectAnswers')
             if (getMarkdown(true) && !this.initialized) {
                 Container = SingleSelectContainer;
                 this.initialized = true
             }
         } else if (storeData.multiSelectAnswers.multiSelectAnswersList.length) {
-            console.log('multiSelectAnswers')
             if (getMarkdown(true) && !this.initialized) {
                 Container = MultiSelectContainer;
                 this.initialized = true;
             }
         } else if (storeData.shortAnswersData.shortAnswersList.length) {
-            console.log('shortAnswersData')
             if (getMarkdown(true) && !this.initialized) {
                 Container = ShortAnswerContainer;
                 this.initialized = true;

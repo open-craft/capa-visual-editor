@@ -40,7 +40,7 @@ export class ScorringSetting extends React.PureComponent {
                                 className='lxc-advanced-settings-select'
                                 isSearchable={false}
                                 placeholder='- Select -'
-                                value={this.props.selectedAttemptsOption}
+                                defaultValue={this.props.selectedAttemptsOption}
                                 onChange={this.props.temptsChange}
                                 options={this.props.attemptsOptions}
                             />
@@ -52,7 +52,7 @@ export class ScorringSetting extends React.PureComponent {
                                 className='lxc-advanced-settings-select'
                                 isSearchable={false}
                                 placeholder='- Select -'
-                                value={this.props.selectedPointOption}
+                                defaultValue={this.props.selectedPointOption}
                                 onChange={this.props.pointsChange}
                                 options={this.props.pointsOptions}
                             />
