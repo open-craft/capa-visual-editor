@@ -41,7 +41,7 @@ function getMarkdown(needToCompare=false) {
         for (let i in globalState.singleSelectAnswers.singleSelectAnswersList) {
 
             const answerObj = globalState.singleSelectAnswers.singleSelectAnswersList[i];
-            const trimmedTitle = answerObj.title.trim();
+            const trimmedTitle = answerObj.title && answerObj.title.trim() || '';
 
             if (trimmedTitle.length) {
 
@@ -75,7 +75,7 @@ function getMarkdown(needToCompare=false) {
             const selectedFeedback = answerObj.selectedFeedback.trim() ? `selected: ${answerObj.selectedFeedback.trim()}` : '';
             const unselectedFeedback = answerObj.unselectedFeedback.trim() ? `unselected: ${answerObj.unselectedFeedback.trim()}` : '';
             let feedbacks = '';
-            const trimmedTitle = answerObj.title.trim();
+            const trimmedTitle = answerObj.title && answerObj.title.trim() || '';
 
             if (trimmedTitle.length) {
                 if (selectedFeedback.trim().length || unselectedFeedback.trim().length) {

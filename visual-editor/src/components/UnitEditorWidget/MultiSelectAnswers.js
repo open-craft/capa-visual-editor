@@ -1,18 +1,34 @@
 import * as React from 'react';
-import {MultiSelectItem} from './MultiSelectItem';
+import { defineMessages, injectIntl, FormattedHTMLMessage } from 'react-intl';
+
+import MultiSelectItem from './MultiSelectItem';
 
 import '../../assets/scss/app.scss';
 
 
-export default class MultiSelectAnswers extends React.PureComponent {
+const messages = defineMessages({
+    title: {
+        id: 'MultiSelectAnswers.title',
+        defaultMessage: 'Answers*'
+    },
+    description: {
+        id: 'MultiSelectAnswers.description',
+        defaultMessage: 'Enter the answers below and select whether an answer is correct or incorrect. Remember, you can have more than one correct answer.'
+    }
+})
+
+
+class MultiSelectAnswers extends React.PureComponent {
 
     render() {
+        const { formatMessage } = this.props.intl;
         return (
             <fieldset className='lxc-answers-wrapper'>
-                <legend className='lxc-answers-title'>Answers*</legend>
+                <legend className='lxc-answers-title'>
+                    {formatMessage(messages.title)}
+                </legend>
                 <div className='lxc-answers-description'>
-                    Enter the answers below and select whether an answer is correct or incorrect.
-                    Remember, you can have more than one correct answer.
+                    {formatMessage(messages.description)}
                 </div>
                 <div className='lxc-answers-list lxc-answers-list_multi'>
                     {
@@ -25,7 +41,10 @@ export default class MultiSelectAnswers extends React.PureComponent {
                     }
                     <div className='lxc-answers-another-option'>
                         <button className='lxc-answers-another-option-btn' type='button' onClick={this.props.multiSelectAddAnswer}>
-                            + Add <span className='lxc-hide-mobile'>another</span> answer
+                            <FormattedHTMLMessage
+                                id="MultiSelectAnswers.addButton"
+                                defaultMessage="+ Add <span className='lxc-hide-mobile'>another</span> answer"
+                            />
                         </button>
                     </div>
                 </div>
@@ -33,3 +52,5 @@ export default class MultiSelectAnswers extends React.PureComponent {
         );
     }
 }
+
+export default injectIntl(MultiSelectAnswers);
