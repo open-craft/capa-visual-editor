@@ -12,6 +12,10 @@ const messages = defineMessages({
     description: {
         id: 'SingleSelectAnswers.description',
         defaultMessage: 'Enter the answers below and select whether an answer is correct or incorrect.'
+    },
+    btnAddNewAnswer: {
+        id: 'SingleSelectAnswers.btnAddNewAnswer',
+        defaultMessage: '+ Add answer'
     }
 })
 
@@ -39,13 +43,17 @@ class SingleSelectAnswers extends React.Component {
                     }
                     <div className='lxc-answers-another-option'>
                         <button className='lxc-answers-another-option-btn' type='button' onClick={this.props.singleSelectAddAnswer}>
-                            <FormattedHTMLMessage
-                                id="addButton"
-                                defaultMessage="+ Add <span class={className}>another</span> answer"
-                                values={{
-                                    className: 'lxc-hide-mobile'
-                                }}
-                            />
+                            {
+                                this.props.answersList.length ?
+                                <FormattedHTMLMessage
+                                    id="addButton"
+                                    defaultMessage="+ Add <span class={className}>another</span> answer"
+                                    values={{
+                                        className: 'lxc-hide-mobile'
+                                    }}
+                                /> :
+                                formatMessage(messages.btnAddNewAnswer)
+                            }
                         </button>
                     </div>
                 </div>

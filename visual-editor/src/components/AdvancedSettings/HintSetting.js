@@ -15,10 +15,14 @@ const messages = defineMessages({
         id: 'HintSettings.note',
         defaultMessage: 'Note: Hints can be turned off in an assignment.'
     },
-    btn: {
-        id: 'HintSettings.btn',
-        defaultMessage: '+ add another hint'
+    btnNewHint: {
+        id: 'HintSettings.btnNewHint',
+        defaultMessage: '+ add hint'
     },
+    btnAnotherHint: {
+        id: 'HintSettings.btnAnotherHint',
+        defaultMessage: '+ add another hint'
+    }
 })
 
 class HintSetting extends React.PureComponent {
@@ -43,7 +47,11 @@ class HintSetting extends React.PureComponent {
                         })
                     }
                     <button className='lxc-advanced-settings-another-field-btn' type='button' onClick={this.props.hintAdd}>
-                        {formatMessage(messages.btn)}
+                        {
+                            this.props.hints.length ?
+                            formatMessage(messages.btnAnotherHint) :
+                            formatMessage(messages.btnNewHint)
+                        }
                     </button>
                     <div className='lxc-advanced-settings-note'>
                         {formatMessage(messages.note)}

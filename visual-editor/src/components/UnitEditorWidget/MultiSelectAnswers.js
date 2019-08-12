@@ -14,11 +14,15 @@ const messages = defineMessages({
     description: {
         id: 'MultiSelectAnswers.description',
         defaultMessage: 'Enter the answers below and select whether an answer is correct or incorrect. Remember, you can have more than one correct answer.'
+    },
+    btnAddNewAnswer: {
+        id: 'MultiSelectAnswers.btnAddNewAnswer',
+        defaultMessage: '+ Add answer'
     }
 })
 
 
-class MultiSelectAnswers extends React.PureComponent {
+class MultiSelectAnswers extends React.Component {
 
     render() {
         const { formatMessage } = this.props.intl;
@@ -41,10 +45,14 @@ class MultiSelectAnswers extends React.PureComponent {
                     }
                     <div className='lxc-answers-another-option'>
                         <button className='lxc-answers-another-option-btn' type='button' onClick={this.props.multiSelectAddAnswer}>
-                            <FormattedHTMLMessage
-                                id="MultiSelectAnswers.addButton"
-                                defaultMessage="+ Add <span className='lxc-hide-mobile'>another</span> answer"
-                            />
+                            {
+                                this.props.answersList.length ?
+                                <FormattedHTMLMessage
+                                    id="MultiSelectAnswers.addButton"
+                                    defaultMessage="+ Add <span className='lxc-hide-mobile'>another</span> answer"
+                                /> :
+                                formatMessage(messages.btnAddNewAnswer)
+                            }
                         </button>
                     </div>
                 </div>
