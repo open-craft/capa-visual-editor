@@ -37,7 +37,16 @@ const messages = defineMessages({
     btnAddInCorrAnsw: {
         id: 'ShortAnswers.btn.add.incorrect.answer',
         defaultMessage: '+ Add another incorrect answer'
+    },
+    btnAddNewCorrectAnswer: {
+        id: 'ShortAnswers.btn.addNewCorrectAnswer',
+        defaultMessage: '+ Add correct answer'
+    },
+    btnAddNewIncorrectAnswer: {
+        id: 'ShortAnswers.btn.btnAddNewIncorrectAnswer',
+        defaultMessage: '+ Add incorrect answer'
     }
+    
 })
 
 
@@ -46,6 +55,8 @@ class ShortAnswers extends React.PureComponent {
 
     render() {
         const { formatMessage } = this.props.intl;
+        const correctAnswers = this.props.shortAnswersList.filter(answer => answer.correct);
+        const incorrectAnswers = this.props.shortAnswersList.filter(answer => !answer.correct);
         return (
             <div>
                 <fieldset className='lxc-answers-wrapper'>
@@ -60,20 +71,24 @@ class ShortAnswers extends React.PureComponent {
                             {formatMessage(messages.titleForm)}
                         </div>
                         {
-                            this.props.shortAnswersList.map(shortAnswer => {
-                                return shortAnswer.correct ? <ShortAnswersItem
+                            correctAnswers.map(shortAnswer => {
+                                return <ShortAnswersItem
                                         shortAnswersList={this.props.shortAnswersList}
                                         typeOptions={this.props.typeOptions}
                                         remove={this.props.shortAnswersRemoveAnswer}
                                         change={this.props.shortAnswersChangeAnswer}
                                         key={shortAnswer.id}
-                                        {...shortAnswer} /> : null
+                                        {...shortAnswer} />
                             })
                         }
 
                         <div className='lxc-answers-another-option'>
                             <button className='lxc-answers-another-option-btn' type='button' onClick={this.props.shortAnswersAddCorrectAnswer}>
-                                {formatMessage(messages.btnAddCorrAnsw)}
+                                {
+                                    correctAnswers.length ?
+                                    formatMessage(messages.btnAddCorrAnsw) :
+                                    formatMessage(messages.btnAddNewCorrectAnswer)
+                                }
                             </button>
                         </div>
                     </div>
@@ -91,20 +106,24 @@ class ShortAnswers extends React.PureComponent {
                             {formatMessage(messages.formTitle)}
                         </div>
                         {
-                            this.props.shortAnswersList.map(shortAnswer => {
-                                return !shortAnswer.correct ? <ShortAnswersItem
+                            incorrectAnswers.map(shortAnswer => {
+                                return <ShortAnswersItem
                                         shortAnswersList={this.props.shortAnswersList}
                                         typeOptions={this.props.typeOptions}
                                         remove={this.props.shortAnswersRemoveAnswer}
                                         change={this.props.shortAnswersChangeAnswer}
                                         key={shortAnswer.id}
-                                        {...shortAnswer} /> : null
+                                        {...shortAnswer} />
                             })
                         }
 
                         <div className='lxc-answers-another-option'>
                             <button className='lxc-answers-another-option-btn' type='button' onClick={this.props.shortAnswersAddIncorrectAnswer}>
-                                {formatMessage(messages.btnAddInCorrAnsw)}
+                                {
+                                    incorrectAnswers.length ?
+                                    formatMessage(messages.btnAddInCorrAnsw) :
+                                    formatMessage(messages.btnAddNewIncorrectAnswer)
+                                }
                             </button>
                         </div>
                     </div>

@@ -17,7 +17,7 @@ const messages = defineMessages({
     },
     description: {
         id: 'MultiSelectContainer.description',
-        defaultMessage: 'Create a question that only has one answer.'
+        defaultMessage: 'Create a question that has more than one answer.'
     }
 });
 
