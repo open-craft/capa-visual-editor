@@ -1,11 +1,25 @@
 import React from 'react';
+import { defineMessages, injectIntl } from 'react-intl';
+import { connect } from 'react-redux';
+
 import { Editor } from '@tinymce/tinymce-react';
 
-import { connect } from 'react-redux';
+import MultiAdvancedSettings from '../components/AdvancedSettings/MultiAdvancedSettings';
+import MultiSelectAnswers from '../components/UnitEditorWidget/MultiSelectAnswers';
+
 import * as actionTypes from '../store/actions/action-types';
 
-import MultiSelectAnswers from '../components/UnitEditorWidget/MultiSelectAnswers';
-import MultiAdvancedSettings from '../components/AdvancedSettings/MultiAdvancedSettings';
+
+const messages = defineMessages({
+    title: {
+        id: 'MultiSelectContainer.title',
+        defaultMessage: 'Question*'
+    },
+    description: {
+        id: 'MultiSelectContainer.description',
+        defaultMessage: 'Create a question that only has one answer.'
+    }
+});
 
 
 export class MultiSelectContainer extends React.Component {
@@ -15,12 +29,15 @@ export class MultiSelectContainer extends React.Component {
     }
 
     render() {
+        const { formatMessage } = this.props.intl;
         return (
             <div className='lxc-unit-editor-wrapper'>
                 <fieldset className='lxc-answers-wrapper'>
-                    <legend className='lxc-answers-title'>Question*</legend>
+                    <legend className='lxc-answers-title'>
+                        {formatMessage(messages.title)}
+                    </legend>
                     <div className='lxc-answers-description'>
-                        Create a question that only has one answer.
+                        {formatMessage(messages.description)}
                     </div>
                     <Editor
                         init={{
@@ -136,4 +153,4 @@ const mapDispatchToProps = function(dispatch, ownProps) {
     }
   };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MultiSelectContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(MultiSelectContainer));

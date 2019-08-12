@@ -1,14 +1,39 @@
 import React from 'react';
 import GroupFeedbackItem from './GroupFeedbackItem';
+import { defineMessages, injectIntl } from 'react-intl';
 
+const messages = defineMessages({
+    title: {
+        id: 'GroupFeedback.title',
+        defaultMessage: 'GROUP feedback'
+    },
+    description: {
+        id: 'GroupFeedback.description',
+        defaultMessage: 'Feedback will appear when a student submits a wrong answer.'
+    },
+    btn: {
+        id: 'GroupFeedback.btn',
+        defaultMessage: '+ Add group feedback'
+    },
+    note: {
+        id: 'GroupFeedback.note',
+        defaultMessage: 'Note: Group feedback overrides specific feedback'
+    },
+})
 
-export default class GroupFeedback extends React.Component {
+class GroupFeedback extends React.Component {
 
     render() {
+        const { formatMessage } = this.props.intl;
+
         return (
             <div className='lxc-advanced-settings-block'>
-                <div className='lxc-advanced-settings-block-title'>GROUP feedback</div>
-                <div className='lxc-advanced-settings-block-description'>Feedback will appear when a student submits a wrong answer.</div>
+                <div className='lxc-advanced-settings-block-title'>
+                    {formatMessage(messages.title)}
+                </div>
+                <div className='lxc-advanced-settings-block-description'>
+                    {formatMessage(messages.description)}
+                </div>
 
                 <div className='lxc-advanced-settings-form'>
                 {
@@ -25,11 +50,17 @@ export default class GroupFeedback extends React.Component {
                         )
                     })
                 }
-                    <button className='lxc-advanced-settings-another-field-btn' type='button' onClick={this.props.groupFeedbackAdd}>+ Add group feedback</button>
-                    <div className='lxc-advanced-settings-note'>Note: Group feedback overrides specific feedback</div>
+                    <button className='lxc-advanced-settings-another-field-btn' type='button' onClick={this.props.groupFeedbackAdd}>
+                        {formatMessage(messages.btn)}
+                    </button>
+                    <div className='lxc-advanced-settings-note'>
+                        {formatMessage(messages.note)}
+                    </div>
                 </div>
 
             </div>
         )
     }
 };
+
+export default injectIntl(GroupFeedback);
