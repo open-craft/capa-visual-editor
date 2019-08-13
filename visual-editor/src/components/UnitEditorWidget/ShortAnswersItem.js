@@ -1,6 +1,5 @@
 import React from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
-import Select from 'react-select';
 
 import '../../assets/scss/app.scss';
 

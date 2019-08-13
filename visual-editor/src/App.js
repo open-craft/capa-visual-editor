@@ -10,6 +10,10 @@ import store from './store/store';
 
 import './assets/scss/app.scss';
 
+function getTitle (content) {
+    return content.replace(/&nbsp;/g, ' ').trim();
+}
+
 function getMarkdown(needToCompare=false) {
     let globalState = store.getState();
     let markdown = '';
@@ -29,7 +33,7 @@ function getMarkdown(needToCompare=false) {
     if (globalState.singleSelectAnswers.singleSelectAnswersList.length) {
         // prepare markdown for a single choice
 
-        const title = globalState.singleSelectEditor.content.replace(/<(.+)>&nbsp;<\/(.+)>/g, '\n').trim();
+        const title = getTitle(globalState.singleSelectEditor.content);
         const isTypeSelect = globalState.singleSelectAnswers.selectedType.value === 'select';
 
         markdown += title + '\n\n';
@@ -41,7 +45,7 @@ function getMarkdown(needToCompare=false) {
         for (let i in globalState.singleSelectAnswers.singleSelectAnswersList) {
 
             const answerObj = globalState.singleSelectAnswers.singleSelectAnswersList[i];
-            const trimmedTitle = answerObj.title && answerObj.title.trim() || '';
+            const trimmedTitle = (answerObj.title && answerObj.title.trim()) || '';
 
             if (trimmedTitle.length) {
 
@@ -66,7 +70,7 @@ function getMarkdown(needToCompare=false) {
     } else if (globalState.multiSelectAnswers.multiSelectAnswersList.length) {
         // prepare markdown for a multiple choices
 
-        const title = globalState.multiSelectEditor.content.replace(/<(.+)>&nbsp;<\/(.+)>/g, '\n').trim();
+        const title = getTitle(globalState.multiSelectEditor.content);
         markdown += title + '\n\n';
 
         for (let i in globalState.multiSelectAnswers.multiSelectAnswersList) {
@@ -75,7 +79,7 @@ function getMarkdown(needToCompare=false) {
             const selectedFeedback = answerObj.selectedFeedback.trim() ? `selected: ${answerObj.selectedFeedback.trim()}` : '';
             const unselectedFeedback = answerObj.unselectedFeedback.trim() ? `unselected: ${answerObj.unselectedFeedback.trim()}` : '';
             let feedbacks = '';
-            const trimmedTitle = answerObj.title && answerObj.title.trim() || '';
+            const trimmedTitle = (answerObj.title && answerObj.title.trim()) || '';
 
             if (trimmedTitle.length) {
                 if (selectedFeedback.trim().length || unselectedFeedback.trim().length) {
@@ -110,7 +114,7 @@ function getMarkdown(needToCompare=false) {
 
 
     } else if (globalState.shortAnswersData.shortAnswersList.length) {
-        const title = globalState.shortAnswerEditor.content.replace(/<(.+)>&nbsp;<\/(.+)>/g, '\n').trim();
+        const title = getTitle(globalState.shortAnswerEditor.content);
         markdown += title + '\n\n';
 
         let gotFirstCorrect = false;
@@ -132,7 +136,7 @@ function getMarkdown(needToCompare=false) {
         }
     }
 
-    if (hintsMarkdown.length > 2) { // in this case hintsMarkdown has already been filled
+    if (hintsMarkdown.length > 2 && markdown.length) { // in this case hintsMarkdown has already been filled
         markdown += hintsMarkdown;
     }
     if (needToCompare) {
