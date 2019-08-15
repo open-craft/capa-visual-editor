@@ -42,7 +42,7 @@ class ShortAnswerContainer extends React.Component {
                             init={{
                                 menubar: false,
                                 statusbar: false,
-                                plugins: 'link code image advcode',
+                                plugins: 'link code image code',
                                 apply_source_formatting : true,
                                 toolbar: 'formatselect | bold italic | code blockquote link image | undo redo',
                                 height: 340,

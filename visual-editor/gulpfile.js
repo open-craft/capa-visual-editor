@@ -19,7 +19,7 @@ gulp.task('pack-css', function () {
 });
 
 gulp.task('pack-js', function () {
-    return gulp.src(['build/static/js/*.js'])
+    return gulp.src(['tinymce.min.js', 'build/static/js/*.js'])
       .pipe(concat('visual-editor/js/bundle.js'))
       .pipe(gulp.dest(static));
 });
