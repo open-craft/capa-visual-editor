@@ -1,6 +1,11 @@
 import React  from 'react';
-import { Editor } from '@tinymce/tinymce-react';
 import { defineMessages, injectIntl } from 'react-intl';
+
+import tinymce from 'tinymce/tinymce';
+import 'tinymce/themes/modern/theme';
+import 'tinymce/plugins/code';
+import 'tinymce/plugins/link';
+import 'tinymce/plugins/image';
 
 import { connect } from 'react-redux';
 
@@ -23,6 +28,21 @@ const messages = defineMessages({
 });
 class ShortAnswerContainer extends React.Component {
 
+    componentDidMount(){
+		tinymce.init({
+            selector: '.addAnswerArea',
+            menubar: false,
+            skin_url: "https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.10/skins/lightgray/",
+            statusbar: false,
+            plugins: 'link code image',
+            apply_source_formatting : true,
+            toolbar: 'formatselect | bold italic | code blockquote link image | undo redo',
+            height: 340,
+            content_style: 'body{font-family: BioSans_Regular, Arial, sans-serif; color: #003e6b}' +
+'                               div,p{font-size: 16px;} p{margin: 10px 0 0}',
+        });
+	}
+
     handleEditorChange (e) {
         this.props.shortAnswerEditorContentChange(e.target.getContent());
     }
@@ -38,21 +58,11 @@ class ShortAnswerContainer extends React.Component {
                         <div className='lxc-answers-description'>
                             {formatMessage(messages.description)}
                         </div>
-                        <Editor
-                            init={{
-                                menubar: false,
-                                statusbar: false,
-                                plugins: 'link code image code',
-                                apply_source_formatting : true,
-                                toolbar: 'formatselect | bold italic | code blockquote link image | undo redo',
-                                height: 340,
-                                content_style: 'body{font-family: BioSans_Regular, Arial, sans-serif; color: #003e6b}' +
-            '                                   div,p{font-size: 16px;} p{margin: 10px 0 0}',
-                            }}
-                            className='lxc-advanced-settings-block'
-                            onChange={this.handleEditorChange.bind(this)}
-                            initialValue={this.props.editorContent}
-                        />
+
+                        <textarea 
+                            className="lxc-advanced-settings-block addAnswerArea" 
+                            defaultValue={this.props.editorContent} 
+                            onChange={this.handleEditorChange.bind(this)}/>
                     </fieldset>
                     <ShortAnswers
                         shortAnswersList={this.props.shortAnswersList}

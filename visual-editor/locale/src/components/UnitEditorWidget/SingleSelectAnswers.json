@@ -1,28 +1,41 @@
 [
   {
-    "id": "singleSelectAnswers.title",
+    "id": "SingleSelectAnswers.title",
     "defaultMessage": "Answers*",
     "file": "src/components/UnitEditorWidget/SingleSelectAnswers.js",
     "start": {
-      "line": 14,
-      "column": 20
+      "line": 8,
+      "column": 11
     },
     "end": {
-      "line": 17,
-      "column": 22
+      "line": 11,
+      "column": 5
     }
   },
   {
-    "id": "singleSelectAnswers.description",
+    "id": "SingleSelectAnswers.description",
     "defaultMessage": "Enter the answers below and select whether an answer is correct or incorrect.",
     "file": "src/components/UnitEditorWidget/SingleSelectAnswers.js",
     "start": {
-      "line": 20,
-      "column": 20
+      "line": 12,
+      "column": 17
     },
     "end": {
-      "line": 23,
-      "column": 22
+      "line": 15,
+      "column": 5
+    }
+  },
+  {
+    "id": "SingleSelectAnswers.btnAddNewAnswer",
+    "defaultMessage": "+ Add answer",
+    "file": "src/components/UnitEditorWidget/SingleSelectAnswers.js",
+    "start": {
+      "line": 16,
+      "column": 21
+    },
+    "end": {
+      "line": 19,
+      "column": 5
     }
   },
   {
@@ -30,12 +43,12 @@
     "defaultMessage": "+ Add <span class={className}>another</span> answer",
     "file": "src/components/UnitEditorWidget/SingleSelectAnswers.js",
     "start": {
-      "line": 37,
-      "column": 28
+      "line": 48,
+      "column": 32
     },
     "end": {
-      "line": 43,
-      "column": 30
+      "line": 54,
+      "column": 34
     }
   }
 ]
