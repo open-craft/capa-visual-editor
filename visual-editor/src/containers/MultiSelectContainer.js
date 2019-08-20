@@ -29,6 +29,7 @@ const messages = defineMessages({
 export class MultiSelectContainer extends React.Component {
 
     componentDidMount(){
+        const props = this.props;
 		tinymce.init({
             selector: '.addAnswerArea',
             menubar: false,
@@ -40,12 +41,13 @@ export class MultiSelectContainer extends React.Component {
             height: 340,
             content_style: 'body{font-family: BioSans_Regular, Arial, sans-serif; color: #003e6b}' +
 '                               div,p{font-size: 16px;} p{margin: 10px 0 0}',
+            init_instance_callback: function (editor) {
+                editor.on('change', function (e) {
+                    props.multiEditorContentChange(e.target.getContent());
+                });
+            }
         });
 	}
-
-    handleEditorChange (e) {
-        this.props.multiEditorContentChange(e.target.getContent());
-    }
 
     render() {
         const { formatMessage } = this.props.intl;
@@ -60,8 +62,7 @@ export class MultiSelectContainer extends React.Component {
                     </div>
                     <textarea 
                         className="lxc-advanced-settings-block addAnswerArea" 
-                        defaultValue={this.props.editorContent} 
-                        onChange={this.handleEditorChange.bind(this)}/>
+                        defaultValue={this.props.editorContent}/>
                 </fieldset>
                 <MultiSelectAnswers
                     answersList={this.props.answersList}
