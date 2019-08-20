@@ -30,7 +30,7 @@ class ShortAnswerContainer extends React.Component {
 
     componentDidMount(){
         const props = this.props;
-		tinymce.init({
+        tinymce.init({
             selector: '.addAnswerArea',
             menubar: false,
             skin_url: "https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.10/skins/lightgray/",
@@ -47,7 +47,7 @@ class ShortAnswerContainer extends React.Component {
                 });
             }
         });
-	}
+    }
 
     render() {
         const { formatMessage } = this.props.intl;

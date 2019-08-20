@@ -29,7 +29,7 @@ export class SingleSelectContainer extends React.Component {
 
     componentDidMount(){
         const props = this.props;
-		tinymce.init({
+        tinymce.init({
             selector: '.addAnswerArea',
             menubar: false,
             statusbar: false,
@@ -46,7 +46,7 @@ export class SingleSelectContainer extends React.Component {
                 });
             }
         });
-	}
+    }
 
     render() {
         const { formatMessage } = this.props.intl;
