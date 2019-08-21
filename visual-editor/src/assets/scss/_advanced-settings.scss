@@ -214,7 +214,7 @@
     display: inline-flex;
     align-items: center;
     font-size: 14px;
-    line-height: normal;
+    line-height: 10px;
 
     @media (max-width: map-get($screen, "mobile")){
         display: flex;
