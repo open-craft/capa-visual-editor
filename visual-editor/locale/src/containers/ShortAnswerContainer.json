@@ -1,27 +1,27 @@
 [
   {
-    "id": "SingleSelectContainer.title",
+    "id": "ShortAnswerContainer.title",
     "defaultMessage": "Question*",
-    "file": "src/containers/SingleSelectContainer.js",
+    "file": "src/containers/ShortAnswerContainer.js",
     "start": {
-      "line": 13,
+      "line": 15,
       "column": 11
     },
     "end": {
-      "line": 16,
+      "line": 18,
       "column": 5
     }
   },
   {
-    "id": "SingleSelectContainer.description",
+    "id": "ShortAnswerContainer.description",
     "defaultMessage": "Create a question that only has one answer.",
-    "file": "src/containers/SingleSelectContainer.js",
+    "file": "src/containers/ShortAnswerContainer.js",
     "start": {
-      "line": 17,
+      "line": 19,
       "column": 17
     },
     "end": {
-      "line": 20,
+      "line": 22,
       "column": 5
     }
   }

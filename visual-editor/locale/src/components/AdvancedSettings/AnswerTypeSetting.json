@@ -1,0 +1,67 @@
+[
+  {
+    "id": "AnswerTypeSetting.title",
+    "defaultMessage": "Answer type",
+    "file": "src/components/AdvancedSettings/AnswerTypeSetting.js",
+    "start": {
+      "line": 7,
+      "column": 11
+    },
+    "end": {
+      "line": 10,
+      "column": 5
+    }
+  },
+  {
+    "id": "AnswerTypeSetting.description",
+    "defaultMessage": "Choose the way in which the answers should be displated.",
+    "file": "src/components/AdvancedSettings/AnswerTypeSetting.js",
+    "start": {
+      "line": 11,
+      "column": 17
+    },
+    "end": {
+      "line": 14,
+      "column": 5
+    }
+  },
+  {
+    "id": "AnswerTypeSetting.label",
+    "defaultMessage": "Answer type",
+    "file": "src/components/AdvancedSettings/AnswerTypeSetting.js",
+    "start": {
+      "line": 15,
+      "column": 11
+    },
+    "end": {
+      "line": 18,
+      "column": 5
+    }
+  },
+  {
+    "id": "AnswerTypeSetting.note",
+    "defaultMessage": "Note: Use dropdowns when you have more than 10 items, to make it easier for user to choose",
+    "file": "src/components/AdvancedSettings/AnswerTypeSetting.js",
+    "start": {
+      "line": 19,
+      "column": 10
+    },
+    "end": {
+      "line": 22,
+      "column": 5
+    }
+  },
+  {
+    "id": "AnswerTypeSetting.placeholder",
+    "defaultMessage": "- Select -",
+    "file": "src/components/AdvancedSettings/AnswerTypeSetting.js",
+    "start": {
+      "line": 23,
+      "column": 17
+    },
+    "end": {
+      "line": 26,
+      "column": 5
+    }
+  }
+]
