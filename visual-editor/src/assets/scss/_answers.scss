@@ -143,6 +143,22 @@
         box-shadow: 0 0 3px $brand-color-light;
     }
 
+    input:focus + & {
+        outline: -webkit-focus-ring-color auto 5px;
+
+        @supports (-ms-ime-align:auto) {
+            outline: dotted 1px #333;
+        }
+
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            outline: dotted 1px #333;
+        }
+    }
+
+    input:-moz-focusring + & {
+        outline: dotted 1px #333;
+    }
+
     input:checked + & {
         background: url('../images/radio-correct.svg');
 
