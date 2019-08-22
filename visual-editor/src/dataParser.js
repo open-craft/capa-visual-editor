@@ -83,7 +83,7 @@ const markdownWithImage = `<p>You can use this template as a guide to the simple
 
 
 window.LXCData = window.LXCData || {};
-window.LXCData.markdown = process.env.NODE_ENV === 'development' ? markdownWithImage : window.LXCData.markdown;
+window.LXCData.markdown = process.env.NODE_ENV === 'development' ? textInputWithHintsAndFeedback : window.LXCData.markdown;
 
 
 function getHints() {

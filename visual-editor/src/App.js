@@ -152,7 +152,7 @@ function getMarkdown(needToCompare=false) {
         const selectedPointOption = globalState.scorringSettings.selectedPointOption;
         window.LXCData.max_attempts = selectedAttemptsOption ? selectedAttemptsOption.value || null : null;
         window.LXCData.weight = selectedPointOption ? selectedPointOption.value || null : null;
-        window.LXCData.markdownHasChanged = true;
+        window.LXCData.editorHasChanges = true;
     }
 
 }
