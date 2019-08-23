@@ -140,9 +140,16 @@ function getMarkdown(needToCompare=false) {
         markdown += hintsMarkdown;
     }
     if (needToCompare) {
-
         if (window.LXCData.markdown) {
-            return markdown.trim().replace(/\n/g, '').split(' ').join('') === window.LXCData.markdown.trim().replace(/\n/g, '').split(' ').join('');
+            return markdown.trim()
+                .replace(/\n/g, '')
+                .split(' ')
+                .join('') === window.LXCData.markdown.trim()
+                                  .replace('>>', '<p>')
+                                  .replace('<<', '</p>')
+                                  .replace(/\n/g, '')
+                                  .split(' ')
+                                  .join('');
         }
         return false;
 
@@ -168,7 +175,7 @@ export default class App extends React.Component {
     render() {
         const storeData = store.getState();
         let Container = () => {
-            return "Sorry, Simple Editor can not edit this problem";
+            return "Sorry, Visual Editor can not edit this problem";
         };
         if (storeData.singleSelectAnswers.singleSelectAnswersList.length) {
             if (getMarkdown(true) && !this.initialized) {

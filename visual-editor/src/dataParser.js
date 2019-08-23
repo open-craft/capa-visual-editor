@@ -81,9 +81,25 @@ const markdownWithImage = `<p>You can use this template as a guide to the simple
 ||You can add an optional hint like this. Problems that have a hint include a hint button, and this text appears the first time learners select the button.||
 ||If you add more than one hint, a different hint appears each time learners select the hint button.||`;
 
+const n = `You can use this template as a guide to the simple editor markdown and OLX markup to use for checkboxes with hints and feedback problems. Edit this component to replace this template with your own assessment.
+
+<p>Add the question text, or prompt, here. This text is required.||You can add an optional tip or note related to the prompt like this.</p>
+
+[x] a correct answer {{ selected: You can specify optional feedback that appears after the learner selects and submits this answer. }, { unselected: You can specify optional feedback that appears after the learner clears and submits this answer. }}
+[ ] an incorrect answer {{ unselected: example }}
+[ ] an incorrect answer {{ selected: You can specify optional feedback for none, all, or a subset of the answers. }, { unselected: You can specify optional feedback for selected answers, cleared answers, or both. }}
+[x] a correct answer
+
+{{ ((A B D)) You can specify optional feedback for a combination of answers which appears after the specified set of answers is submitted. }}
+{{ ((A B C D)) You can specify optional feedback for one, several, or all answer combinations. }}
+
+||You can add an optional hint like this. Problems that have a hint include a hint button, and this text appears the first time learners select the button.||
+||If you add more than one hint, a different hint appears each time learners select the hint button.||`;
+
 
 window.LXCData = window.LXCData || {};
-window.LXCData.markdown = process.env.NODE_ENV === 'development' ? textInputWithHintsAndFeedback : window.LXCData.markdown;
+window.LXCData.markdown = process.env.NODE_ENV === 'development' ? n : window.LXCData.markdown;
+
 
 
 function getHints() {
@@ -205,7 +221,7 @@ function getMultipleChoiceOptions() {
             let title = row.slice(row.indexOf(']') + 1).trim();
 
             const feedbacksStart = row.indexOf('{{');
-            const selectedFeedbackStart = row.indexOf('selected:');
+            const selectedFeedbackStart = row.indexOf(' selected:') || row.indexOf('{selected:');  // two ways to define selected feedback
             const selectedFeedbackEnd = row.slice(selectedFeedbackStart + 1).indexOf('}') + selectedFeedbackStart;
             const unselectedFeedbackStart = row.indexOf('unselected:');
             const unselectedFeedbackEnd = row.slice(unselectedFeedbackStart + 1).indexOf('}}') + unselectedFeedbackStart;
@@ -221,7 +237,7 @@ function getMultipleChoiceOptions() {
             if (feedbacksStart !== -1 && unselectedFeedbackStart !== -1) {
                 unselectedFeedback = row.slice(unselectedFeedbackStart + 12, unselectedFeedbackEnd + 1);
                 if (!titleChanged) {
-                    row.slice(row.indexOf(']') + 1, unselectedFeedbackEnd).trim();
+                    title = row.slice(row.indexOf(']') + 1, feedbacksStart).trim();
                 }
             }
             multipleChoiceOptions.push({
@@ -386,7 +402,7 @@ function getEditorData() {
     for (let i in markdownData) {
         const row = markdownData[i];
         if (['{', '(', '[', '=', '|'].indexOf(row.trim()[0]) === -1) {
-            description += row + '\n';
+            description += row.replace('>>', '<p>').replace('<<', '</p>') + '\n';
         } else {
             break;
         }
