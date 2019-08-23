@@ -7,11 +7,13 @@ const {selectedAttemptsOption, selectedPointOption} = getScorringSettings();
 
 let unknownAttempt, unknownPoint, initAttempt, initPoint;
 
-const maxAttempts = 10;
+const maxAttempts = 11;
 const attemptsOptions = [...Array(maxAttempts).keys()].map(ind=>{
     // set selected value of attempts
-    ind++;  // options will start from 1 and will end at 10
-    if (+selectedAttemptsOption === ind ) {
+
+    if (!selectedAttemptsOption && !ind) {
+        initAttempt = { id: ind, value: '', label: 'Unlimited' };
+    } else if (+selectedAttemptsOption === ind ) {
         initAttempt = { id: ind, value: ind, label: ind };
     } else if (selectedAttemptsOption) {
         initAttempt = { 
@@ -24,14 +26,18 @@ const attemptsOptions = [...Array(maxAttempts).keys()].map(ind=>{
         }
     }
 
+    if (!ind) {
+        return { id: ind, value: '', label: 'Unlimited' };
+    }
     return { id: ind, value: ind, label: ind};
 });
 
-const maxPoints = 10;
+const maxPoints = 11;
 const pointsOptions = [...Array(maxPoints).keys()].map(ind=>{
     // set selected value of points
-    ind++;  // options will start from 1 and will end at 10
-    if (+selectedPointOption === ind ) {
+    if (!selectedPointOption && !ind) {
+        initPoint = { id: ind, value: '', label: 'Unlimited' };
+    } else if (+selectedPointOption === ind ) {
         initPoint = { id: ind, value: ind, label: ind };
     } else if (selectedPointOption) {
         initPoint = {
@@ -42,6 +48,9 @@ const pointsOptions = [...Array(maxPoints).keys()].map(ind=>{
         if (+selectedPointOption > maxPoints) {
             unknownPoint = initPoint;
         }
+    }
+    if (!ind) {
+        return { id: ind, value: '', label: 'Unlimited' };
     }
     return { id: ind, value: ind, label: ind};
 });
