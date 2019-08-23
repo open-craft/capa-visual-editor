@@ -1,0 +1,132 @@
+[
+  {
+    "id": "ShortAnswers.title",
+    "defaultMessage": "Correct Answers*",
+    "file": "src/components/UnitEditorWidget/ShortAnswers.js",
+    "start": {
+      "line": 9,
+      "column": 11
+    },
+    "end": {
+      "line": 12,
+      "column": 5
+    }
+  },
+  {
+    "id": "ShortAnswers.description",
+    "defaultMessage": "Enter the correct answer or other acceptable answers. (Not case sensitive)",
+    "file": "src/components/UnitEditorWidget/ShortAnswers.js",
+    "start": {
+      "line": 13,
+      "column": 17
+    },
+    "end": {
+      "line": 16,
+      "column": 5
+    }
+  },
+  {
+    "id": "ShortAnswers.title.form",
+    "defaultMessage": "Acceptable answers",
+    "file": "src/components/UnitEditorWidget/ShortAnswers.js",
+    "start": {
+      "line": 17,
+      "column": 15
+    },
+    "end": {
+      "line": 20,
+      "column": 5
+    }
+  },
+  {
+    "id": "ShortAnswers.btn.add.correct.answbtnAddCorrAnswer",
+    "defaultMessage": "+ Add another correct answer",
+    "file": "src/components/UnitEditorWidget/ShortAnswers.js",
+    "start": {
+      "line": 21,
+      "column": 20
+    },
+    "end": {
+      "line": 24,
+      "column": 5
+    }
+  },
+  {
+    "id": "ShortAnswers.title.incorrect.ansver",
+    "defaultMessage": "InCorrect Answers",
+    "file": "src/components/UnitEditorWidget/ShortAnswers.js",
+    "start": {
+      "line": 25,
+      "column": 20
+    },
+    "end": {
+      "line": 28,
+      "column": 5
+    }
+  },
+  {
+    "id": "ShortAnswers.description.incorrect.answbtnAddCorrAnswer",
+    "defaultMessage": "Add an optional incorrect answer such as a frequent misconception.",
+    "file": "src/components/UnitEditorWidget/ShortAnswers.js",
+    "start": {
+      "line": 29,
+      "column": 26
+    },
+    "end": {
+      "line": 32,
+      "column": 5
+    }
+  },
+  {
+    "id": "ShortAnswers.form.title",
+    "defaultMessage": "Wrong answers",
+    "file": "src/components/UnitEditorWidget/ShortAnswers.js",
+    "start": {
+      "line": 33,
+      "column": 15
+    },
+    "end": {
+      "line": 36,
+      "column": 5
+    }
+  },
+  {
+    "id": "ShortAnswers.btn.add.incorrect.answer",
+    "defaultMessage": "+ Add another incorrect answer",
+    "file": "src/components/UnitEditorWidget/ShortAnswers.js",
+    "start": {
+      "line": 37,
+      "column": 22
+    },
+    "end": {
+      "line": 40,
+      "column": 5
+    }
+  },
+  {
+    "id": "ShortAnswers.btn.addNewCorrectAnswer",
+    "defaultMessage": "+ Add correct answer",
+    "file": "src/components/UnitEditorWidget/ShortAnswers.js",
+    "start": {
+      "line": 41,
+      "column": 28
+    },
+    "end": {
+      "line": 44,
+      "column": 5
+    }
+  },
+  {
+    "id": "ShortAnswers.btn.btnAddNewIncorrectAnswer",
+    "defaultMessage": "+ Add incorrect answer",
+    "file": "src/components/UnitEditorWidget/ShortAnswers.js",
+    "start": {
+      "line": 45,
+      "column": 30
+    },
+    "end": {
+      "line": 48,
+      "column": 5
+    }
+  }
+]

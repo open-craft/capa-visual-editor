@@ -1,0 +1,80 @@
+[
+  {
+    "id": "SingleSelectItem.placeholder.correct",
+    "defaultMessage": "Enter the correct answer",
+    "file": "src/components/UnitEditorWidget/SingleSelectItem.js",
+    "start": {
+      "line": 7,
+      "column": 13
+    },
+    "end": {
+      "line": 10,
+      "column": 5
+    }
+  },
+  {
+    "id": "SingleSelectItem.placeholder.incorrect",
+    "defaultMessage": "Enter an incorrect answer",
+    "file": "src/components/UnitEditorWidget/SingleSelectItem.js",
+    "start": {
+      "line": 11,
+      "column": 15
+    },
+    "end": {
+      "line": 14,
+      "column": 5
+    }
+  },
+  {
+    "id": "SingleSelectItem.feedbackTitle",
+    "defaultMessage": "Specific feedback",
+    "file": "src/components/UnitEditorWidget/SingleSelectItem.js",
+    "start": {
+      "line": 15,
+      "column": 19
+    },
+    "end": {
+      "line": 18,
+      "column": 5
+    }
+  },
+  {
+    "id": "SingleSelectItem.feedbackPlaceholder",
+    "defaultMessage": "Enter feedback for when the choice is selected",
+    "file": "src/components/UnitEditorWidget/SingleSelectItem.js",
+    "start": {
+      "line": 19,
+      "column": 25
+    },
+    "end": {
+      "line": 22,
+      "column": 5
+    }
+  },
+  {
+    "id": "SingleSelectItem.feedbackBtn.areaLabel",
+    "defaultMessage": "Show feedback block",
+    "file": "src/components/UnitEditorWidget/SingleSelectItem.js",
+    "start": {
+      "line": 23,
+      "column": 26
+    },
+    "end": {
+      "line": 26,
+      "column": 5
+    }
+  },
+  {
+    "id": "SingleSelectItem.removeBtnAreaLabel",
+    "defaultMessage": "Remove answer item",
+    "file": "src/components/UnitEditorWidget/SingleSelectItem.js",
+    "start": {
+      "line": 27,
+      "column": 24
+    },
+    "end": {
+      "line": 30,
+      "column": 5
+    }
+  }
+]
