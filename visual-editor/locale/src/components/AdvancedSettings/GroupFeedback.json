@@ -1,0 +1,54 @@
+[
+  {
+    "id": "GroupFeedback.title",
+    "defaultMessage": "GROUP feedback",
+    "file": "src/components/AdvancedSettings/GroupFeedback.js",
+    "start": {
+      "line": 6,
+      "column": 11
+    },
+    "end": {
+      "line": 9,
+      "column": 5
+    }
+  },
+  {
+    "id": "GroupFeedback.description",
+    "defaultMessage": "Feedback will appear when a student submits a wrong answer.",
+    "file": "src/components/AdvancedSettings/GroupFeedback.js",
+    "start": {
+      "line": 10,
+      "column": 17
+    },
+    "end": {
+      "line": 13,
+      "column": 5
+    }
+  },
+  {
+    "id": "GroupFeedback.btn",
+    "defaultMessage": "+ Add group feedback",
+    "file": "src/components/AdvancedSettings/GroupFeedback.js",
+    "start": {
+      "line": 14,
+      "column": 9
+    },
+    "end": {
+      "line": 17,
+      "column": 5
+    }
+  },
+  {
+    "id": "GroupFeedback.note",
+    "defaultMessage": "Note: Group feedback overrides specific feedback",
+    "file": "src/components/AdvancedSettings/GroupFeedback.js",
+    "start": {
+      "line": 18,
+      "column": 10
+    },
+    "end": {
+      "line": 21,
+      "column": 5
+    }
+  }
+]

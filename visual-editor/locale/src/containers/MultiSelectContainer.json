@@ -1,0 +1,28 @@
+[
+  {
+    "id": "MultiSelectContainer.title",
+    "defaultMessage": "Question*",
+    "file": "src/containers/MultiSelectContainer.js",
+    "start": {
+      "line": 18,
+      "column": 11
+    },
+    "end": {
+      "line": 21,
+      "column": 5
+    }
+  },
+  {
+    "id": "MultiSelectContainer.description",
+    "defaultMessage": "Create a question that has more than one answer.",
+    "file": "src/containers/MultiSelectContainer.js",
+    "start": {
+      "line": 22,
+      "column": 17
+    },
+    "end": {
+      "line": 25,
+      "column": 5
+    }
+  }
+]

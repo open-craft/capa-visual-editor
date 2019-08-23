@@ -1,0 +1,67 @@
+[
+  {
+    "id": "GeneralFeedbackSetting.title",
+    "defaultMessage": "Genereal feedback",
+    "file": "src/components/AdvancedSettings/GeneralFeedbackSetting.js",
+    "start": {
+      "line": 7,
+      "column": 11
+    },
+    "end": {
+      "line": 10,
+      "column": 5
+    }
+  },
+  {
+    "id": "GeneralFeedbackSetting.description",
+    "defaultMessage": "Feedback will appear when a student submits a wrong answer",
+    "file": "src/components/AdvancedSettings/GeneralFeedbackSetting.js",
+    "start": {
+      "line": 11,
+      "column": 17
+    },
+    "end": {
+      "line": 14,
+      "column": 5
+    }
+  },
+  {
+    "id": "GeneralFeedbackSetting.label",
+    "defaultMessage": "Genereal feedback",
+    "file": "src/components/AdvancedSettings/GeneralFeedbackSetting.js",
+    "start": {
+      "line": 15,
+      "column": 11
+    },
+    "end": {
+      "line": 18,
+      "column": 5
+    }
+  },
+  {
+    "id": "GeneralFeedbackSetting.note",
+    "defaultMessage": "Note: This will be overridden if you have added option specific feedback.",
+    "file": "src/components/AdvancedSettings/GeneralFeedbackSetting.js",
+    "start": {
+      "line": 19,
+      "column": 10
+    },
+    "end": {
+      "line": 22,
+      "column": 5
+    }
+  },
+  {
+    "id": "GeneralFeedbackSetting.placeholder",
+    "defaultMessage": "Enter general feedback",
+    "file": "src/components/AdvancedSettings/GeneralFeedbackSetting.js",
+    "start": {
+      "line": 23,
+      "column": 17
+    },
+    "end": {
+      "line": 26,
+      "column": 5
+    }
+  }
+]

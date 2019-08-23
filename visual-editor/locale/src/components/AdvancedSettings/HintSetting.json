@@ -1,0 +1,67 @@
+[
+  {
+    "id": "HintSettings.lable",
+    "defaultMessage": "Hint",
+    "file": "src/components/AdvancedSettings/HintSetting.js",
+    "start": {
+      "line": 6,
+      "column": 11
+    },
+    "end": {
+      "line": 9,
+      "column": 5
+    }
+  },
+  {
+    "id": "HintSettings.description",
+    "defaultMessage": "If unsure, a student can check the hint before answering a question.",
+    "file": "src/components/AdvancedSettings/HintSetting.js",
+    "start": {
+      "line": 10,
+      "column": 17
+    },
+    "end": {
+      "line": 13,
+      "column": 5
+    }
+  },
+  {
+    "id": "HintSettings.note",
+    "defaultMessage": "Note: Hints can be turned off in an assignment.",
+    "file": "src/components/AdvancedSettings/HintSetting.js",
+    "start": {
+      "line": 14,
+      "column": 10
+    },
+    "end": {
+      "line": 17,
+      "column": 5
+    }
+  },
+  {
+    "id": "HintSettings.btnNewHint",
+    "defaultMessage": "+ add hint",
+    "file": "src/components/AdvancedSettings/HintSetting.js",
+    "start": {
+      "line": 18,
+      "column": 16
+    },
+    "end": {
+      "line": 21,
+      "column": 5
+    }
+  },
+  {
+    "id": "HintSettings.btnAnotherHint",
+    "defaultMessage": "+ add another hint",
+    "file": "src/components/AdvancedSettings/HintSetting.js",
+    "start": {
+      "line": 22,
+      "column": 20
+    },
+    "end": {
+      "line": 25,
+      "column": 5
+    }
+  }
+]
