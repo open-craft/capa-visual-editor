@@ -101,14 +101,13 @@ window.LXCData = window.LXCData || {};
 window.LXCData.markdown = process.env.NODE_ENV === 'development' ? n : window.LXCData.markdown;
 
 
-
-function getHints() {
-
-    if (!window.LXCData.markdown || !window.LXCData.markdown.trim()) {
+function getHints(testMarkdown) {
+    const markdown = process.env.NODE_ENV === 'test' ? testMarkdown : window.LXCData.markdown;
+    if (!markdown || !markdown.trim()) {
         return [];
     }
     let hints = [];
-
+    
     function getHint(row) {
         let hint = '';
         if (row.startsWith('||')) {
@@ -117,19 +116,19 @@ function getHints() {
             hint = row.slice(hintStart + 2, hintEnd + 2);
         }
         return hint;
-    };
-    for (let d in window.LXCData.markdown.split('\n')) {
-        let row = window.LXCData.markdown.split('\n')[d];
+    }
+    for (let d in markdown.split('\n')) {
+        let row = markdown.split('\n')[d];
         const hint = getHint(row);
         if (hint.length) {
             hints.push({
-                id: d,
+                id: hints.length,
                 value: hint
-            })
+            });
         }
-    };
+    }
     return hints;
-};
+}
 
 
 function getShortAnswerOptions() {
@@ -274,9 +273,9 @@ function getMultipleChoiceOptions() {
     return data;
 }
 
-function getSingleChoiceOptions() {
-
-    if (!window.LXCData.markdown || !window.LXCData.markdown.trim()) {
+function getSingleChoiceOptions(testMarkdown) {
+    const markdown = process.env.NODE_ENV === 'test' ? testMarkdown : window.LXCData.markdown;
+    if (!markdown || !markdown.trim()) {
         return {
             singleSelectAnswersList: [],
             selectedType: {
@@ -297,7 +296,7 @@ function getSingleChoiceOptions() {
 
     let singleChoiceOptions = [];
     let dropDownMode = false;
-    let markdownListData = window.LXCData.markdown.split('\n');
+    let markdownListData = markdown.split('\n');
     for (let d in markdownListData) {
         let row = markdownListData[d].trim();
         if (row.startsWith('[[')) {
