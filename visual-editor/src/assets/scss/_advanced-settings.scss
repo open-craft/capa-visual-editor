@@ -92,12 +92,27 @@
     font-size: 13px;
     line-height: normal;
     margin: 0 0 5px;
+
+    .lxc-advanced-settings-col-half & {
+        margin: 0;
+    }
+
+    &_wrap {
+        margin-bottom: 0;
+    }
 }
 
 .lxc-advanced-settings-note {
     font-size: 14px;
     line-height: normal;
     margin-top: 16px;
+}
+
+.lxc-fieldset-wrap {
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: block;
 }
 
 .lxc-unit-editor-wrapper .lxc-advanced-settings-field {

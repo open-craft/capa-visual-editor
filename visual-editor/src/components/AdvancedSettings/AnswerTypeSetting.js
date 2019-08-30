@@ -58,18 +58,18 @@ class AnswerTypeSetting extends React.PureComponent {
                 </div>
 
                 <div className='lxc-advanced-settings-form'>
-                    <label className='lxc-advanced-settings-label' htmlFor='sas1'>
+                    <label className='lxc-advanced-settings-label lxc-advanced-settings-label_wrap' htmlFor='sas1'>
                         {formatMessage(messages.label)}
+                        <Select
+                            id='sas1'
+                            className='lxc-advanced-settings-select'
+                            isSearchable={false}
+                            placeholder={formatMessage(messages.placeholder)}
+                            value={this.props.answerTypeSelectedOption}
+                            onChange={this.props.answerTypeChange}
+                            options={this.props.answerTypeOptions}
+                        />
                     </label>
-                    <Select
-                        id='sas1'
-                        className='lxc-advanced-settings-select'
-                        isSearchable={false}
-                        placeholder={formatMessage(messages.placeholder)}
-                        value={this.props.answerTypeSelectedOption}
-                        onChange={this.props.answerTypeChange}
-                        options={this.props.answerTypeOptions}
-                    />
                     <div className='lxc-advanced-settings-note'>
                         {formatMessage(messages.note)}
                     </div>

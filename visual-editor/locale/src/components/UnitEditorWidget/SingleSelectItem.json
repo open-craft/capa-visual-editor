@@ -1,14 +1,27 @@
 [
   {
+    "id": "SingleSelectItem.title",
+    "defaultMessage": "Answer item",
+    "file": "src/components/UnitEditorWidget/SingleSelectItem.js",
+    "start": {
+      "line": 7,
+      "column": 11
+    },
+    "end": {
+      "line": 10,
+      "column": 5
+    }
+  },
+  {
     "id": "SingleSelectItem.placeholder.correct",
     "defaultMessage": "Enter the correct answer",
     "file": "src/components/UnitEditorWidget/SingleSelectItem.js",
     "start": {
-      "line": 7,
+      "line": 11,
       "column": 13
     },
     "end": {
-      "line": 10,
+      "line": 14,
       "column": 5
     }
   },
@@ -17,11 +30,11 @@
     "defaultMessage": "Enter an incorrect answer",
     "file": "src/components/UnitEditorWidget/SingleSelectItem.js",
     "start": {
-      "line": 11,
+      "line": 15,
       "column": 15
     },
     "end": {
-      "line": 14,
+      "line": 18,
       "column": 5
     }
   },
@@ -30,11 +43,11 @@
     "defaultMessage": "Specific feedback",
     "file": "src/components/UnitEditorWidget/SingleSelectItem.js",
     "start": {
-      "line": 15,
+      "line": 19,
       "column": 19
     },
     "end": {
-      "line": 18,
+      "line": 22,
       "column": 5
     }
   },
@@ -43,11 +56,11 @@
     "defaultMessage": "Enter feedback for when the choice is selected",
     "file": "src/components/UnitEditorWidget/SingleSelectItem.js",
     "start": {
-      "line": 19,
+      "line": 23,
       "column": 25
     },
     "end": {
-      "line": 22,
+      "line": 26,
       "column": 5
     }
   },
@@ -56,11 +69,11 @@
     "defaultMessage": "Show feedback block",
     "file": "src/components/UnitEditorWidget/SingleSelectItem.js",
     "start": {
-      "line": 23,
+      "line": 27,
       "column": 26
     },
     "end": {
-      "line": 26,
+      "line": 30,
       "column": 5
     }
   },
@@ -69,11 +82,11 @@
     "defaultMessage": "Remove answer item",
     "file": "src/components/UnitEditorWidget/SingleSelectItem.js",
     "start": {
-      "line": 27,
+      "line": 31,
       "column": 24
     },
     "end": {
-      "line": 30,
+      "line": 34,
       "column": 5
     }
   }

@@ -70,28 +70,33 @@ class GroupFeedbackItem extends React.Component{
                 <div className='lxc-advanced-settings-note'>
                     {formatMessage(messages.note)}
                 </div>
-                <div className='lxc-advanced-settings-feedback-options'>
-                    {
-                        this.props.answersList.map((el) => {
-                            return (
-                                <div key={el.id} className='lxc-advanced-settings-feedback-option'>
-                                    <input
-                                        name='feedback-option'
-                                        type='checkbox'
-                                        id={`feedback-option-${this.props.id}-${el.id}`}
-                                        data-answer-id={el.id}
-                                        checked={this.props.answers.indexOf(el.id) > -1}
-                                        onChange={this.groupChangeHandler.bind(this)}
-                                    />
-                                    <label htmlFor={`feedback-option-${this.props.id}-${el.id}`} className='lxc-advanced-settings-feedback-label'>
-                                        <span className='lxc-switch-checkbox'></span>
-                                        {groupFeedbackWordMapping[el.id]}
-                                    </label>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
+                <fieldset className='lxc-fieldset-wrap'>
+                    <legend className='lxc-sr'>
+                        {formatMessage(messages.note)}
+                    </legend>
+                    <div className='lxc-advanced-settings-feedback-options'>
+                        {
+                            this.props.answersList.map((el) => {
+                                return (
+                                    <div key={el.id} className='lxc-advanced-settings-feedback-option'>
+                                        <input
+                                            name='feedback-option'
+                                            type='checkbox'
+                                            id={`feedback-option-${this.props.id}-${el.id}`}
+                                            data-answer-id={el.id}
+                                            checked={this.props.answers.indexOf(el.id) > -1}
+                                            onChange={this.groupChangeHandler.bind(this)}
+                                        />
+                                        <label htmlFor={`feedback-option-${this.props.id}-${el.id}`} className='lxc-advanced-settings-feedback-label'>
+                                            <span className='lxc-switch-checkbox'></span>
+                                            {groupFeedbackWordMapping[el.id]}
+                                        </label>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </fieldset>
                 <button className='lxc-feedback-remove-btn' onClick={this.delete.bind(this)}>
                     {formatMessage(messages.btn)}
                 </button>

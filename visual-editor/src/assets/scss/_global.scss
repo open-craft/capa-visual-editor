@@ -128,6 +128,11 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 767px, "small": 600px, "
 .lxc-unit-form-select {
     display: block;
     width: 100%;
+    font-size: 16px;
+
+    .lxc-advanced-settings-label_wrap & {
+        margin-top: 5px;
+    }
 
     .css-yk16xz-control {
         background: #fff;
