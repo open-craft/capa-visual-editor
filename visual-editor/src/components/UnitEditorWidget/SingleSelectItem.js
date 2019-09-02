@@ -4,6 +4,10 @@ import { defineMessages, injectIntl } from 'react-intl';
 import '../../assets/scss/app.scss';
 
 const messages = defineMessages({
+    title: {
+        id: 'SingleSelectItem.title',
+        defaultMessage: 'Answer item'
+    },
     correct: {
         id: 'SingleSelectItem.placeholder.correct',
         defaultMessage: 'Enter the correct answer'
@@ -89,13 +93,14 @@ class SingleSelectItem extends React.PureComponent {
 
         return (
             <div key={this.props.id} className='lxc-answers-option'>
-                <div className='lxc-answers-radio'>
+                <fieldset className='lxc-answers-radio'>
+                    <legend className='lxc-sr'>{formatMessage(messages.title)}</legend>
                     <input name='correct' type='radio' id={`answer-radio${this.props.id}`}
                            defaultChecked={this.props.correct} onChange={this.checkBoxChange}/>
                     <label htmlFor={`answer-radio${this.props.id}`} className='lxc-answers-radio-label'>
                         {this.props.title}
                     </label>
-                </div>
+                </fieldset>
                 <div className='lxc-answers-field-wrapper'>
                     <div className={`lxc-answers-feedback ${additionallyСlass}`}>
                         <label className='lxc-answers-feedback-title' htmlFor={`feedback-field${this.props.id}`}>

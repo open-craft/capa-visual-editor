@@ -5,6 +5,10 @@ import '../../assets/scss/app.scss';
 
 
 const messages = defineMessages({
+    title: {
+        id: 'MultiSelectItem.title',
+        defaultMessage: 'Answer item'
+    },
     correct: {
         id: 'MultiSelectItem.placeholder.correct',
         defaultMessage: 'Enter the correct answer'
@@ -101,13 +105,14 @@ class MultiSelectItem extends React.PureComponent {
         const placeholderText = this.props.correct ? formatMessage(messages.correct) : formatMessage(messages.incorrect);
         return (
             <div key={this.props.id} className='lxc-answers-option'>
-                <div className='lxc-answers-radio'>
+                <fieldset className='lxc-answers-radio'>
+                    <legend className='lxc-sr'>{formatMessage(messages.title)}</legend>
                     <input name='answer' type='checkbox' id={`answer-checkbox${this.props.id}`} value={this.props.correct}
                            defaultChecked={this.props.correct} onChange={this.checkboxChange.bind(this)}/>
                     <label htmlFor={`answer-checkbox${this.props.id}`} className='lxc-answers-radio-label'>
                         {this.props.title}
                     </label>
-                </div>
+                </fieldset>
                 <div className='lxc-answers-field-wrapper'>
                     <div className={`lxc-answers-feedback ${this.state.feedbackOpenned ? 'lxc-answers-feedback_open' : ''}`}>
                         <label className='lxc-answers-feedback-title' htmlFor={`feedback-selected${this.props.id}`}>

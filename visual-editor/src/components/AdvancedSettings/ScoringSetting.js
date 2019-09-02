@@ -73,32 +73,32 @@ class ScorringSetting extends React.PureComponent {
                 <div className='lxc-advanced-settings-form'>
                     <div className='lxc-advanced-settings-container'>
                         <div className='lxc-advanced-settings-col-half'>
-                            <label className='lxc-advanced-settings-label' htmlFor='sas4'>
+                            <label className='lxc-advanced-settings-label lxc-advanced-settings-label_wrap' htmlFor='sas4'>
                                 {formatMessage(messages.labelAttempts)}
+                                <Select
+                                    id='sas4'
+                                    className='lxc-advanced-settings-select'
+                                    isSearchable={false}
+                                    placeholder={formatMessage(messages.placeholderAttemps)}
+                                    defaultValue={this.props.selectedAttemptsOption}
+                                    onChange={this.props.temptsChange}
+                                    options={this.props.attemptsOptions}
+                                />
                             </label>
-                            <Select
-                                id='sas4'
-                                className='lxc-advanced-settings-select'
-                                isSearchable={false}
-                                placeholder={formatMessage(messages.placeholderAttemps)}
-                                defaultValue={this.props.selectedAttemptsOption}
-                                onChange={this.props.temptsChange}
-                                options={this.props.attemptsOptions}
-                            />
                         </div>
                         <div className='lxc-advanced-settings-col-half'>
-                            <label className='lxc-advanced-settings-label' htmlFor='sas5'>
+                            <label className='lxc-advanced-settings-label lxc-advanced-settings-label_wrap' htmlFor='sas5'>
                                 {formatMessage(messages.labelPoints)}
+                                <Select
+                                    id='sas5'
+                                    className='lxc-advanced-settings-select'
+                                    isSearchable={false}
+                                    placeholder={formatMessage(messages.placeholderPoints)}
+                                    defaultValue={this.props.selectedPointOption}
+                                    onChange={this.props.pointsChange}
+                                    options={this.props.pointsOptions}
+                                />
                             </label>
-                            <Select
-                                id='sas5'
-                                className='lxc-advanced-settings-select'
-                                isSearchable={false}
-                                placeholder={formatMessage(messages.placeholderPoints)}
-                                defaultValue={this.props.selectedPointOption}
-                                onChange={this.props.pointsChange}
-                                options={this.props.pointsOptions}
-                            />
                         </div>
                     </div>
                     <div className='lxc-advanced-settings-note'>
