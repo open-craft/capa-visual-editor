@@ -11,11 +11,11 @@ const messages = defineMessages({
     },
     correct: {
         id: 'MultiSelectItem.placeholder.correct',
-        defaultMessage: 'Enter the correct answer'
+        defaultMessage: 'Add the correct answer'
     },
     incorrect: {
         id: 'MultiSelectItem.placeholder.incorrect',
-        defaultMessage: 'Enter an incorrect answer'
+        defaultMessage: 'Add an incorrect answer'
     },
     selectedFeedback: {
         id: 'MultiSelectItem.selectedFeedback',
