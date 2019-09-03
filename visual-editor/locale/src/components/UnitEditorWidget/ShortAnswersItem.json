@@ -14,7 +14,7 @@
   },
   {
     "id": "ShortAnswersItem.placeholder.enter.another",
-    "defaultMessage": "Enter another acceptable answer",
+    "defaultMessage": "Add another acceptable answer",
     "file": "src/components/UnitEditorWidget/ShortAnswersItem.js",
     "start": {
       "line": 12,
@@ -27,7 +27,7 @@
   },
   {
     "id": "ShortAnswersItem.placeholder.enter.incorrect",
-    "defaultMessage": "Enter an incorrect answer",
+    "defaultMessage": "Add an incorrect answer",
     "file": "src/components/UnitEditorWidget/ShortAnswersItem.js",
     "start": {
       "line": 16,

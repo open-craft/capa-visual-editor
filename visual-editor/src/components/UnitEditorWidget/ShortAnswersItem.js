@@ -11,11 +11,11 @@ const messages = defineMessages({
     },
     enterAnother: {
         id: 'ShortAnswersItem.placeholder.enter.another',
-        defaultMessage: 'Enter another acceptable answer'
+        defaultMessage: 'Add another acceptable answer'
     },
     enterIncorrect: {
         id: 'ShortAnswersItem.placeholder.enter.incorrect',
-        defaultMessage: 'Enter an incorrect answer'
+        defaultMessage: 'Add an incorrect answer'
     },
     title: {
         id: 'ShortAnswersItem.title',

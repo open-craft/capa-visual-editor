@@ -14,7 +14,7 @@
   },
   {
     "id": "SingleSelectItem.placeholder.correct",
-    "defaultMessage": "Enter the correct answer",
+    "defaultMessage": "Add the correct answer",
     "file": "src/components/UnitEditorWidget/SingleSelectItem.js",
     "start": {
       "line": 11,
@@ -27,7 +27,7 @@
   },
   {
     "id": "SingleSelectItem.placeholder.incorrect",
-    "defaultMessage": "Enter an incorrect answer",
+    "defaultMessage": "Add an incorrect answer",
     "file": "src/components/UnitEditorWidget/SingleSelectItem.js",
     "start": {
       "line": 15,

@@ -10,11 +10,11 @@ const messages = defineMessages({
     },
     correct: {
         id: 'SingleSelectItem.placeholder.correct',
-        defaultMessage: 'Enter the correct answer'
+        defaultMessage: 'Add the correct answer'
     },
     incorrect: {
         id: 'SingleSelectItem.placeholder.incorrect',
-        defaultMessage: 'Enter an incorrect answer'
+        defaultMessage: 'Add an incorrect answer'
     },
     feedbackTitle: {
         id: 'SingleSelectItem.feedbackTitle',
