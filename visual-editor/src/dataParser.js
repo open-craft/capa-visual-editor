@@ -100,7 +100,6 @@ const n = `You can use this template as a guide to the simple editor markdown an
 window.LXCData = window.LXCData || {};
 window.LXCData.markdown = process.env.NODE_ENV === 'development' ? n : window.LXCData.markdown;
 
-
 function getHints(testMarkdown) {
     const markdown = process.env.NODE_ENV === 'test' ? testMarkdown : window.LXCData.markdown;
     if (!markdown || !markdown.trim()) {
@@ -130,21 +129,20 @@ function getHints(testMarkdown) {
     return hints;
 }
 
-
-function getShortAnswerOptions() {
+function getShortAnswerOptions(testMarkdown) {
     const textOption = {id:1, value: 'text', label: 'text'};
     const numberOption = {id:2, value: 'number', label: 'number'};
     const typeOptions = [
         textOption,
         numberOption
     ];
-    if (!window.LXCData.markdown || !window.LXCData.markdown.trim()) {
+    if (process.env.NODE_ENV !== 'test' && (!window.LXCData.markdown || !window.LXCData.markdown.trim())) {
         return {
             typeOptions: typeOptions,
             shortAnswersList: []
         };
     }
-    let markdownListData = window.LXCData.markdown.split('\n');
+    let markdownListData = process.env.NODE_ENV === 'test' ? testMarkdown : window.LXCData.markdown.split('\n');
     let shortAnswersList = [];
     let gotAnswer = false;
     for (let i in markdownListData) {
@@ -198,17 +196,16 @@ function getShortAnswerOptions() {
     }
 }
 
-
-function getMultipleChoiceOptions() {
+function getMultipleChoiceOptions(testMarkdown) {
     let multipleChoiceOptions = [];
     let data = {
         multiSelectAnswersList: multipleChoiceOptions,
         groupFeedbackList: []
     };
-    if (!window.LXCData.markdown || !window.LXCData.markdown.trim()) {
+    if (process.env.NODE_ENV !== 'test' && (!window.LXCData.markdown || !window.LXCData.markdown.trim())) {
         return data;
     }
-    let markdownListData = window.LXCData.markdown.split('\n');
+    let markdownListData = process.env.NODE_ENV === 'test' ? testMarkdown : window.LXCData.markdown.split('\n');
     let feedback = '';
     let counter = 0;
     for (let d in markdownListData) {
@@ -391,13 +388,14 @@ function getSingleChoiceOptions(testMarkdown) {
     };
 }
 
-function getEditorData() {
+function getEditorData(testMarkdown) {
 
-    if (!window.LXCData.markdown || !window.LXCData.markdown.trim()) {
+    const markdown = process.env.NODE_ENV === 'test' ? testMarkdown : window.LXCData.markdown;
+    if (!markdown || !markdown.trim()) {
         return '';
     }
     let description = '';
-    const markdownData = window.LXCData.markdown.trim().split('\n');
+    const markdownData = markdown.trim().split('\n');
     for (let i in markdownData) {
         const row = markdownData[i];
         if (['{', '(', '[', '=', '|'].indexOf(row.trim()[0]) === -1) {
