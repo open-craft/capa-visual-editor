@@ -4,7 +4,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 const messages = defineMessages({
     placeholder: {
         id: 'HintSettingItem.placeholder',
-        defaultMessage: 'Enter a hint'
+        defaultMessage: 'Add a hint'
     },
     ariaLabel: {
         id: 'HintSettingItem.ariaLabel',

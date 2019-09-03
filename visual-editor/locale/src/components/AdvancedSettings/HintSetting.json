@@ -1,6 +1,6 @@
 [
   {
-    "id": "HintSettings.lable",
+    "id": "HintSettings.label",
     "defaultMessage": "Hint",
     "file": "src/components/AdvancedSettings/HintSetting.js",
     "start": {

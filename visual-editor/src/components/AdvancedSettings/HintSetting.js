@@ -4,7 +4,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
     title: {
-        id: 'HintSettings.lable',
+        id: 'HintSettings.label',
         defaultMessage: 'Hint'
     },
     description: {
