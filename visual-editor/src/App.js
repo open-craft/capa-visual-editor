@@ -141,12 +141,16 @@ function getMarkdown(needToCompare=false) {
     }
     if (needToCompare) {
         if (window.LXCData.markdown) {
+            let windowMarkdown = window.LXCData.markdown.trim();
+            const questionTextStart = windowMarkdown.indexOf('>>');
+            const questionTextEnd = windowMarkdown.indexOf('<<');
+            if (questionTextStart !== -1 && questionTextEnd !== -1 && (questionTextEnd > questionTextStart)) {
+                windowMarkdown = windowMarkdown.replace('>>', '<p>').replace('<<', '</p>')
+            }
             return markdown.trim()
                 .replace(/\n/g, '')
                 .split(' ')
-                .join('') === window.LXCData.markdown.trim()
-                                  .replace('>>', '<p>')
-                                  .replace('<<', '</p>')
+                .join('') === windowMarkdown
                                   .replace(/\n/g, '')
                                   .split(' ')
                                   .join('');

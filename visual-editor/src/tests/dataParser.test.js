@@ -4,7 +4,6 @@ import {
     getSingleChoiceOptions,
     getEditorData,
     getHints,
-    getScorringSettings,
     getShortAnswerOptions
 } from '../dataParser';
 
@@ -376,14 +375,12 @@ describe('Custom edx markdown (multipleSelectWithUnselected)', () => {
 });
 
 describe('Broken edx markdown (singleSelect)', () => {
-//     TODO: need to fix markdown parser for broken editor text
     it('Broken start of editor data - singleSelectWithBrokenStartDescription', () => {
         const response = `You can use this template as a guide to the simple editor markdown and OLX markup to use for multiple choice problems. Edit this component to replace this template with your own assessment.
 
 >Add the question text, or prompt, here. This text is required.||You can add an optional tip or note related to the prompt like this. <<`;
         expect(getEditorData(markdowns.singleSelectWithBrokenStartOfDescription).trim()).toEqual(response.trim());
     });
-//     TODO: need to fix markdown parser for broken editor text
     it('Broken end of editor data - singleSelectWithBrokenEndOfDescription', () => {
         const response = `You can use this template as a guide to the simple editor markdown and OLX markup to use for multiple choice problems. Edit this component to replace this template with your own assessment.
 
