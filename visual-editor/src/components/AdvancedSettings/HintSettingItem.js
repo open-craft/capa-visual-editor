@@ -22,6 +22,11 @@ class HintSettingItem extends React.Component {
         };
     }
 
+    handleKeyDown(e) {
+        e.target.style.height = 'inherit';
+        e.target.style.height = `${e.target.scrollHeight+2}px`;
+    }
+
     componentDidMount() {
         this.setState({...this.props});
     }
@@ -42,12 +47,14 @@ class HintSettingItem extends React.Component {
         return (
             <div className='lxc-advanced-hint-wrapper'>
                 <label className='lxc-advanced-settings-label' htmlFor={`sas-${this.props.id}`}>Hint</label>
-                <input id={`sas-${this.props.id}`}
-                       type='text'
-                       className='lxc-advanced-settings-field'
-                       placeholder={formatMessage(messages.placeholder)}
-                       value={this.props.value}
-                       onChange={this.change.bind(this)}/>
+                <textarea name="hint-field"
+                          className='lxc-advanced-settings-field'
+                          placeholder={formatMessage(messages.placeholder)}
+                          value={this.props.value}
+                          onChange={this.change.bind(this)}
+                          onKeyUp={this.handleKeyDown}
+                          rows={1}
+                          id={`sas-${this.props.id}`}/>
             <button className='lxc-answers-remove-btn' type='button' aria-label={formatMessage(messages.ariaLabel)} onClick={this.remove.bind(this)}/>
             </div>
         )
