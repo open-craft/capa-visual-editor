@@ -138,7 +138,11 @@ class MultiSelectItem extends React.PureComponent {
                                   onChange={this.titleChanged.bind(this)} onKeyUp={this.handleKeyDown}/>
                         <button className='lxc-answers-feedback-btn' type='button' aria-label={formatMessage(messages.titleAreaLabel)} onClick={this.showHideFeedback.bind(this)}/>
                     </div>
-                    <button className='lxc-answers-remove-btn' type='button' aria-label={formatMessage(messages.buttonRemoveAreaLabel)} onClick={this.removeAnswer.bind(this)}/>
+                    {
+                        this.props.answersList.length > 1 ? (
+                            <button className='lxc-answers-remove-btn' type='button' aria-label={formatMessage(messages.buttonRemoveAreaLabel)} onClick={this.removeAnswer.bind(this)}/>
+                        ) : null
+                    }
                 </div>
             </div>
         );

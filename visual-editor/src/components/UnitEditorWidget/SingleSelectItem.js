@@ -116,7 +116,11 @@ class SingleSelectItem extends React.PureComponent {
                         placeholder={placeholderText} onChange={this.titleChange} onKeyUp={this.handleKeyDown}/>
                         <button className='lxc-answers-feedback-btn' type='button' aria-label={formatMessage(messages.feedbackBtnAreaLabel)} onClick={this.openFeedbackButtonClick}/>
                     </div>
-                    <button className='lxc-answers-remove-btn' type='button' aria-label={formatMessage(messages.removeBtnAreaLabel)} onClick={this.removeAnswer}/>
+                    {
+                        this.props.answersList.length > 1 ? (
+                            <button className='lxc-answers-remove-btn' type='button' aria-label={formatMessage(messages.removeBtnAreaLabel)} onClick={this.removeAnswer}/>
+                        ) : null
+                    }
                 </div>
             </div>
         );

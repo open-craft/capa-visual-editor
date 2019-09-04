@@ -116,7 +116,11 @@ class ShortAnswersItem extends React.PureComponent {
                                   placeholder={placeholderText} onChange={this.valueChanged.bind(this)} onKeyUp={this.handleKeyDown}/>
                         <button className='lxc-answers-feedback-btn' type='button' aria-label={formatMessage(messages.btnFeedback)} onClick={this.openFeedbackButtonClick.bind(this)}/>
                     </div>
-                    <button className='lxc-answers-remove-btn' type='button' aria-label={formatMessage(messages.btnRemove)} onClick={this.removeAnswer.bind(this)}/>
+                    {
+                        this.props.shortAnswersList.length > 1 ? (
+                            <button className='lxc-answers-remove-btn' type='button' aria-label={formatMessage(messages.btnRemove)} onClick={this.removeAnswer.bind(this)}/>
+                        ) : null
+                    }
                 </div>
             </div>
         );

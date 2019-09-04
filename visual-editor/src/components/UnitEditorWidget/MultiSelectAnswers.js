@@ -39,7 +39,9 @@ class MultiSelectAnswers extends React.Component {
                         this.props.answersList.map((answer) => {
                             return <MultiSelectItem 
                                         key={answer.id} {...answer}
-                                        {...this.props}
+                                        multiSelectChangeAnswer={this.props.multiSelectChangeAnswer}
+                                        multiSelectRemoveAnswer={this.props.multiSelectRemoveAnswer}
+                                        answersList={this.props.answersList}
                                     />
                         })
                     }

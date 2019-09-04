@@ -38,6 +38,7 @@ class SingleSelectAnswers extends React.Component {
                                         key={answer.id} {...answer}
                                         singleSelectChangeAnswer={this.props.singleSelectChangeAnswer}
                                         singleSelectRemoveAnswer={this.props.singleSelectRemoveAnswer}
+                                        answersList={this.props.answersList}
                                         />
                         })
                     }
