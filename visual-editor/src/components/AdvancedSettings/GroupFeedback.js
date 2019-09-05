@@ -41,7 +41,7 @@ class GroupFeedback extends React.Component {
                         return (
                             <GroupFeedbackItem
                                 key={ind}
-                                id={ind}
+                                id={Math.random()}
                                 answersList={this.props.answersList}
                                 groupFeedbackChange={this.props.groupFeedbackChange}
                                 groupFeedbackRemove={this.props.groupFeedbackRemove}

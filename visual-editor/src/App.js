@@ -101,7 +101,14 @@ function getMarkdown(needToCompare=false) {
             for (let i in globalState.multiSelectAnswers.groupFeedbackList) {
                 const groupFeedback = globalState.multiSelectAnswers.groupFeedbackList[i];
                 if (groupFeedback.answers.length && groupFeedback.feedback.trim()) {
-                    const answers = groupFeedback.answers.sort().map(el => groupFeedbackWordMapping[el]).join(' ');
+                    const answers = groupFeedback.answers.map((answerId) => {
+                        const answerById = globalState.multiSelectAnswers.multiSelectAnswersList.filter(ans => ans.id === answerId)[0];
+                        if (answerById.title.length) {
+                            return groupFeedbackWordMapping[globalState.multiSelectAnswers.multiSelectAnswersList.indexOf(answerById)];
+                        } else {
+                            return '';
+                        }
+                    }).join(' ');
                     groupFeedbackmardown += `{{ ((${answers})) ${groupFeedback.feedback} }}\n`;
                 }
             }

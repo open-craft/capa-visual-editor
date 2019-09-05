@@ -43,11 +43,11 @@
     "defaultMessage": "+ Add <span class={className}>another</span> answer",
     "file": "src/components/UnitEditorWidget/SingleSelectAnswers.js",
     "start": {
-      "line": 48,
+      "line": 49,
       "column": 32
     },
     "end": {
-      "line": 54,
+      "line": 55,
       "column": 34
     }
   }

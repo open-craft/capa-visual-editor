@@ -71,13 +71,13 @@ class ShortAnswers extends React.PureComponent {
                             {formatMessage(messages.titleForm)}
                         </div>
                         {
-                            correctAnswers.map(shortAnswer => {
+                            correctAnswers.map((shortAnswer, i) => {
                                 return <ShortAnswersItem
                                         shortAnswersList={this.props.shortAnswersList}
                                         typeOptions={this.props.typeOptions}
                                         remove={this.props.shortAnswersRemoveAnswer}
                                         change={this.props.shortAnswersChangeAnswer}
-                                        key={shortAnswer.id}
+                                        key={i}
                                         {...shortAnswer} />
                             })
                         }

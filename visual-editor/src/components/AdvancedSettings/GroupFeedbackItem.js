@@ -76,9 +76,9 @@ class GroupFeedbackItem extends React.Component{
                     </legend>
                     <div className='lxc-advanced-settings-feedback-options'>
                         {
-                            this.props.answersList.map((el) => {
+                            this.props.answersList.map((el, i) => {
                                 return (
-                                    <div key={el.id} className='lxc-advanced-settings-feedback-option'>
+                                    <div key={i} className='lxc-advanced-settings-feedback-option'>
                                         <input
                                             name='feedback-option'
                                             type='checkbox'
@@ -89,7 +89,7 @@ class GroupFeedbackItem extends React.Component{
                                         />
                                         <label htmlFor={`feedback-option-${this.props.id}-${el.id}`} className='lxc-advanced-settings-feedback-label'>
                                             <span className='lxc-switch-checkbox'></span>
-                                            {groupFeedbackWordMapping[el.id]}
+                                            {groupFeedbackWordMapping[i]}
                                         </label>
                                     </div>
                                 )

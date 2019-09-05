@@ -17,7 +17,7 @@ const singleSelectAnswersReducer = function(state=initialState, action) {
         case ActionTypes.SINGLE_SELECT_ANSWERS_REMOVE:
             return {
                 ...state,
-                singleSelectAnswersList: state.singleSelectAnswersList.filter(single => single.id !== action.id)
+                singleSelectAnswersList: state.singleSelectAnswersList.filter(single => single.id !== action.id).map((el, ind) => {el.id = ind; return el;})
             };
         case ActionTypes.SINGLE_SELECT_ANSWERS_CHANGED:
             return {
