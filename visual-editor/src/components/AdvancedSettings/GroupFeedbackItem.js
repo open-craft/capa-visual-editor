@@ -19,14 +19,9 @@ const messages = defineMessages({
         id: 'GroupFeedbackItem.btn',
         defaultMessage: 'Delete group feedback'
     },
-})
+});
 
 class GroupFeedbackItem extends React.Component{
-    handleKeyDown(e) {
-        e.target.style.height = 'inherit';
-        e.target.style.height = `${e.target.scrollHeight+2}px`;
-    }
-
     feedbackChangeHandler(event) {
         this.props.groupFeedbackChange({
             feedback: event.target.value,
@@ -69,7 +64,6 @@ class GroupFeedbackItem extends React.Component{
                     className='lxc-advanced-settings-field'
                     placeholder={formatMessage(messages.placeholder)}
                     value={this.props.feedback}
-                    onKeyUp={this.handleKeyDown}
                     onChange={this.feedbackChangeHandler.bind(this)}>
                 </textarea>
                 <div className='lxc-advanced-settings-note'>

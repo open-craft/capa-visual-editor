@@ -1,5 +1,7 @@
 import React from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
+import { doAutoSize } from "../../Utils";
+import autosize from "autosize";
 
 import '../../assets/scss/app.scss';
 
@@ -53,14 +55,15 @@ class MultiSelectItem extends React.PureComponent {
         };
     }
 
-    handleKeyDown(e) {
-        e.target.style.height = 'inherit';
-        e.target.style.height = `${e.target.scrollHeight+2}px`;
+    componentDidMount() {
+        autosize(this.answerTextarea);
     }
 
     showHideFeedback() {
         this.setState({
             feedbackOpenned: !this.state.feedbackOpenned
+        }, () => {
+            doAutoSize();
         });
     }
 
@@ -103,6 +106,7 @@ class MultiSelectItem extends React.PureComponent {
     render() {
         const { formatMessage } = this.props.intl;
         const placeholderText = this.props.correct ? formatMessage(messages.correct) : formatMessage(messages.incorrect);
+
         return (
             <div key={this.props.id} className='lxc-answers-option'>
                 <fieldset className='lxc-answers-radio'>
@@ -119,7 +123,7 @@ class MultiSelectItem extends React.PureComponent {
                             <label className='lxc-sr' htmlFor={`answer-multi${this.props.id}`}>{placeholderText}</label>
                             <textarea rows={1} className='lxc-answers-item' id={`answer-multi${this.props.id}`}
                                       placeholder={placeholderText} value={this.props.title}
-                                      onChange={this.titleChanged.bind(this)} onKeyUp={this.handleKeyDown}/>
+                                      onChange={this.titleChanged.bind(this)} ref={c => (this.answerTextarea = c)}/>
                             <button className='lxc-answers-feedback-btn' type='button' aria-label={formatMessage(messages.titleAreaLabel)} onClick={this.showHideFeedback.bind(this)}/>
                         </div>
                         {
@@ -134,16 +138,16 @@ class MultiSelectItem extends React.PureComponent {
                         </label>
                         <textarea rows={1} className='lxc-answers-feedback-field'
                                   id={`feedback-selected${this.props.id}`} value={this.props.selectedFeedback}
-                                  placeholder={formatMessage(messages.selectedFeedbackFieldPlaceholder)} onChange={this.selectedFeedbackChanged.bind(this)}
-                                  onKeyUp={this.handleKeyDown}/>
+                                  placeholder={formatMessage(messages.selectedFeedbackFieldPlaceholder)}
+                                  onChange={this.selectedFeedbackChanged.bind(this)}/>
 
                         <label className='lxc-answers-feedback-title' htmlFor={`feedback-unselected${this.props.id}`}>
                             {formatMessage(messages.unselectedFeedback)}
                         </label>
                         <textarea rows={1} className='lxc-answers-feedback-field'
                                   id={`feedback-unselected${this.props.id}`} value={this.props.unselectedFeedback}
-                                  placeholder={formatMessage(messages.unselectedFeedbackFieldPlaceholder)} onChange={this.unselectedFeedbackChanged.bind(this)}
-                                  onKeyUp={this.handleKeyDown}/>
+                                  placeholder={formatMessage(messages.unselectedFeedbackFieldPlaceholder)}
+                                  onChange={this.unselectedFeedbackChanged.bind(this)}/>
                     </div>
                 </div>
             </div>

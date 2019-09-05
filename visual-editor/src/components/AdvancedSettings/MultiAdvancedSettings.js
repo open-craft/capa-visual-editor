@@ -4,6 +4,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import GroupFeedback from './GroupFeedback';
 import HintSetting from './HintSetting';
 import ScorringSetting from './ScoringSetting';
+import { doAutoSize } from "../../Utils";
 
 import '../../assets/scss/app.scss';
 
@@ -30,9 +31,12 @@ class MultiAdvancedSettings extends React.Component {
             advancedSettingsOpenned: false,
         };
     }
+
     switchAdvancedSettings() {
         this.setState({
             advancedSettingsOpenned: !this.state.advancedSettingsOpenned
+        }, () => {
+            doAutoSize();
         });
     }
 
