@@ -10,7 +10,7 @@ const ShortAnswerReducer = function(state=initialState, action) {
     switch (action.type) {
         case SHORT_ANSWERS_ADD_CORRECT:
             let emptyCorrectAnswer = {
-                id: state.shortAnswersList.length, value: '', currentType: defaultOption, correct: true
+                id: Math.random(), value: '', currentType: defaultOption, correct: true
             };
             return {
                 ...state,
@@ -18,7 +18,7 @@ const ShortAnswerReducer = function(state=initialState, action) {
             };
         case SHORT_ANSWERS_ADD_INCORRECT:
             let emptyIncorrectAnswer = {
-                id: state.shortAnswersList.length, value: '', currentType: defaultOption, correct: false
+                id: Math.random(), value: '', currentType: defaultOption, correct: false
             };
             return {
                 ...state,
@@ -27,9 +27,7 @@ const ShortAnswerReducer = function(state=initialState, action) {
         case SHORT_ANSWERS_REMOVE:
             return {
                 ...state,
-                shortAnswersList: state.shortAnswersList.filter(
-                    single => single.id !== action.id
-                )
+                shortAnswersList: state.shortAnswersList.filter(single => single.id !== action.id)
             };
         case SHORT_ANSWERS_CHANGED:
             return {

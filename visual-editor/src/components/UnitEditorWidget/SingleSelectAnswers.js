@@ -35,7 +35,7 @@ class SingleSelectAnswers extends React.Component {
                     {
                         this.props.answersList.map(answer => {
                             return <SingleSelectItem
-                                        key={answer.id} {...answer}
+                                        key={Math.random()} {...answer}
                                         singleSelectChangeAnswer={this.props.singleSelectChangeAnswer}
                                         singleSelectRemoveAnswer={this.props.singleSelectRemoveAnswer}
                                         answersList={this.props.answersList}

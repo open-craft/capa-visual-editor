@@ -9,7 +9,7 @@ const HintSettingReducer = function(state=initialState, action) {
     switch(action.type) {
         case ADVANCED_SETTING_HINT_ADD:
             let newOne = {
-                id: state.hints.length,
+                id: Math.random(),
                 value: ""
             };
             return Object.assign({}, state, {hints: state.hints.concat([newOne])});

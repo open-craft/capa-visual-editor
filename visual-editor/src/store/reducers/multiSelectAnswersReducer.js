@@ -7,18 +7,26 @@ const initialState = getMultipleChoiceOptions();
 const mutliSelectAnswersReducer = function(state=initialState, action) {
     switch(action.type) {
         case ActionTypes.MULTI_SELECT_ANSWERS_ADD_NEW:
-            const lastId = state.multiSelectAnswersList.length ? state.multiSelectAnswersList[state.multiSelectAnswersList.length-1].id : 0;
             const emptyAnswer = {
-                id: lastId + 1, title: '', correct: false, selectedFeedback: "", unselectedFeedback: "", answer: ""
+                id: Math.random(), title: '', correct: false, selectedFeedback: "", unselectedFeedback: "", answer: ""
             };
             return {
                 ...state,
                 multiSelectAnswersList: state.multiSelectAnswersList.concat([emptyAnswer])
             };
         case ActionTypes.MULTI_SELECT_ANSWERS_REMOVE:
+            const newMultiSelectAnswersList = state.multiSelectAnswersList.filter(multi => multi.id !== action.id);
+            const newGroupFeedbackList = state.groupFeedbackList.map(feedback => {
+                feedback.answers = feedback.answers.filter(ans => {
+                    const answerIndex = newMultiSelectAnswersList.filter(el => el.id === ans)[0];
+                    return newMultiSelectAnswersList.indexOf(answerIndex) !== -1;
+                });
+                return feedback;
+            })
             return {
                 ...state,
-                multiSelectAnswersList: state.multiSelectAnswersList.filter(multi => multi.id !== action.id)
+                groupFeedbackList: newGroupFeedbackList,
+                multiSelectAnswersList: newMultiSelectAnswersList,
             };
         case ActionTypes.MULTI_SELECT_ANSWERS_CHANGED:
             return {
@@ -65,7 +73,7 @@ const mutliSelectAnswersReducer = function(state=initialState, action) {
                 ...state,
                 groupFeedbackList: state.groupFeedbackList.filter(el => {
                     return el.id !== action.id;
-                })
+                }).map((el, ind) => {el.id = ind; return el;})
             };
         default:
             return state;

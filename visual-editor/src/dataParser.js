@@ -6,7 +6,8 @@ window.LXCData = window.LXCData || {};
 window.LXCData.markdown = process.env.NODE_ENV === 'development' ? markdown.textInputWithHintsAndFeedback : window.LXCData.markdown;
 
 function getHints(testMarkdown) {
-    const markdown = process.env.NODE_ENV === 'test' ? testMarkdown : window.LXCData.markdown;
+    const isEnvTest = process.env.NODE_ENV === 'test';
+    const markdown = isEnvTest ? testMarkdown : window.LXCData.markdown;
     if (!markdown || !markdown.trim()) {
         return [];
     }
@@ -26,7 +27,7 @@ function getHints(testMarkdown) {
         const hint = getHint(row);
         if (hint.length) {
             hints.push({
-                id: hints.length,
+                id: isEnvTest ? hints.length : Math.random(),
                 value: hint
             });
         }
@@ -107,12 +108,12 @@ function getMultipleChoiceOptions(testMarkdown) {
         multiSelectAnswersList: multipleChoiceOptions,
         groupFeedbackList: []
     };
-    if (process.env.NODE_ENV !== 'test' && (!window.LXCData.markdown || !window.LXCData.markdown.trim())) {
+    const isEnvTest = process.env.NODE_ENV === 'test';
+    if (!isEnvTest && (!window.LXCData.markdown || !window.LXCData.markdown.trim())) {
         return data;
     }
-    let markdownListData = process.env.NODE_ENV === 'test' ? testMarkdown : window.LXCData.markdown.split('\n');
+    let markdownListData = isEnvTest ? testMarkdown : window.LXCData.markdown.split('\n');
     let feedback = '';
-    let counter = 0;
     for (let d in markdownListData) {
         let row = markdownListData[d];
         // multiple choices
@@ -142,7 +143,7 @@ function getMultipleChoiceOptions(testMarkdown) {
                 }
             }
             multipleChoiceOptions.push({
-                id: counter++,
+                id: isEnvTest ? multipleChoiceOptions.length : Math.random(),
                 title: title,
                 correct: row.startsWith('[ ]') ? false : true,
                 selectedFeedback: selectedFeedback,
@@ -150,26 +151,31 @@ function getMultipleChoiceOptions(testMarkdown) {
             });
         }
         // group Feedback
-        if (row.startsWith('{{')) {
-            const groupFeedbackEnd = row.indexOf('}}');
-            const goupStart = row.indexOf('((');
-            const groupEnd = row.indexOf('))');
-            let t = row.slice(goupStart+2, groupEnd).split(' ');
-            let groupChoices = [];
-            for (let i in t) {
-                let letter = t[i];
-                groupChoices.push(groupFeedbackWordMapping.indexOf(letter));
-            }
-            feedback = row.slice(groupEnd+2, groupFeedbackEnd).trim()
+        if (multipleChoiceOptions.length) {
+            if (row.startsWith('{{')) {
+                const groupFeedbackEnd = row.indexOf('}}');
+                const goupStart = row.indexOf('((');
+                const groupEnd = row.indexOf('))');
+                let group = row.slice(goupStart+2, groupEnd).split(' ');
+                let groupChoices = [];
+                for (let i in group) {
+                    let letter = group[i];
+                    if (multipleChoiceOptions[groupFeedbackWordMapping.indexOf(letter)]) {
+                        groupChoices.push(multipleChoiceOptions[groupFeedbackWordMapping.indexOf(letter)].id);
 
-            if (groupChoices.length && feedback) {
-                data.groupFeedbackList.push({
-                    id: data.groupFeedbackList.length,
-                    answers: groupChoices,
-                    feedback: feedback
-                })
+                    }
+                }
+                feedback = row.slice(groupEnd+2, groupFeedbackEnd).trim()
+    
+                if (groupChoices.length && feedback) {
+                    data.groupFeedbackList.push({
+                        id: isEnvTest ? data.groupFeedbackList.length : Math.random(),
+                        answers: groupChoices,
+                        feedback: feedback
+                    })
+                }
+    
             }
-
         }
     };
     return data;

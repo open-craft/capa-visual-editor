@@ -43,11 +43,11 @@
     "defaultMessage": "+ Add <span className='lxc-hide-mobile'>another</span> answer",
     "file": "src/components/UnitEditorWidget/MultiSelectAnswers.js",
     "start": {
-      "line": 50,
+      "line": 52,
       "column": 32
     },
     "end": {
-      "line": 53,
+      "line": 55,
       "column": 34
     }
   }
