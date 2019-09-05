@@ -22,6 +22,10 @@ const messages = defineMessages({
 })
 
 class GroupFeedbackItem extends React.Component{
+    handleKeyDown(e) {
+        e.target.style.height = 'inherit';
+        e.target.style.height = `${e.target.scrollHeight+2}px`;
+    }
 
     feedbackChangeHandler(event) {
         this.props.groupFeedbackChange({
@@ -59,14 +63,15 @@ class GroupFeedbackItem extends React.Component{
                 <label className='lxc-advanced-settings-label' htmlFor={`feedbackField${this.props.id}`}>
                     {formatMessage(messages.label)}
                 </label>
-                <input
+                <textarea
+                    rows={1}
                     id={`feedbackField${this.props.id}`}
-                    type='text'
                     className='lxc-advanced-settings-field'
                     placeholder={formatMessage(messages.placeholder)}
                     value={this.props.feedback}
+                    onKeyUp={this.handleKeyDown}
                     onChange={this.feedbackChangeHandler.bind(this)}>
-                </input>
+                </textarea>
                 <div className='lxc-advanced-settings-note'>
                     {formatMessage(messages.note)}
                 </div>

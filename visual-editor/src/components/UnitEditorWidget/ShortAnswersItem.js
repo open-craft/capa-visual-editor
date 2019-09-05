@@ -102,6 +102,19 @@ class ShortAnswersItem extends React.PureComponent {
                     {formatMessage(messages.title)}
                 </div>
                 <div className='lxc-answers-field-wrapper'>
+                    <div className={`lxc-answers-field-block ${this.state.feedbackOpenned ? 'lxc-answers-field-block_open' : ''}`}>
+                        <div className='lxc-answers-item-wrapper'>
+                            <label className='lxc-sr' htmlFor={`answer-single${this.props.id}`}>{placeholderText}</label>
+                            <textarea rows={1} className='lxc-answers-item' id={`answer-single${this.props.id}`} value={this.props.value}
+                                      placeholder={placeholderText} onChange={this.valueChanged.bind(this)} onKeyUp={this.handleKeyDown}/>
+                            <button className='lxc-answers-feedback-btn' type='button' aria-label={formatMessage(messages.btnFeedback)} onClick={this.openFeedbackButtonClick.bind(this)}/>
+                        </div>
+                        {
+                            this.props.shortAnswersList.length > 1 ? (
+                                <button className='lxc-answers-remove-btn' type='button' aria-label={formatMessage(messages.btnRemove)} onClick={this.removeAnswer.bind(this)}/>
+                            ) : null
+                        }
+                    </div>
                     <div className={`lxc-answers-feedback ${this.state.feedbackOpenned ? 'lxc-answers-feedback_open' : ''}`}>
                         <label className='lxc-answers-feedback-title' htmlFor={`feedback-field${this.props.id}`}>
                             {formatMessage(messages.feedbackTitle)}
@@ -110,17 +123,6 @@ class ShortAnswersItem extends React.PureComponent {
                                   placeholder={formatMessage(messages.feedbackFieldPlaceholder)} value={this.props.feedback} onChange={this.feedbackChange.bind(this)}
                                   onKeyUp={this.handleKeyDown}/>
                     </div>
-                    <div className='lxc-answers-item-wrapper'>
-                        <label className='lxc-sr' htmlFor={`answer-single${this.props.id}`}>{placeholderText}</label>
-                        <textarea rows={1} className='lxc-answers-item' id={`answer-single${this.props.id}`} value={this.props.value}
-                                  placeholder={placeholderText} onChange={this.valueChanged.bind(this)} onKeyUp={this.handleKeyDown}/>
-                        <button className='lxc-answers-feedback-btn' type='button' aria-label={formatMessage(messages.btnFeedback)} onClick={this.openFeedbackButtonClick.bind(this)}/>
-                    </div>
-                    {
-                        this.props.shortAnswersList.length > 1 ? (
-                            <button className='lxc-answers-remove-btn' type='button' aria-label={formatMessage(messages.btnRemove)} onClick={this.removeAnswer.bind(this)}/>
-                        ) : null
-                    }
                 </div>
             </div>
         );

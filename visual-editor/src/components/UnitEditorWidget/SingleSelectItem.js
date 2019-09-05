@@ -89,6 +89,7 @@ class SingleSelectItem extends React.PureComponent {
         const { formatMessage } = this.props.intl;
 
         const additionallyСlass = this.state.openFeedback ? 'lxc-answers-feedback_open' : '';
+        const additionallyBlockСlass = this.state.openFeedback ? 'lxc-answers-field-block_open' : '';
         const placeholderText = this.props.correct ? formatMessage(messages.correct) : formatMessage(messages.incorrect);
 
         return (
@@ -102,6 +103,19 @@ class SingleSelectItem extends React.PureComponent {
                     </label>
                 </fieldset>
                 <div className='lxc-answers-field-wrapper'>
+                    <div className={`lxc-answers-field-block ${additionallyBlockСlass}`}>
+                        <div className='lxc-answers-item-wrapper'>
+                            <label className='lxc-sr' htmlFor={`answer-single${this.props.id}`}>{placeholderText}</label>
+                            <textarea rows={1} className='lxc-answers-item' id={`answer-single${this.props.id}`}value={this.props.title}
+                            placeholder={placeholderText} onChange={this.titleChange} onKeyUp={this.handleKeyDown}/>
+                            <button className='lxc-answers-feedback-btn' type='button' aria-label={formatMessage(messages.feedbackBtnAreaLabel)} onClick={this.openFeedbackButtonClick}/>
+                        </div>
+                        {
+                            this.props.answersList.length > 1 ? (
+                                <button className='lxc-answers-remove-btn' type='button' aria-label={formatMessage(messages.removeBtnAreaLabel)} onClick={this.removeAnswer}/>
+                            ) : null
+                        }
+                    </div>
                     <div className={`lxc-answers-feedback ${additionallyСlass}`}>
                         <label className='lxc-answers-feedback-title' htmlFor={`feedback-field${this.props.id}`}>
                             {formatMessage(messages.feedbackTitle)}
@@ -110,17 +124,6 @@ class SingleSelectItem extends React.PureComponent {
                                   placeholder={formatMessage(messages.feedbackPlaceholder)} value={this.props.feedback}
                                   onChange={this.feedbackChange} onKeyUp={this.handleKeyDown}/>
                     </div>
-                    <div className='lxc-answers-item-wrapper'>
-                        <label className='lxc-sr' htmlFor={`answer-single${this.props.id}`}>{placeholderText}</label>
-                        <textarea rows={1} className='lxc-answers-item' id={`answer-single${this.props.id}`}value={this.props.title}
-                        placeholder={placeholderText} onChange={this.titleChange} onKeyUp={this.handleKeyDown}/>
-                        <button className='lxc-answers-feedback-btn' type='button' aria-label={formatMessage(messages.feedbackBtnAreaLabel)} onClick={this.openFeedbackButtonClick}/>
-                    </div>
-                    {
-                        this.props.answersList.length > 1 ? (
-                            <button className='lxc-answers-remove-btn' type='button' aria-label={formatMessage(messages.removeBtnAreaLabel)} onClick={this.removeAnswer}/>
-                        ) : null
-                    }
                 </div>
             </div>
         );

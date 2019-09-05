@@ -132,6 +132,11 @@
     }
 }
 
+.lxc-advanced-hint-block {
+    position: relative;
+    width: 100%;
+}
+
 .lxc-advanced-settings-another-field-btn {
     @extend .lxc-unit-another-btn;
     margin-top: 16px;
