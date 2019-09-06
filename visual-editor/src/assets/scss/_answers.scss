@@ -175,24 +175,12 @@
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-
-    .lxc-answers-list_short & {
-        @media (max-width: map-get($screen, "mobile")){
-            justify-content: flex-end;
-        }
-    }
 }
 
 .lxc-answers-item-wrapper {
     display: flex;
     width: calc(100% - 30px);
     order: 1;
-
-    .lxc-answers-list_short & {
-        @media (max-width: map-get($screen, "mobile")){
-            width: 100%;
-        }
-    }
 }
 
 .lxc-answers-item {
@@ -231,12 +219,6 @@
             padding: 8px;
         }
 
-        .lxc-answers-list_short & {
-            @media (max-width: map-get($screen, "mobile")){
-                width: 100%;
-            }
-        }
-
         & + .lxc-answers-item-wrapper {
             .lxc-answers-item {
                 border-radius: 5px 0 0 0;
@@ -255,6 +237,22 @@
                     transform: scale(1, -1);
                 }
             }
+        }
+    }
+}
+
+.lxc-answers-field-block {
+    display: flex;
+    width: 100%;
+    position: relative;
+
+    &_open {
+        .lxc-answers-item {
+            border-radius: 5px 0 0 0;
+        }
+
+        .lxc-answers-feedback-btn {
+            border-radius: 0 5px 0 0;
         }
     }
 }
@@ -300,10 +298,6 @@
     @media (max-width: map-get($screen, "mobile")){
         height: 103px;
         padding: 8px;
-
-        .lxc-answers-list_short & {
-            height: $form-field-default-height;
-        }
     }
 }
 
@@ -338,6 +332,24 @@
         @media (max-width: map-get($screen, "mobile")){
             margin-top: 0;
         }
+    }
+
+    .lxc-answers-field-block & {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+
+        @media (max-width: map-get($screen, "mobile")){
+            margin-top: 0;
+        }
+    }
+
+    .lxc-advanced-hint-block & {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
     }
 }
 

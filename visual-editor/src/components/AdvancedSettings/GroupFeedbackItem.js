@@ -19,10 +19,9 @@ const messages = defineMessages({
         id: 'GroupFeedbackItem.btn',
         defaultMessage: 'Delete group feedback'
     },
-})
+});
 
 class GroupFeedbackItem extends React.Component{
-
     feedbackChangeHandler(event) {
         this.props.groupFeedbackChange({
             feedback: event.target.value,
@@ -59,14 +58,14 @@ class GroupFeedbackItem extends React.Component{
                 <label className='lxc-advanced-settings-label' htmlFor={`feedbackField${this.props.id}`}>
                     {formatMessage(messages.label)}
                 </label>
-                <input
+                <textarea
+                    rows={1}
                     id={`feedbackField${this.props.id}`}
-                    type='text'
                     className='lxc-advanced-settings-field'
                     placeholder={formatMessage(messages.placeholder)}
                     value={this.props.feedback}
                     onChange={this.feedbackChangeHandler.bind(this)}>
-                </input>
+                </textarea>
                 <div className='lxc-advanced-settings-note'>
                     {formatMessage(messages.note)}
                 </div>

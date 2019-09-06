@@ -3,6 +3,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import HintSetting from './HintSetting';
 import ScorringSetting from './ScoringSetting';
+import { doAutoSize } from "../../Utils";
 
 import '../../assets/scss/app.scss';
 
@@ -34,6 +35,8 @@ class ShortAdvancedSettings extends React.PureComponent {
     switchAdvancedSettings() {
         this.setState({
             advancedSettingsOpenned: !this.state.advancedSettingsOpenned
+        }, () => {
+            doAutoSize();
         });
     }
 

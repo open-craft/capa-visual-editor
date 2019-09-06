@@ -1,5 +1,7 @@
 import React from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
+import { doAutoSize } from "../../Utils";
+import autosize from "autosize";
 
 import '../../assets/scss/app.scss';
 
@@ -49,9 +51,8 @@ class ShortAnswersItem extends React.PureComponent {
         };
     }
 
-    handleKeyDown(e) {
-        e.target.style.height = 'inherit';
-        e.target.style.height = `${e.target.scrollHeight+2}px`;
+    componentDidMount() {
+        autosize(this.answerTextarea);
     }
 
     removeAnswer() {
@@ -89,6 +90,8 @@ class ShortAnswersItem extends React.PureComponent {
     openFeedbackButtonClick () {
         this.setState({
             feedbackOpenned: !this.state.feedbackOpenned
+        }, () => {
+            doAutoSize();
         });
     }
 
@@ -96,31 +99,34 @@ class ShortAnswersItem extends React.PureComponent {
         const { formatMessage } = this.props.intl;
         let placeholderText = this.props.shortAnswersList.length === 0 ? formatMessage(messages.enter) : formatMessage(messages.enterAnother);
         placeholderText = this.props.correct ? placeholderText : formatMessage(messages.enterIncorrect);
+
         return (
             <div className='lxc-answers-option'>
                 <div className='lxc-answers-field-title'>
                     {formatMessage(messages.title)}
                 </div>
                 <div className='lxc-answers-field-wrapper'>
+                    <div className={`lxc-answers-field-block ${this.state.feedbackOpenned ? 'lxc-answers-field-block_open' : ''}`}>
+                        <div className='lxc-answers-item-wrapper'>
+                            <label className='lxc-sr' htmlFor={`answer-single${this.props.id}`}>{placeholderText}</label>
+                            <textarea rows={1} className='lxc-answers-item' id={`answer-single${this.props.id}`} value={this.props.value}
+                                      placeholder={placeholderText} onChange={this.valueChanged.bind(this)} ref={c => (this.answerTextarea = c)}/>
+                            <button className='lxc-answers-feedback-btn' type='button' aria-label={formatMessage(messages.btnFeedback)} onClick={this.openFeedbackButtonClick.bind(this)}/>
+                        </div>
+                        {
+                            this.props.shortAnswersList.length > 1 ? (
+                                <button className='lxc-answers-remove-btn' type='button' aria-label={formatMessage(messages.btnRemove)} onClick={this.removeAnswer.bind(this)}/>
+                            ) : null
+                        }
+                    </div>
                     <div className={`lxc-answers-feedback ${this.state.feedbackOpenned ? 'lxc-answers-feedback_open' : ''}`}>
                         <label className='lxc-answers-feedback-title' htmlFor={`feedback-field${this.props.id}`}>
                             {formatMessage(messages.feedbackTitle)}
                         </label>
                         <textarea rows={1} className='lxc-answers-feedback-field' id={`feedback-field${this.props.id}`}
-                                  placeholder={formatMessage(messages.feedbackFieldPlaceholder)} value={this.props.feedback} onChange={this.feedbackChange.bind(this)}
-                                  onKeyUp={this.handleKeyDown}/>
+                                  placeholder={formatMessage(messages.feedbackFieldPlaceholder)} value={this.props.feedback}
+                                  onChange={this.feedbackChange.bind(this)}/>
                     </div>
-                    <div className='lxc-answers-item-wrapper'>
-                        <label className='lxc-sr' htmlFor={`answer-single${this.props.id}`}>{placeholderText}</label>
-                        <textarea rows={1} className='lxc-answers-item' id={`answer-single${this.props.id}`} value={this.props.value}
-                                  placeholder={placeholderText} onChange={this.valueChanged.bind(this)} onKeyUp={this.handleKeyDown}/>
-                        <button className='lxc-answers-feedback-btn' type='button' aria-label={formatMessage(messages.btnFeedback)} onClick={this.openFeedbackButtonClick.bind(this)}/>
-                    </div>
-                    {
-                        this.props.shortAnswersList.length > 1 ? (
-                            <button className='lxc-answers-remove-btn' type='button' aria-label={formatMessage(messages.btnRemove)} onClick={this.removeAnswer.bind(this)}/>
-                        ) : null
-                    }
                 </div>
             </div>
         );

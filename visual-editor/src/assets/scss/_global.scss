@@ -21,31 +21,35 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 767px, "small": 600px, "
 // -----
 
 @font-face {
-  font-family: "BebasNeueBold";
-  font-style: normal;
-  font-weight: bold;
-  src: url(../fonts/BebasNeueBold.woff) format("woff");
+    font-family: "BebasNeueBold";
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+    src: url(../fonts/BebasNeueBold.woff) format("woff");
 }
 
 @font-face {
-  font-family: "BebasNeueRegular";
-  font-style: normal;
-  font-weight: normal;
-  src: url(../fonts/BebasNeueRegular.woff) format("woff");
+    font-family: "BebasNeueRegular";
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url(../fonts/BebasNeueRegular.woff) format("woff");
 }
 
 @font-face {
-  font-family: "BioSans_Bold";
-  font-style: normal;
-  font-weight: bold;
-  src: url(../fonts/BioSans_Bold.woff) format("woff");
+    font-family: "BioSans_Bold";
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+    src: url(../fonts/BioSans_Bold.woff) format("woff");
 }
 
 @font-face {
-  font-family: "BioSans_Regular";
-  font-style: normal;
-  font-weight: normal;
-  src: url(../fonts/BioSans_Regular.woff) format("woff");
+    font-family: "BioSans_Regular";
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url(../fonts/BioSans_Regular.woff) format("woff");
 }
 
 // -----
@@ -105,7 +109,7 @@ $screen: ("desktop": 1200px, "tablet": 990px, "mobile": 767px, "small": 600px, "
     font-family: $font-normal;
     margin: 0;
     -webkit-appearance: none;
-    overflow: auto;
+    overflow: auto !important;
     height: $form-field-default-height;
     min-height: $form-field-default-height;
     max-height: 400px;

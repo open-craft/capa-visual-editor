@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@tinymce/tinymce-react": "^2.6.1",
+    "autosize": "^4.0.2",
     "bootstrap": "^4.3.1",
     "react": "^16.8.6",
     "react-app-polyfill": "^1.0.1",
