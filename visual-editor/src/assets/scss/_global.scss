@@ -1,0 +1,327 @@
+// Global variables, mixins, and styles.
+
+$font-heading-bold: BebasNeueBold, Impact, sans-serif;
+$font-heading-regular: BebasNeueRegular, Arial, sans-serif;
+$font-normal-bold: BioSans_Bold, Arial, sans-serif;
+$font-normal: BioSans_Regular, Arial, sans-serif;
+
+$brand-color-dark: #003e6b;
+$brand-color: #336589;
+$brand-color-light: #99b2c4;
+$brand-border-color: #668ba6;
+$brand-light-background: #f5f7f9;
+$brand-lightest-background: #e5ecf0;
+
+$form-field-default-height: 36px;
+
+$screen: ("desktop": 1200px, "tablet": 990px, "mobile": 767px, "small": 600px, "extra-small": 350px);
+
+// -----
+// Fonts
+// -----
+
+@font-face {
+    font-family: "BebasNeueBold";
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+    src: url(../fonts/BebasNeueBold.woff) format("woff");
+}
+
+@font-face {
+    font-family: "BebasNeueRegular";
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url(../fonts/BebasNeueRegular.woff) format("woff");
+}
+
+@font-face {
+    font-family: "BioSans_Bold";
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+    src: url(../fonts/BioSans_Bold.woff) format("woff");
+}
+
+@font-face {
+    font-family: "BioSans_Regular";
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url(../fonts/BioSans_Regular.woff) format("woff");
+}
+
+// -----
+// Common classes
+// -----
+
+// common class for titles
+.lxc-unit-title {
+    text-transform: uppercase;
+    font-size: 24px;
+    line-height: 22.5px;
+    letter-spacing: 1px;
+    font-family: $font-heading-regular;
+    margin-bottom: 0;
+}
+
+// common class for descriptions
+.lxc-unit-description {
+    color: #666;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+// common class for dashed button to add field
+.lxc-unit-another-btn {
+    font-size: 16px;
+    text-align: center;
+    line-height: 20px;
+    color: $brand-color-dark;
+    border: 1px dashed $brand-color;
+    border-radius: 5px;
+    background: transparent;
+    width: 100%;
+    padding: 7px 10px;
+    transition: all .15s linear;
+
+    &:hover {
+        cursor: pointer;
+        color: lighten($brand-color-dark, 10%);
+        border-color: lighten($brand-color, 10%);
+    }
+}
+
+// common class for field (input, textarea)
+.lxc-unit-form-field {
+    display: block;
+    width: 100%;
+    background: #fff;
+    padding: 7px 8px;
+    font-size: 16px;
+    line-height: 20px;
+    border: 1px solid $brand-color-light;
+    border-radius: 5px;
+    resize: none;
+    color: $brand-color-dark;
+    transition: background-color .05s linear;
+    font-family: $font-normal;
+    margin: 0;
+    -webkit-appearance: none;
+    overflow: auto !important;
+    height: $form-field-default-height;
+    min-height: $form-field-default-height;
+    max-height: 400px;
+
+    &::placeholder {
+        color: $brand-border-color;
+    }
+
+    &:hover {
+        background: #e5ecf0;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: $brand-color-dark;
+    }
+}
+
+// common class for select
+.lxc-unit-form-select {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+
+    .lxc-advanced-settings-label_wrap & {
+        margin-top: 5px;
+    }
+
+    .css-yk16xz-control {
+        background: #fff;
+        border: 1px solid #99b2c4;
+        color: $brand-color-dark;
+        border-radius: 5px;
+        font-size: 16px;
+        line-height: 20px;
+        min-height: $form-field-default-height;
+        padding: 3px 26px 3px 8px;
+        transition: none;
+
+        &:hover {
+            cursor: pointer;
+            background: #e5ecf0;
+            border-color: #99b2c4;
+        }
+
+        &:focus {
+            background: $brand-color-dark;
+            color: #fff;
+        }
+    }
+
+    .css-1pahdxg-control {
+        min-height: $form-field-default-height;
+        padding: 3px 26px 3px 8px !important;
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
+        border: 1px solid #99b2c4;
+        background: $brand-color-dark;
+        transition: none;
+
+        &:hover {
+            cursor: pointer;
+            border: 1px solid #99b2c4;
+            box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
+        }
+
+        .css-1wa3eu0-placeholder,
+        .css-1uccc91-singleValue {
+            color: #fff;
+        }
+    }
+
+    .css-tlfecz-indicatorContainer,
+    .css-1gtu0rj-indicatorContainer {
+        padding: 0;
+        position: absolute;
+        right: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .css-1okebmr-indicatorSeparator,
+    .css-tj5bde-Svg {
+        display: none;
+    }
+
+    .css-1uccc91-singleValue,
+    .css-1wa3eu0-placeholder {
+        color: $brand-color-dark;
+        margin: 0;
+    }
+
+    .css-1hwfws3 {
+        padding: 0;
+
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            min-height: 28px;
+        }
+    }
+
+    .css-tlfecz-indicatorContainer,
+    .css-1gtu0rj-indicatorContainer {
+        width: 20px;
+        height: 20px;
+        background: url('../images/select-arrow.svg') no-repeat center center;
+    }
+
+    .css-1gtu0rj-indicatorContainer {
+        transform: scale(1, -1) translateY(50%);
+        background: url('../images/select-arrow-focus.svg') no-repeat center center;
+    }
+
+    .css-26l3qy-menu {
+        margin: -3px 0 0;
+        border-radius: 0 0 5px 5px;
+        overflow: hidden;
+        box-shadow: none;
+        border: 1px solid #99b2c4;
+        border-top: none;
+        padding-top: 3px;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 100%;
+            background: $brand-color-dark;
+            z-index: 2;
+            box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
+        }
+    }
+
+    .css-1ml51p6-MenuList,
+    .css-11unzgr {
+        padding: 0;
+        background: #f5f7f9;
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
+
+        .css-yt9ioa-option,
+        .css-1n7v3ny-option,
+        .css-9gakcf-option {
+            font-size: 16px;
+            color: $brand-color-dark;
+            border-bottom: 1px solid #ccd8e1;
+            padding: 8px;
+            line-height: 20px;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+
+        .css-1n7v3ny-option {
+            background: #ccd8e1;
+            color: $brand-color-dark;
+        }
+
+        .css-9gakcf-option {
+            background: $brand-color;
+            color: #fff;
+        }
+    }
+
+    .css-19bqh2r {
+        display: none;
+    }
+}
+
+// common class only for screen reader
+.lxc-sr {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+// class for hide block on mobile
+.lxc-hide-mobile {
+    @media (max-width: map-get($screen, "mobile")){
+        display: none !important;
+    }
+}
+
+//exactly for edx-platform
+
+.visual-editor {
+    display: block;
+}
+.visual-editor.is-inactive {
+    display: none;
+}
+
+.modal-lg.modal-editor .modal-header .editor-modes .action-item .visual-editor-button {
+    color: #666;
+    font-size: 1.4rem;
+    line-height: 2.664rem;
+    border: 0;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    border-radius: 4px;
+
+    &.is-set {
+        background-color: #666;
+        color: #fff;
+    }
+}

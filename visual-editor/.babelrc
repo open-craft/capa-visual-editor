@@ -1,0 +1,9 @@
+{
+    "presets": ["react-app", "@babel/preset-env", "@babel/preset-react"],
+    "plugins": [
+        [ "react-intl", {
+            "messagesDir": "./locale",
+            "extractSourceLocation": true
+        }]
+    ]
+}

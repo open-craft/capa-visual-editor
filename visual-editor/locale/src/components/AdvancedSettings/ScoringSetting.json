@@ -1,0 +1,93 @@
+[
+  {
+    "id": "ScoringSetting.title",
+    "defaultMessage": "Scoring",
+    "file": "src/components/AdvancedSettings/ScoringSetting.js",
+    "start": {
+      "line": 10,
+      "column": 11
+    },
+    "end": {
+      "line": 13,
+      "column": 5
+    }
+  },
+  {
+    "id": "ScoringSetting.description",
+    "defaultMessage": "Decide on the amount of points and attempts per question.",
+    "file": "src/components/AdvancedSettings/ScoringSetting.js",
+    "start": {
+      "line": 14,
+      "column": 17
+    },
+    "end": {
+      "line": 17,
+      "column": 5
+    }
+  },
+  {
+    "id": "ScoringSetting.labelAttemps",
+    "defaultMessage": "Default number of attempts",
+    "file": "src/components/AdvancedSettings/ScoringSetting.js",
+    "start": {
+      "line": 18,
+      "column": 19
+    },
+    "end": {
+      "line": 21,
+      "column": 5
+    }
+  },
+  {
+    "id": "ScoringSetting.labelPoints",
+    "defaultMessage": "Default points",
+    "file": "src/components/AdvancedSettings/ScoringSetting.js",
+    "start": {
+      "line": 22,
+      "column": 17
+    },
+    "end": {
+      "line": 25,
+      "column": 5
+    }
+  },
+  {
+    "id": "ScoringSetting.note",
+    "defaultMessage": "Note: Attempts count and points can be altered when adding to an assignment.",
+    "file": "src/components/AdvancedSettings/ScoringSetting.js",
+    "start": {
+      "line": 26,
+      "column": 10
+    },
+    "end": {
+      "line": 29,
+      "column": 5
+    }
+  },
+  {
+    "id": "ScoringSetting.placeholderAttemps",
+    "defaultMessage": "- Select -",
+    "file": "src/components/AdvancedSettings/ScoringSetting.js",
+    "start": {
+      "line": 30,
+      "column": 24
+    },
+    "end": {
+      "line": 33,
+      "column": 5
+    }
+  },
+  {
+    "id": "ScoringSetting.placeholderPoints",
+    "defaultMessage": "- Select -",
+    "file": "src/components/AdvancedSettings/ScoringSetting.js",
+    "start": {
+      "line": 34,
+      "column": 23
+    },
+    "end": {
+      "line": 37,
+      "column": 5
+    }
+  }
+]

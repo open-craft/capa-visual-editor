@@ -1,0 +1,28 @@
+[
+  {
+    "id": "ShortAnswerContainer.title",
+    "defaultMessage": "Question*",
+    "file": "src/containers/ShortAnswerContainer.js",
+    "start": {
+      "line": 20,
+      "column": 11
+    },
+    "end": {
+      "line": 23,
+      "column": 5
+    }
+  },
+  {
+    "id": "ShortAnswerContainer.description",
+    "defaultMessage": "Create a question that only has one answer.",
+    "file": "src/containers/ShortAnswerContainer.js",
+    "start": {
+      "line": 24,
+      "column": 17
+    },
+    "end": {
+      "line": 27,
+      "column": 5
+    }
+  }
+]

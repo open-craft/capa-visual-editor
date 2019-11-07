@@ -1,0 +1,54 @@
+[
+  {
+    "id": "MultiSelectAnswers.title",
+    "defaultMessage": "Answers*",
+    "file": "src/components/UnitEditorWidget/MultiSelectAnswers.js",
+    "start": {
+      "line": 10,
+      "column": 11
+    },
+    "end": {
+      "line": 13,
+      "column": 5
+    }
+  },
+  {
+    "id": "MultiSelectAnswers.description",
+    "defaultMessage": "Enter the answers below and select whether an answer is correct or incorrect. Remember, you can have more than one correct answer.",
+    "file": "src/components/UnitEditorWidget/MultiSelectAnswers.js",
+    "start": {
+      "line": 14,
+      "column": 17
+    },
+    "end": {
+      "line": 17,
+      "column": 5
+    }
+  },
+  {
+    "id": "MultiSelectAnswers.btnAddNewAnswer",
+    "defaultMessage": "+ Add answer",
+    "file": "src/components/UnitEditorWidget/MultiSelectAnswers.js",
+    "start": {
+      "line": 18,
+      "column": 21
+    },
+    "end": {
+      "line": 21,
+      "column": 5
+    }
+  },
+  {
+    "id": "MultiSelectAnswers.addButton",
+    "defaultMessage": "+ Add <span className='lxc-hide-mobile'>another</span> answer",
+    "file": "src/components/UnitEditorWidget/MultiSelectAnswers.js",
+    "start": {
+      "line": 52,
+      "column": 32
+    },
+    "end": {
+      "line": 55,
+      "column": 34
+    }
+  }
+]

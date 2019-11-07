@@ -1,0 +1,382 @@
+.lxc-answers-wrapper {
+    width: 100%;
+    padding: 0 32px;
+    min-width: 0;
+    margin: 0;
+    border: 0;
+
+    @media (max-width: map-get($screen, "mobile")){
+        padding: 0 10px;
+    }
+
+    .lxc-answers-wrapper + & {
+        margin-top: 32px;
+    }
+}
+
+.lxc-answers-title {
+    @extend .lxc-unit-title;
+}
+
+.lxc-answers-description {
+    @extend .lxc-unit-description;
+}
+
+.lxc-answers-list {
+    border: 1px solid $brand-border-color;
+    background-color: $brand-light-background;
+    border-radius: 5px;
+    counter-reset: answer-item-counter;
+    padding: 16px;
+    margin-top: 8px;
+
+    @media (max-width: map-get($screen, "mobile")){
+        padding: 16px 8px;
+
+        &.lxc-answers-list_short {
+            padding: 8px;
+        }
+    }
+}
+
+.lxc-answers-option,
+.lxc-answers-another-option {
+    padding-left: 24px;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+
+    @media (max-width: map-get($screen, "mobile")){
+        padding-left: 18px;
+    }
+
+    &:before {
+        counter-increment: answer-item-counter;
+        content: counter(answer-item-counter, upper-latin);
+        position: absolute;
+        left: 0;
+        top: 6px;
+        font-size: 16px;
+        color: $brand-color;
+        font-weight: normal;
+        font-family: $font-normal-bold;
+
+        @media (max-width: map-get($screen, "mobile")){
+            top: 33px;
+        }
+    }
+
+    .lxc-answers-list_short & {
+        padding-left: 0;
+
+        &:before{
+            display: none;
+        }
+    }
+}
+
+.lxc-answers-option {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 13px;
+
+    .lxc-answers-list_short & {
+        @media (max-width: map-get($screen, "mobile")){
+            display: flex;
+            flex-wrap: wrap;
+            border: 1px solid $brand-color;
+            border-radius: 5px;
+            padding: 8px;
+            background: $brand-lightest-background;
+            margin-bottom: 8px;
+        }
+    }
+}
+
+.lxc-answers-another-option {
+    &:before {
+        color: $brand-color-light;
+
+        @media (max-width: map-get($screen, "mobile")){
+            top: 11px;
+        }
+    }
+}
+
+.lxc-answers-radio {
+    margin: 0 8px 0 0;
+    padding: 0;
+    border: none;
+
+    input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        clip-path: polygon(0 0);
+    }
+}
+
+.lxc-answers-radio-label {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-bottom: 0;
+    color: transparent;
+    overflow: hidden;
+    background: url('../images/radio-incorrect.svg');
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    .lxc-answers-list_multi & {
+        border-radius: 5px;
+        background: url('../images/checkbox-incorrect.svg');
+    }
+
+    @media (max-width: map-get($screen, "mobile")){
+        margin-top: 26px;
+    }
+
+    input:focus + &,
+    &:focus,
+    &:hover {
+        box-shadow: 0 0 3px $brand-color-light;
+    }
+
+    input:focus + & {
+        outline: -webkit-focus-ring-color auto 5px;
+
+        @supports (-ms-ime-align:auto) {
+            outline: dotted 1px #333;
+        }
+
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            outline: dotted 1px #333;
+        }
+    }
+
+    input:-moz-focusring + & {
+        outline: dotted 1px #333;
+    }
+
+    input:checked + & {
+        background: url('../images/radio-correct.svg');
+
+        .lxc-answers-list_multi & {
+            background: url('../images/checkbox-correct.svg');
+        }
+    }
+}
+
+.lxc-answers-field-wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.lxc-answers-item-wrapper {
+    display: flex;
+    width: calc(100% - 30px);
+    order: 1;
+}
+
+.lxc-answers-item {
+    @extend .lxc-unit-form-field;
+    width: calc(100% - 30px);
+    border-radius: 5px 0 0 5px;
+    border-right: none;
+    order: 1;
+
+    @media (max-width: map-get($screen, "mobile")){
+        height: 88px;
+        min-height: 88px;
+    }
+
+    .lxc-answers-list_short & {
+        @media (max-width: map-get($screen, "mobile")){
+            height: $form-field-default-height;
+        }
+    }
+}
+
+.lxc-answers-feedback {
+    display: none;
+
+    &_open {
+        width: calc(100% - 30px);
+        display: block;
+        padding: 16px;
+        background: $brand-lightest-background;
+        border: 1px solid $brand-color-light;
+        border-top: none;
+        border-radius: 0 0 5px 5px;
+        order: 3;
+
+        @media (max-width: map-get($screen, "mobile")){
+            padding: 8px;
+        }
+
+        & + .lxc-answers-item-wrapper {
+            .lxc-answers-item {
+                border-radius: 5px 0 0 0;
+            }
+
+            .lxc-answers-feedback-btn {
+                border-radius: 0 5px 0 0;
+                background-image: none;
+
+                &:before {
+                    content: '';
+                    display: inline-block;
+                    width: 22px;
+                    height: 22px;
+                    background: url('../images/arrow-icon.svg') no-repeat center center;
+                    transform: scale(1, -1);
+                }
+            }
+        }
+    }
+}
+
+.lxc-answers-field-block {
+    display: flex;
+    width: 100%;
+    position: relative;
+
+    &_open {
+        .lxc-answers-item {
+            border-radius: 5px 0 0 0;
+        }
+
+        .lxc-answers-feedback-btn {
+            border-radius: 0 5px 0 0;
+        }
+    }
+}
+
+.lxc-answers-feedback-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid $brand-color-light;
+    border-radius: 0 5px 5px 0;
+    order: 2;
+    transition: background-color .15s linear;
+    background: $brand-lightest-background url('../images/add-hints.svg') no-repeat center center;
+    background-size: 22px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: darken($brand-lightest-background, 5%);
+    }
+
+    @media (max-width: map-get($screen, "mobile")){
+        width: 45px;
+    }
+}
+
+.lxc-answers-feedback-title {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    line-height: 16px;
+
+    .lxc-answers-feedback-field + & {
+        margin-top: 16px;
+    }
+}
+
+.lxc-answers-feedback-field {
+    @extend .lxc-unit-form-field;
+
+    @media (max-width: map-get($screen, "mobile")){
+        height: 103px;
+        padding: 8px;
+    }
+}
+
+.lxc-answers-remove-btn {
+    height: 36px;
+    width: 30px;
+    background: url('../images/trash-icon.svg') no-repeat center center;
+    border: none;
+    transition: opacity .15s linear;
+    order: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        cursor: pointer;
+        opacity: .8;
+    }
+
+    @media (max-width: map-get($screen, "mobile")){
+        margin-top: 26px;
+    }
+
+    .lxc-answers-list_short & {
+        @media (max-width: map-get($screen, "mobile")){
+            margin-top: 0;
+            order: 3;
+        }
+    }
+
+    .lxc-advanced-hint-wrapper & {
+        @media (max-width: map-get($screen, "mobile")){
+            margin-top: 0;
+        }
+    }
+
+    .lxc-answers-field-block & {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+
+        @media (max-width: map-get($screen, "mobile")){
+            margin-top: 0;
+        }
+    }
+
+    .lxc-advanced-hint-block & {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+    }
+}
+
+.lxc-answers-another-option-btn {
+    @extend .lxc-unit-another-btn;
+    width: calc(100% - 30px);
+
+    .lxc-answers-list_short & {
+        @media (max-width: map-get($screen, "mobile")){
+            width: 100%;
+        }
+    }
+}
+
+.lxc-answers-form-title {
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+.lxc-answers-field-title {
+    display: none;
+
+    @media (max-width: map-get($screen, "mobile")){
+        display: block;
+        width: 100%;
+        font-size: 13px;
+        line-height: normal;
+        margin: 0 0 5px;
+    }
+}
